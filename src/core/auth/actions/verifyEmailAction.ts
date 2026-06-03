@@ -2,7 +2,7 @@
 
 import { z } from "zod";
 
-import type { ActionResponse } from "@/features/auth/types";
+import type { ActionResponse } from "@/core/auth/types";
 
 const verifyEmailSchema = z.object({
   token: z.string().min(1, "Verification token is required"),

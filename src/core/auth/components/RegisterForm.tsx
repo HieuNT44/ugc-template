@@ -18,10 +18,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { PasswordInput } from "@/components/ui/password-input";
-import {
-  registerSchema,
-  type RegisterFormData,
-} from "@/features/auth/validations";
+import { registerSchema, type RegisterFormData } from "@/core/auth/validations";
 
 import { useFormState } from "../hooks/useFormState";
 import { useRegister } from "../hooks/useRegister";

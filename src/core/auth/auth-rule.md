@@ -61,13 +61,13 @@ auth/
 
 ```tsx
 // Import components
-import { LoginForm, RegisterForm, UserButton } from "@/features/auth";
+import { LoginForm, RegisterForm, UserButton } from "@/core/auth";
 
 // Import types
-import type { User, ActionState } from "@/features/auth";
+import type { User, ActionState } from "@/core/auth";
 
 // Import validations
-import { loginSchema, type LoginFormData } from "@/features/auth";
+import { loginSchema, type LoginFormData } from "@/core/auth";
 ```
 
 ## i18n Keys

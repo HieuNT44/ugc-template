@@ -3,30 +3,30 @@
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
-import { loginWithProvider } from "@/core/lib/auth-client";
+import { loginWithProvider } from "@/core/auth/lib/auth-client";
 import { cn } from "@/lib/utils";
 
-import { FacebookIcon } from "../icons/FacebookIcon";
+import { GithubIcon } from "../icons/GithubIcon";
 
-interface FacebookLoginButtonProps {
+interface GithubLoginButtonProps {
   disabled?: boolean;
   className?: string;
   onError?: (message: string) => void;
 }
 
-export function FacebookLoginButton({
+export function GithubLoginButton({
   disabled = false,
   className,
   onError,
-}: FacebookLoginButtonProps) {
+}: GithubLoginButtonProps) {
   const [loading, setLoading] = useState(false);
 
   const handleClick = async () => {
     setLoading(true);
-    const result = await loginWithProvider("facebook");
+    const result = await loginWithProvider("github");
     setLoading(false);
     if (!result.ok) {
-      onError?.(result.error ?? "Facebook sign-in failed");
+      onError?.(result.error ?? "GitHub sign-in failed");
     }
   };
 
@@ -38,9 +38,9 @@ export function FacebookLoginButton({
       className={cn("rounded-full", className)}
       onClick={handleClick}
       disabled={disabled || loading}
-      aria-label='Continue with Facebook'
+      aria-label='Continue with GitHub'
     >
-      <FacebookIcon />
+      <GithubIcon />
     </Button>
   );
 }

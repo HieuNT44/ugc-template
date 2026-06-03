@@ -17,12 +17,12 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { PasswordInput } from "@/components/ui/password-input";
-import { resetPasswordWithCode } from "@/core/lib/auth-client";
-import { resetPasswordAction } from "@/features/auth/actions/resetPasswordAction";
+import { resetPasswordWithCode } from "@/core/auth/lib/auth-client";
+import { resetPasswordAction } from "@/core/auth/actions/resetPasswordAction";
 import {
   resetPasswordSchema,
   type ResetPasswordFormData,
-} from "@/features/auth/validations";
+} from "@/core/auth/validations";
 
 import { useFormState } from "../hooks/useFormState";
 import { AuthFormCard } from "./AuthFormCard";

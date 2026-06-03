@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
-import { loginWithProvider } from "@/core/lib/auth-client";
+import { loginWithProvider } from "@/core/auth/lib/auth-client";
 import { cn } from "@/lib/utils";
 
 import { GoogleIcon } from "../icons/GoogleIcon";

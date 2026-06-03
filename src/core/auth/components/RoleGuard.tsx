@@ -1,6 +1,6 @@
 "use client";
 
-import type { Role } from "@/features/auth/types";
+import type { Role } from "@/core/auth/types";
 
 import { useAuth } from "../hooks/useAuth";
 

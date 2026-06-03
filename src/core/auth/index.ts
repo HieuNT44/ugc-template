@@ -7,6 +7,9 @@ export { SocialLoginSection } from "./components/SocialLoginSection";
 export { AuthPageHeader } from "./components/AuthPageHeader";
 export { AuthFormCard } from "./components/AuthFormCard";
 export { RoleGuard } from "./components/RoleGuard";
+export { AuthSessionProvider } from "./components/session-provider";
+
+export { authOptions } from "./lib/auth-options";
 
 export { useAuth } from "./hooks/useAuth";
 export { useSession } from "./hooks/useSession";

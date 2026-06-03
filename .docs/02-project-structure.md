@@ -70,16 +70,20 @@ project-root/
 │   │       ├── skeleton.tsx
 │   │       └── ... (shadcn components)
 │   │
-│   ├── core/                             # ⚙️ CORE SYSTEM
-│   │   ├── components/
-│   │   │   ├── providers.tsx             # All providers wrapper
-│   │   │   ├── theme-provider.tsx        # next-themes
-│   │   │   └── query-provider.tsx        # TanStack Query
+│   ├── core/                             # ⚙️ CORE (platform + shared)
+│   │   ├── auth/                         # Auth platform module
+│   │   │   ├── index.ts                  # Public API (authOptions, forms, hooks...)
+│   │   │   ├── lib/                      # NextAuth, Firebase, user repository
+│   │   │   ├── components/               # LoginForm, RoleGuard, SessionProvider
+│   │   │   ├── actions/
+│   │   │   ├── hooks/
+│   │   │   ├── types/
+│   │   │   ├── validations/
+│   │   │   └── config/
 │   │   │
 │   │   ├── lib/
 │   │   │   ├── utils.ts                  # cn() helper
 │   │   │   ├── api-client.ts             # Fetch wrapper
-│   │   │   ├── auth.ts                   # NextAuth config
 │   │   │   └── query-client.ts           # TanStack Query config
 │   │   │
 │   │   ├── hooks/
@@ -142,30 +146,7 @@ project-root/
 │   │       ├── format.ts
 │   │       └── index.ts
 │   │
-│   ├── features/                         # 🧩 BUSINESS FEATURES
-│   │   ├── auth/
-│   │   │   ├── index.ts                  # Public API
-│   │   │   ├── components/
-│   │   │   │   ├── login-form.tsx
-│   │   │   │   ├── register-form.tsx
-│   │   │   │   ├── forgot-password-form.tsx
-│   │   │   │   ├── user-button.tsx
-│   │   │   │   └── index.ts
-│   │   │   ├── actions/
-│   │   │   │   ├── login.ts
-│   │   │   │   ├── register.ts
-│   │   │   │   ├── logout.ts
-│   │   │   │   └── index.ts
-│   │   │   ├── hooks/
-│   │   │   │   ├── use-current-user.ts
-│   │   │   │   └── index.ts
-│   │   │   ├── types/
-│   │   │   │   └── index.ts
-│   │   │   └── validations/
-│   │   │       ├── login.schema.ts
-│   │   │       ├── register.schema.ts
-│   │   │       └── index.ts
-│   │   │
+│   ├── features/                         # 🧩 DOMAIN FEATURES (business only)
 │   │   ├── users/
 │   │   │   ├── index.ts
 │   │   │   ├── components/

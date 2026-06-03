@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 
-import { authOptions } from "@/core/lib/auth";
+import { authOptions } from "@/core/auth";
 
 export default async function DashboardPage() {
   const session = await getServerSession(authOptions);

@@ -4,9 +4,9 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { signIn } from "next-auth/react";
 import { useState } from "react";
 
-import { getFirebaseAuth } from "@/core/lib/firebase";
-import { loginAction } from "@/features/auth/actions/loginAction";
-import type { LoginFormData } from "@/features/auth/validations";
+import { getFirebaseAuth } from "@/core/auth/lib/firebase";
+import { loginAction } from "@/core/auth/actions/loginAction";
+import type { LoginFormData } from "@/core/auth/validations";
 
 export function useLogin() {
   const [isLoading, setIsLoading] = useState(false);

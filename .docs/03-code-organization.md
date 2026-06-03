@@ -87,7 +87,7 @@ APP → FEATURES → SHARED → CORE → COMPONENTS/UI
 
 ```typescript
 // App Router → Features
-import { LoginForm } from "@/features/auth";
+import { LoginForm } from "@/core/auth";
 import { UserForm } from "@/features/users";
 
 // Features → Shared
@@ -107,7 +107,7 @@ import { Input } from "@/components/ui/input";
 
 ```typescript
 // Feature A → Feature B (NEVER!)
-import { LoginForm } from "@/features/auth"; // in features/users
+import { LoginForm } from "@/core/auth"; // in features/users
 
 // Core → Shared (Reverse dependency)
 import { DataTable } from "@/shared/components/data-table"; // in core

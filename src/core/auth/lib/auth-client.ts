@@ -17,8 +17,8 @@ import {
 } from "firebase/auth";
 import { signIn, signOut } from "next-auth/react";
 
-import { getFirebaseAuth } from "@/core/lib/firebase";
-import { buildPasswordResetRedirectUrl } from "@/features/auth/lib/emailUtils";
+import { getFirebaseAuth } from "./firebase";
+import { buildPasswordResetRedirectUrl } from "./emailUtils";
 
 export async function syncFirebaseSession(
   credential: UserCredential

@@ -285,9 +285,9 @@ All user-facing strings must be defined in both `en` and `ja` message files.
 
 ## Related Documentation
 
-| Document                        | Location                         |
-| ------------------------------- | -------------------------------- |
-| Auth feature rules              | `src/features/auth/auth-rule.md` |
-| Project architecture (internal) | `.docs/01-architecture.md`       |
-| Code patterns                   | `.docs/05-code-patterns.md`      |
-| Cursor AI rules                 | `.cursorrules`                   |
+| Document                        | Location                     |
+| ------------------------------- | ---------------------------- |
+| Auth feature rules              | `src/core/auth/auth-rule.md` |
+| Project architecture (internal) | `.docs/01-architecture.md`   |
+| Code patterns                   | `.docs/05-code-patterns.md`  |
+| Cursor AI rules                 | `.cursorrules`               |

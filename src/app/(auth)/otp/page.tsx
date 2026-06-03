@@ -1,5 +1,5 @@
-import { OTPVerificationForm } from "@/features/auth";
-import { AuthPageHeader } from "@/features/auth/components/AuthPageHeader";
+import { OTPVerificationForm } from "@/core/auth";
+import { AuthPageHeader } from "@/core/auth";
 
 export default function OtpPage() {
   return (

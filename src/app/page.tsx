@@ -2,8 +2,8 @@ import Link from "next/link";
 import { getServerSession } from "next-auth";
 
 import { Button } from "@/components/ui/button";
-import { authOptions } from "@/core/lib/auth";
-import { RoleGuard } from "@/features/auth";
+import { authOptions } from "@/core/auth";
+import { RoleGuard } from "@/core/auth";
 
 export default async function HomePage() {
   const session = await getServerSession(authOptions);

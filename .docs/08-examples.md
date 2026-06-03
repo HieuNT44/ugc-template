@@ -220,10 +220,10 @@ docs(readme): update installation guide
 import { Button } from "@/components/ui/button";
 import { cn } from "@/core/lib/utils";
 import { DataTable } from "@/shared/components/data-table";
-import { LoginForm } from "@/features/auth";
+import { LoginForm } from "@/core/auth";
 
 // ❌ KHÔNG
-import { LoginForm } from "@/features/auth"; // trong features/users
+import { LoginForm } from "@/core/auth"; // trong features/users
 import { DataTable } from "@/shared/..."; // trong core
 ```
 

@@ -30,10 +30,10 @@ UI (src/components/ui/)  → ShadcnUI primitives
 import { Button } from "@/components/ui/button";
 import { cn } from "@/core/lib/utils";
 import { DataTable } from "@/shared/components/data-table";
-import { LoginForm } from "@/features/auth";
+import { LoginForm } from "@/core/auth";
 
 // ❌ NGHIÊM CẤM
-import { UserForm } from "@/features/users"; // trong features/auth
+import { UserForm } from "@/features/users"; // trong core/auth
 ```
 
 ### Feature Structure

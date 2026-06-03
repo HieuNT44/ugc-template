@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 
-import { sendResetPasswordEmail } from "@/core/lib/auth-client";
-import { forgotPasswordAction } from "@/features/auth/actions/forgotPasswordAction";
-import type { ForgotPasswordFormData } from "@/features/auth/validations";
+import { sendResetPasswordEmail } from "@/core/auth/lib/auth-client";
+import { forgotPasswordAction } from "@/core/auth/actions/forgotPasswordAction";
+import type { ForgotPasswordFormData } from "@/core/auth/validations";
 
 export function useForgotPassword() {
   const [isLoading, setIsLoading] = useState(false);

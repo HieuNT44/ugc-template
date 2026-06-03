@@ -3,11 +3,11 @@
 import {
   getAdminAuth,
   isFirebaseAdminConfigured,
-} from "@/core/lib/firebase-admin";
-import { ensureUserProfile } from "@/core/lib/user-repository";
-import { getRedirectUrl } from "@/features/auth/lib/authUtils";
-import { loginSchema } from "@/features/auth/validations";
-import type { LoginResponse } from "@/features/auth/types";
+} from "@/core/auth/lib/firebase-admin";
+import { ensureUserProfile } from "@/core/auth/lib/user-repository";
+import { getRedirectUrl } from "@/core/auth/lib/authUtils";
+import { loginSchema } from "@/core/auth/validations";
+import type { LoginResponse } from "@/core/auth/types";
 
 export async function loginAction(
   input: unknown,

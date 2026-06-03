@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 
-import { registerWithEmail } from "@/core/lib/auth-client";
-import { registerAction } from "@/features/auth/actions/registerAction";
-import type { RegisterFormData } from "@/features/auth/validations";
+import { registerWithEmail } from "@/core/auth/lib/auth-client";
+import { registerAction } from "@/core/auth/actions/registerAction";
+import type { RegisterFormData } from "@/core/auth/validations";
 
 export function useRegister() {
   const [isLoading, setIsLoading] = useState(false);

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 
-import { AuthSessionProvider } from "@/core/components/session-provider";
+import { AuthSessionProvider } from "@/core/auth";
 
 import "./globals.css";
 

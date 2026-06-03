@@ -19,7 +19,7 @@ import { Input } from "@/components/ui/input";
 import {
   forgotPasswordSchema,
   type ForgotPasswordFormData,
-} from "@/features/auth/validations";
+} from "@/core/auth/validations";
 
 import { useForgotPassword } from "../hooks/useForgotPassword";
 import { useFormState } from "../hooks/useFormState";

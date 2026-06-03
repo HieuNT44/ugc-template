@@ -1,13 +1,10 @@
 import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
-import {
-  getAdminAuth,
-  isFirebaseAdminConfigured,
-} from "@/core/lib/firebase-admin";
-import { ensureUserProfile, getUserById } from "@/core/lib/user-repository";
-import { DEFAULT_USER_ROLE } from "@/features/auth/config";
-import type { UserRole } from "@/features/auth/types";
+import { getAdminAuth, isFirebaseAdminConfigured } from "./firebase-admin";
+import { ensureUserProfile, getUserById } from "./user-repository";
+import { DEFAULT_USER_ROLE } from "../config";
+import type { UserRole } from "../types";
 
 export const authOptions: NextAuthOptions = {
   providers: [

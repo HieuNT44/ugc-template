@@ -1,7 +1,7 @@
 "use server";
 
-import type { RegisterResponse } from "@/features/auth/types";
-import { registerSchema } from "@/features/auth/validations";
+import type { RegisterResponse } from "@/core/auth/types";
+import { registerSchema } from "@/core/auth/validations";
 
 export async function registerAction(
   input: unknown

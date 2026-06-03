@@ -1,7 +1,7 @@
 "use server";
 
-import { resetPasswordSchema } from "@/features/auth/validations";
-import type { ActionResponse } from "@/features/auth/types";
+import { resetPasswordSchema } from "@/core/auth/validations";
+import type { ActionResponse } from "@/core/auth/types";
 
 export async function resetPasswordAction(
   input: unknown

@@ -1,9 +1,9 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 
-import { authOptions } from "@/core/lib/auth";
-import { RegisterForm } from "@/features/auth";
-import { AuthPageHeader } from "@/features/auth/components/AuthPageHeader";
+import { authOptions } from "@/core/auth";
+import { RegisterForm } from "@/core/auth";
+import { AuthPageHeader } from "@/core/auth";
 
 export default async function RegisterPage() {
   const session = await getServerSession(authOptions);

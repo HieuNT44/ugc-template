@@ -1,7 +1,7 @@
 "use server";
 
-import type { ActionResponse } from "@/features/auth/types";
-import { forgotPasswordSchema } from "@/features/auth/validations";
+import type { ActionResponse } from "@/core/auth/types";
+import { forgotPasswordSchema } from "@/core/auth/validations";
 
 export async function forgotPasswordAction(
   input: unknown

@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { PasswordInput } from "@/components/ui/password-input";
-import { loginSchema, type LoginFormData } from "@/features/auth/validations";
+import { loginSchema, type LoginFormData } from "@/core/auth/validations";
 
 import { useFormState } from "../hooks/useFormState";
 import { useLogin } from "../hooks/useLogin";

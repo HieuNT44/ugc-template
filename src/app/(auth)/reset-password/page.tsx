@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 
-import { ResetPasswordForm } from "@/features/auth";
-import { AuthPageHeader } from "@/features/auth/components/AuthPageHeader";
+import { ResetPasswordForm } from "@/core/auth";
+import { AuthPageHeader } from "@/core/auth";
 
 function ResetPasswordContent() {
   return <ResetPasswordForm />;

@@ -1,5 +1,5 @@
-import { ForgotPasswordForm } from "@/features/auth";
-import { AuthPageHeader } from "@/features/auth/components/AuthPageHeader";
+import { ForgotPasswordForm } from "@/core/auth";
+import { AuthPageHeader } from "@/core/auth";
 
 export default function ForgotPasswordPage() {
   return (

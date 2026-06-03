@@ -1,7 +1,7 @@
 "use client";
 
-import { getSessionRole, isAuthenticated } from "@/features/auth/lib/authUtils";
-import type { Role } from "@/features/auth/types";
+import { getSessionRole, isAuthenticated } from "@/core/auth/lib/authUtils";
+import type { Role } from "@/core/auth/types";
 
 import { useSession } from "./useSession";
 

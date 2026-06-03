@@ -1,8 +1,8 @@
 import { AlertCircle } from "lucide-react";
 
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { AuthFormCard } from "@/features/auth/components/AuthFormCard";
-import { AuthPageHeader } from "@/features/auth/components/AuthPageHeader";
+import { AuthFormCard } from "@/core/auth";
+import { AuthPageHeader } from "@/core/auth";
 
 export default async function VerifyEmailPage({
   params,

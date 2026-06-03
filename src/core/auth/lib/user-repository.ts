@@ -1,9 +1,9 @@
 import { FieldValue } from "firebase-admin/firestore";
 
-import { USERS_COLLECTION } from "@/core/lib/firebase";
-import { getAdminDb } from "@/core/lib/firebase-admin";
-import { DEFAULT_USER_ROLE } from "@/features/auth/config";
-import type { User, UserRole, UserStatus } from "@/features/auth/types";
+import { USERS_COLLECTION } from "./firebase";
+import { getAdminDb } from "./firebase-admin";
+import { DEFAULT_USER_ROLE } from "../config";
+import type { User, UserRole, UserStatus } from "../types";
 
 interface FirestoreUserDoc {
   email: string;
