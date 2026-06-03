@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 
+import { TooltipProvider } from "@/components/ui/tooltip";
 import { AuthSessionProvider } from "@/core/auth";
 
 import "./globals.css";
@@ -28,7 +29,9 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className='flex min-h-full flex-col' suppressHydrationWarning>
-        <AuthSessionProvider>{children}</AuthSessionProvider>
+        <AuthSessionProvider>
+          <TooltipProvider>{children}</TooltipProvider>
+        </AuthSessionProvider>
       </body>
     </html>
   );

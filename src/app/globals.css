@@ -129,3 +129,29 @@
     font-optical-sizing: auto;
   }
 }
+
+/* Admin sidebar (aligned with tomosia-template-kit) */
+@layer components {
+  [data-sidebar="sidebar"][data-mobile="true"] {
+    background-color: var(--sidebar);
+    color: var(--sidebar-foreground);
+  }
+
+  .app-sidebar [data-sidebar="menu-button"]:hover,
+  .app-sidebar [data-sidebar="menu-sub-button"]:hover {
+    background-color: var(--sidebar-accent);
+    color: var(--sidebar-accent-foreground);
+  }
+
+  .app-sidebar
+    [data-sidebar="menu-item"][data-active="true"]
+    [data-sidebar="menu-button"],
+  .app-sidebar [data-sidebar="menu-item"][data-active="true"] a {
+    background-color: var(--sidebar-accent);
+    color: var(--sidebar-accent-foreground);
+  }
+
+  .app-sidebar[data-state="collapsed"] .app-sidebar-header-trigger {
+    padding-inline: 0;
+  }
+}

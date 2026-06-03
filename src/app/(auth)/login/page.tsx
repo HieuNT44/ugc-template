@@ -1,15 +1,14 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 
-import { authOptions } from "@/core/auth";
-import { LoginForm } from "@/core/auth";
-import { AuthPageHeader } from "@/core/auth";
+import { authOptions, LoginForm, AuthPageHeader } from "@/core/auth";
+import { getRedirectUrl } from "@/core/auth/lib/authUtils";
 
 export default async function LoginPage() {
   const session = await getServerSession(authOptions);
 
   if (session) {
-    redirect("/");
+    redirect(getRedirectUrl(session.user?.role ?? "reader"));
   }
 
   return (
@@ -18,7 +17,7 @@ export default async function LoginPage() {
         title='Sign in'
         description='Enter your credentials to access your account.'
       />
-      <LoginForm redirectTo='/' />
+      <LoginForm />
     </>
   );
 }
