@@ -1,0 +1,32 @@
+# https://github.com/evilmartians/lefthook
+
+assert_lefthook_installed: true
+
+pre-commit:
+  parallel: true
+  commands:
+    lint-staged:
+      glob: "*.{ts,tsx,js,jsx}"
+      run: npx lint-staged
+
+    typecheck:
+      glob: "*.{ts,tsx}"
+      run: npm run typecheck
+
+    knip:
+      run: npm run knip -- --no-exit-code
+      stage_fixed: true
+
+pre-push:
+  parallel: true
+  commands:
+    test:
+      run: npm run test -- --run
+
+    build:
+      run: npm run build
+
+commit-msg:
+  commands:
+    commitlint:
+      run: npx commitlint --edit {1}

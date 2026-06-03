@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+
+# Build output
+.next/
+out/
+dist/
+
+# Cache
+.cache/
+
+# Package manager
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+
+# Generated
+*.min.js
+*.min.css
+src/app/globals.css
+src/components/ui
+components.json
+next.config.mjs
+package-lock.json
+package.json
+postcss.config.mjs
+README.md
+tsconfig.json
+.env
