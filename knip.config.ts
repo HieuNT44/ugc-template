@@ -26,6 +26,31 @@ const config: KnipConfig = {
     "prettier-plugin-tailwindcss",
     // Testing utilities
     "jsdom",
+    // Installed stack — not wired yet (see package.json / roadmap)
+    "@radix-ui/react-dialog",
+    "@radix-ui/react-dropdown-menu",
+    "@radix-ui/react-label",
+    "@radix-ui/react-slot",
+    "@radix-ui/react-toast",
+    "@tanstack/react-query",
+    "@tiptap/core",
+    "@tiptap/pm",
+    "@tiptap/react",
+    "@tiptap/starter-kit",
+    "axios",
+    "codemirror",
+    "next-intl",
+    "react-markdown",
+    "shadcn",
+    "stripe",
+    "tailwindcss-animate",
+    "tw-animate-css",
+    "zustand",
+    // Dev deps — tooling / reserved
+    "@eslint/eslintrc",
+    "@testing-library/react",
+    "@vitejs/plugin-react",
+    "tailwindcss",
   ],
 
   // Ignore binaries

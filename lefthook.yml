@@ -1,12 +1,14 @@
 # https://github.com/evilmartians/lefthook
+# Stage all intended changes before commit (`git add -A`) when mixing staged/unstaged files.
 
 assert_lefthook_installed: true
 
 pre-commit:
+  # Avoid `git stash create` failures on root commit or with unstaged changes
+  skip_stash: true
   parallel: true
   commands:
     lint-staged:
-      glob: "*.{ts,tsx,js,jsx}"
       run: npx lint-staged
 
     typecheck:
@@ -14,17 +16,16 @@ pre-commit:
       run: npm run typecheck
 
     knip:
+      glob: "*.{ts,tsx}"
       run: npm run knip -- --no-exit-code
       stage_fixed: true
 
+# build runs in CI; pre-push keeps fast feedback via tests only
 pre-push:
   parallel: true
   commands:
     test:
       run: npm run test -- --run
-
-    build:
-      run: npm run build
 
 commit-msg:
   commands:
