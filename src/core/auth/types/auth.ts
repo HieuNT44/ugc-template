@@ -1,13 +1,28 @@
 export type AuthProvider = "credentials" | "google" | "line" | "github";
 
-export type LoginSuccess = { success: true; redirectTo: string };
-export type LoginFailure = { success: false; error: string };
-export type LoginResponse = LoginSuccess | LoginFailure;
+export type AuthSessionSuccess = {
+  success: true;
+  redirectTo: string;
+  accessToken: string;
+  expiresAt: string | null;
+};
 
-export type RegisterSuccess = { success: true; userId: string };
-export type RegisterFailure = { success: false; error: string };
-export type RegisterResponse = RegisterSuccess | RegisterFailure;
+export type AuthSessionFailure = {
+  success: false;
+  error: string;
+  fieldErrors?: Record<string, string[]>;
+};
 
-export type ActionSuccess = { success: true };
-export type ActionFailure = { success: false; error: string };
+export type AuthSessionResponse = AuthSessionSuccess | AuthSessionFailure;
+
+export type LoginResponse = AuthSessionResponse;
+export type RegisterResponse = AuthSessionResponse;
+export type GoogleLoginResponse = AuthSessionResponse;
+
+export type ActionSuccess = { success: true; message?: string };
+export type ActionFailure = {
+  success: false;
+  error: string;
+  fieldErrors?: Record<string, string[]>;
+};
 export type ActionResponse = ActionSuccess | ActionFailure;

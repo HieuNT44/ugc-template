@@ -1,0 +1,32 @@
+import type { BookChapter } from "./book-chapter";
+import type { ContentType, EditorMode, PricingType } from "./content-type";
+import type { PostStatus } from "./post-status";
+
+export type ContentDocument = {
+  id: string;
+  authorId: string;
+  type: ContentType;
+  status: PostStatus;
+  title: string;
+  shortDescription?: string | null;
+  description?: string | null;
+  field: string;
+  tags: string[];
+  coverImageUrl?: string | null;
+  coverUploadFileId?: string | null;
+  templateId?: string | null;
+  editorMode?: EditorMode | null;
+  content?: string | null;
+  pdfUrl?: string | null;
+  pdfFileName?: string | null;
+  previewPages?: number | null;
+  chapters?: BookChapter[] | null;
+  previewChapterIndex?: number | null;
+  sellByChapter?: boolean | null;
+  pricingType: PricingType;
+  priceYen?: number | null;
+  humanScore?: number | null;
+  rejectionReason?: string | null;
+  createdAt: string;
+  updatedAt: string;
+};

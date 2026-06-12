@@ -12,21 +12,27 @@ import { SocialLoginDivider } from "./SocialLoginDivider";
 interface SocialLoginSectionProps {
   disabled?: boolean;
   onError?: (message: string) => void;
+  onSuccess?: (redirectTo: string) => void;
 }
 
 function SocialLoginSectionContent({
   disabled = false,
   onError,
+  onSuccess,
 }: SocialLoginSectionProps) {
   return (
     <>
       <SocialLoginDivider />
       <div className='SocialLoginSection flex justify-center gap-4'>
-        <GoogleLoginButton disabled={disabled} onError={onError} />
-        <FacebookLoginButton disabled={disabled} onError={onError} />
-        <InstagramLoginButton disabled={disabled} onError={onError} />
-        <LineLoginButton disabled={disabled} onError={onError} />
-        <GithubLoginButton disabled={disabled} onError={onError} />
+        <GoogleLoginButton
+          disabled={disabled}
+          onError={onError}
+          onSuccess={onSuccess}
+        />
+        <FacebookLoginButton disabled onError={onError} />
+        <InstagramLoginButton disabled onError={onError} />
+        <LineLoginButton disabled onError={onError} />
+        <GithubLoginButton disabled onError={onError} />
       </div>
     </>
   );

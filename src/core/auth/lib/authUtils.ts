@@ -1,7 +1,24 @@
 import type { Session } from "next-auth";
 
+import type { OnboardingStep } from "@/core/api/types/enums";
+
 import { DEFAULT_USER_ROLE, PUBLIC_ROLE } from "../config";
 import type { Role, UserRole } from "../types";
+
+export function needsOnboarding(step: OnboardingStep | undefined): boolean {
+  return step !== undefined && step !== "completed";
+}
+
+export function shouldRequireOnboarding(
+  role: UserRole,
+  step: OnboardingStep | undefined
+): boolean {
+  if (role === "creator") {
+    return false;
+  }
+
+  return needsOnboarding(step);
+}
 
 export function isAuthenticated(
   session: Session | null | undefined
@@ -24,16 +41,6 @@ export function hasRole(
   return allowedRoles.includes(currentRole);
 }
 
-export function getRedirectUrl(role: UserRole): string {
-  switch (role) {
-    case "admin":
-      return "/dashboard";
-    case "creator":
-      return "/studio";
-    case "staff":
-      return "/staff";
-    case "reader":
-    default:
-      return "/";
-  }
+export function getRedirectUrl(_role: UserRole): string {
+  return "/";
 }

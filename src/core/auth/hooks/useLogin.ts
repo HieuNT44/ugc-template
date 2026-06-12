@@ -1,14 +1,18 @@
 "use client";
 
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { signIn } from "next-auth/react";
 import { useState } from "react";
+import { useSession } from "next-auth/react";
 
-import { getFirebaseAuth } from "@/core/auth/lib/firebase";
-import { loginAction } from "@/core/auth/actions/loginAction";
+import { clientLogin } from "@/core/api/client/auth-client";
+import { mapApiRoleToAppRole } from "@/core/api/mappers/auth-user.mapper";
+import { establishLaravelSession } from "@/core/auth/lib/auth-session-client";
+import { resolvePostAuthRedirect } from "@/core/auth/lib/resolve-post-auth-redirect";
+import { resolveAuthTokenResult } from "@/core/auth/lib/resolve-auth-token-result";
 import type { LoginFormData } from "@/core/auth/validations";
+import { loginSchema } from "@/core/auth/validations";
 
 export function useLogin() {
+  const { update } = useSession();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -17,29 +21,53 @@ export function useLogin() {
     setError(null);
 
     try {
-      const credential = await signInWithEmailAndPassword(
-        getFirebaseAuth(),
-        data.email,
-        data.password
-      );
-      const idToken = await credential.user.getIdToken();
-      const authResult = await signIn("firebase", {
-        idToken,
-        redirect: false,
-      });
-
-      if (authResult?.error) {
-        setError(authResult.error);
-        return { success: false as const, error: authResult.error };
+      const parsed = loginSchema.safeParse(data);
+      if (!parsed.success) {
+        const fieldErrors = parsed.error.flatten().fieldErrors;
+        const message =
+          fieldErrors.email?.[0] ??
+          fieldErrors.password?.[0] ??
+          "Invalid login credentials";
+        setError(message);
+        return { success: false as const, error: message, fieldErrors };
       }
 
-      const actionResult = await loginAction(data, idToken);
+      const apiResult = await clientLogin({
+        email: parsed.data.email,
+        password: parsed.data.password,
+      });
+      const actionResult = resolveAuthTokenResult(apiResult);
+
       if (!actionResult.success) {
         setError(actionResult.error);
+        return actionResult;
       }
-      return actionResult;
-    } catch {
-      const message = "Invalid email or password";
+
+      const sessionResult = await establishLaravelSession(actionResult);
+      if (!sessionResult.ok) {
+        const message = sessionResult.error ?? "Unable to start session";
+        setError(message);
+        return { success: false as const, error: message };
+      }
+
+      await update();
+
+      if (!apiResult.ok) {
+        return { success: false as const, error: "Invalid login response" };
+      }
+
+      const role = mapApiRoleToAppRole(apiResult.data.user.role);
+      const redirectTo = await resolvePostAuthRedirect(
+        actionResult.accessToken,
+        role
+      );
+
+      return { ...actionResult, redirectTo };
+    } catch (error) {
+      const message =
+        error instanceof Error
+          ? error.message
+          : "Something went wrong. Please try again.";
       setError(message);
       return { success: false as const, error: message };
     } finally {

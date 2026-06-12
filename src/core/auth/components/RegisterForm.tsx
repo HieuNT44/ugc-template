@@ -50,7 +50,8 @@ export function RegisterForm({
   const form = useForm<RegisterFormData>({
     resolver: zodResolver(registerSchema),
     defaultValues: {
-      name: "",
+      full_name: "",
+      username: "",
       email: "",
       password: "",
       confirmPassword: "",
@@ -66,14 +67,10 @@ export function RegisterForm({
       return;
     }
 
-    formState.setSuccess(
-      "Account created. Check your email to verify, then sign in."
-    );
     onSuccess?.();
-    setTimeout(() => {
-      router.push(redirectTo);
-      router.refresh();
-    }, 2000);
+    router.push(redirectTo ?? result.redirectTo);
+    router.refresh();
+    formState.setLoading(false);
   };
 
   const handleSocialError = (message: string) => {
@@ -101,14 +98,32 @@ export function RegisterForm({
 
             <FormField
               control={form.control}
-              name='name'
+              name='full_name'
               render={({ field }) => (
                 <FormItem className='grid gap-2'>
-                  <FormLabel>Name</FormLabel>
+                  <FormLabel>Full name</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder='Your name'
+                      placeholder='Your full name'
                       autoComplete='name'
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name='username'
+              render={({ field }) => (
+                <FormItem className='grid gap-2'>
+                  <FormLabel>Username</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder='your_username'
+                      autoComplete='username'
                       {...field}
                     />
                   </FormControl>
@@ -186,23 +201,16 @@ export function RegisterForm({
               <GoogleLoginButton
                 disabled={formState.isLoading}
                 onError={handleSocialError}
+                onSuccess={(path) => {
+                  onSuccess?.();
+                  router.push(redirectTo ?? path);
+                  router.refresh();
+                }}
               />
-              <FacebookLoginButton
-                disabled={formState.isLoading}
-                onError={handleSocialError}
-              />
-              <InstagramLoginButton
-                disabled={formState.isLoading}
-                onError={handleSocialError}
-              />
-              <LineLoginButton
-                disabled={formState.isLoading}
-                onError={handleSocialError}
-              />
-              <GithubLoginButton
-                disabled={formState.isLoading}
-                onError={handleSocialError}
-              />
+              <FacebookLoginButton disabled onError={handleSocialError} />
+              <InstagramLoginButton disabled onError={handleSocialError} />
+              <LineLoginButton disabled onError={handleSocialError} />
+              <GithubLoginButton disabled onError={handleSocialError} />
             </div>
           </div>
 

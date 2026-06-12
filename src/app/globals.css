@@ -8,6 +8,8 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
+  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-logo: "Audiowide", sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   --font-heading: var(--font-sans);
   --color-sidebar-ring: var(--sidebar-ring);
@@ -26,6 +28,7 @@
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
+  --color-actions: var(--actions);
   --color-destructive: var(--destructive);
   --color-accent-foreground: var(--accent-foreground);
   --color-accent: var(--accent);
@@ -39,6 +42,20 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+  --color-site-main: var(--site-main);
+  --color-badge-expert: var(--badge-expert);
+  --color-post-label-paid-bg: var(--post-label-paid-bg);
+  --color-post-label-paid-text: var(--post-label-paid-text);
+  --color-post-label-paid-border: var(--post-label-paid-border);
+  --color-post-label-purchased-bg: var(--post-label-purchased-bg);
+  --color-post-label-purchased-text: var(--post-label-purchased-text);
+  --color-post-label-purchased-border: var(--post-label-purchased-border);
+  --color-post-label-expert-bg: var(--post-label-expert-bg);
+  --color-post-label-expert-text: var(--post-label-expert-text);
+  --color-post-label-expert-border: var(--post-label-expert-border);
+  --color-post-label-human-bg: var(--post-label-human-bg);
+  --color-post-label-human-text: var(--post-label-human-text);
+  --color-post-label-human-border: var(--post-label-human-border);
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -65,6 +82,7 @@
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
+  --actions: #E8E8E8;
   --input: oklch(0.922 0 0);
   --ring: oklch(0.708 0 0);
   --chart-1: oklch(0.87 0 0);
@@ -81,6 +99,20 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --site-main: #F7F7F5;
+  --badge-expert: #1D9BF0;
+  --post-label-paid-bg: #FFF8E6;
+  --post-label-paid-text: #8A5A00;
+  --post-label-paid-border: #E6C200;
+  --post-label-purchased-bg: #EAF7EF;
+  --post-label-purchased-text: #176B3A;
+  --post-label-purchased-border: #44B26F;
+  --post-label-expert-bg: #E8F4FD;
+  --post-label-expert-text: #0B6E99;
+  --post-label-expert-border: #1D9BF0;
+  --post-label-human-bg: #EDF7F0;
+  --post-label-human-text: #1F6B42;
+  --post-label-human-border: #6DB88A;
 }
 
 .dark {
@@ -100,6 +132,7 @@
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(1 0 0 / 10%);
+  --actions: oklch(1 0 0 / 14%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.556 0 0);
   --chart-1: oklch(0.87 0 0);
@@ -115,6 +148,20 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+  --site-main: oklch(0.2 0 0);
+  --badge-expert: oklch(0.62 0.15 240);
+  --post-label-paid-bg: oklch(0.97 0.04 95);
+  --post-label-paid-text: oklch(0.45 0.08 85);
+  --post-label-paid-border: oklch(0.78 0.12 95);
+  --post-label-purchased-bg: #EAF7EF;
+  --post-label-purchased-text: #176B3A;
+  --post-label-purchased-border: #44B26F;
+  --post-label-expert-bg: oklch(0.95 0.03 240);
+  --post-label-expert-text: oklch(0.48 0.1 240);
+  --post-label-expert-border: oklch(0.62 0.15 240);
+  --post-label-human-bg: oklch(0.95 0.03 150);
+  --post-label-human-text: oklch(0.42 0.08 150);
+  --post-label-human-border: oklch(0.65 0.1 150);
 }
 
 @layer base {

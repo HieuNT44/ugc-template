@@ -55,8 +55,7 @@ export function LoginForm({
     }
 
     onSuccess?.();
-    router.push(redirectTo ?? result.redirectTo);
-    router.refresh();
+    router.replace(redirectTo ?? result.redirectTo);
     formState.setLoading(false);
   };
 
@@ -100,12 +99,12 @@ export function LoginForm({
                 <FormItem className='grid gap-2'>
                   <div className='flex items-center'>
                     <FormLabel>Password</FormLabel>
-                    <Link
-                      href='/forgot-password'
-                      className='ml-auto inline-block text-sm underline'
+                    <span
+                      aria-disabled='true'
+                      className='text-muted-foreground ml-auto inline-block cursor-not-allowed text-sm underline opacity-60'
                     >
                       Forgot password?
-                    </Link>
+                    </span>
                   </div>
                   <FormControl>
                     <PasswordInput
@@ -130,6 +129,10 @@ export function LoginForm({
             <SocialLoginSection
               disabled={formState.isLoading}
               onError={(message) => formState.setError(message)}
+              onSuccess={(path) => {
+                onSuccess?.();
+                router.replace(redirectTo ?? path);
+              }}
             />
           </div>
 

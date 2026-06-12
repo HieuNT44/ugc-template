@@ -1,47 +1,68 @@
 import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
-import { getAdminAuth, isFirebaseAdminConfigured } from "./firebase-admin";
-import { ensureUserProfile, getUserById } from "./user-repository";
+import { getMe, refreshToken } from "@/core/api/endpoints/auth";
+import {
+  mapApiRoleToAppRole,
+  mapApiUserToDisplayName,
+} from "@/core/api/mappers/auth-user.mapper";
+
 import { DEFAULT_USER_ROLE } from "../config";
 import type { UserRole } from "../types";
+
+const TOKEN_REFRESH_BUFFER_MS = 5 * 60 * 1000;
+const TOKEN_REFRESH_COOLDOWN_MS = 60 * 1000;
+
+function shouldRefreshToken(expiresAt: string | null | undefined): boolean {
+  if (!expiresAt) {
+    return false;
+  }
+
+  const expiresMs = new Date(expiresAt).getTime();
+  if (Number.isNaN(expiresMs)) {
+    return false;
+  }
+
+  return Date.now() >= expiresMs - TOKEN_REFRESH_BUFFER_MS;
+}
 
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
-      id: "firebase",
-      name: "Firebase",
+      id: "laravel",
+      name: "Laravel",
       credentials: {
-        idToken: { label: "ID Token", type: "text" },
+        accessToken: { label: "Access Token", type: "text" },
+        expiresAt: { label: "Expires At", type: "text" },
       },
       async authorize(credentials) {
-        const idToken = credentials?.idToken;
-        if (!idToken || typeof idToken !== "string") {
+        const accessToken = credentials?.accessToken;
+        if (!accessToken || typeof accessToken !== "string") {
           return null;
         }
 
-        if (!isFirebaseAdminConfigured()) {
-          throw new Error("Firebase Admin is not configured");
-        }
-
-        const decoded = await getAdminAuth().verifyIdToken(idToken);
-        const profile = await ensureUserProfile({
-          uid: decoded.uid,
-          email: decoded.email ?? "",
-          name: decoded.name ?? decoded.email?.split("@")[0] ?? "User",
-          emailVerified: decoded.email_verified ?? false,
-        });
-
-        if (profile.status === "banned") {
+        const me = await getMe(accessToken);
+        if (!me.ok) {
           return null;
         }
+
+        if (me.data.status === "banned") {
+          return null;
+        }
+
+        const expiresAt =
+          typeof credentials?.expiresAt === "string" &&
+          credentials.expiresAt.length > 0
+            ? credentials.expiresAt
+            : null;
 
         return {
-          id: profile.id,
-          email: profile.email,
-          name: profile.name,
-          image: profile.avatar ?? null,
-          role: profile.role,
+          id: me.data.id,
+          email: me.data.email,
+          name: mapApiUserToDisplayName(me.data),
+          role: mapApiRoleToAppRole(me.data.role),
+          accessToken,
+          tokenExpiresAt: expiresAt,
         };
       },
     }),
@@ -59,14 +80,37 @@ export const authOptions: NextAuthOptions = {
       if (user) {
         token.id = user.id;
         token.role = user.role;
+        token.accessToken = user.accessToken;
+        token.tokenExpiresAt = user.tokenExpiresAt ?? null;
+        token.tokenRefreshedAt = Date.now();
       }
 
-      if (token.id && isFirebaseAdminConfigured()) {
-        const profile = await getUserById(token.id as string);
-        if (profile) {
-          token.role = profile.role;
-          token.name = profile.name;
-          token.email = profile.email;
+      const accessToken = token.accessToken;
+      const tokenRefreshedAt =
+        typeof token.tokenRefreshedAt === "number" ? token.tokenRefreshedAt : 0;
+      const recentlyRefreshed =
+        Date.now() - tokenRefreshedAt < TOKEN_REFRESH_COOLDOWN_MS;
+
+      if (
+        typeof accessToken === "string" &&
+        !recentlyRefreshed &&
+        shouldRefreshToken(
+          typeof token.tokenExpiresAt === "string" ? token.tokenExpiresAt : null
+        )
+      ) {
+        const refreshed = await refreshToken(accessToken);
+        if (refreshed.ok) {
+          token.accessToken = refreshed.data.access_token;
+          token.tokenExpiresAt = refreshed.data.expires_at;
+          token.role = mapApiRoleToAppRole(refreshed.data.user.role);
+          token.id = refreshed.data.user.id;
+          token.tokenRefreshedAt = Date.now();
+        } else {
+          const me = await getMe(accessToken);
+          if (!me.ok) {
+            delete token.accessToken;
+            delete token.tokenExpiresAt;
+          }
         }
       }
 
@@ -79,6 +123,10 @@ export const authOptions: NextAuthOptions = {
         session.user.name = token.name ?? session.user.name;
         session.user.email = token.email ?? session.user.email;
       }
+
+      session.accessToken =
+        typeof token.accessToken === "string" ? token.accessToken : undefined;
+
       return session;
     },
   },

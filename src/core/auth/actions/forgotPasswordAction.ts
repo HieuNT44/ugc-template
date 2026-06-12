@@ -1,7 +1,10 @@
 "use server";
 
-import type { ActionResponse } from "@/core/auth/types";
-import { forgotPasswordSchema } from "@/core/auth/validations";
+import { forgotPassword } from "@/core/api/endpoints/auth";
+
+import { mapApiAuthFailure } from "../lib/map-api-auth-error";
+import { forgotPasswordSchema } from "../validations";
+import type { ActionResponse } from "../types";
 
 export async function forgotPasswordAction(
   input: unknown
@@ -14,5 +17,11 @@ export async function forgotPasswordAction(
     };
   }
 
-  return { success: true };
+  const result = await forgotPassword({ email: parsed.data.email });
+
+  if (!result.ok) {
+    return { success: false, ...mapApiAuthFailure(result.error) };
+  }
+
+  return { success: true, message: result.message };
 }

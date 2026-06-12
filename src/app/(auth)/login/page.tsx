@@ -1,23 +1,21 @@
-import { getServerSession } from "next-auth";
-import { redirect } from "next/navigation";
+import { Suspense } from "react";
 
-import { authOptions, LoginForm, AuthPageHeader } from "@/core/auth";
-import { getRedirectUrl } from "@/core/auth/lib/authUtils";
+import { LoginPageClient } from "@/core/auth/components/LoginPageClient";
+import { Skeleton } from "@/components/ui/skeleton";
 
-export default async function LoginPage() {
-  const session = await getServerSession(authOptions);
-
-  if (session) {
-    redirect(getRedirectUrl(session.user?.role ?? "reader"));
-  }
-
+function LoginPageFallback() {
   return (
-    <>
-      <AuthPageHeader
-        title='Sign in'
-        description='Enter your credentials to access your account.'
-      />
-      <LoginForm />
-    </>
+    <div className='space-y-3'>
+      <Skeleton className='h-8 w-40' />
+      <Skeleton className='h-24 w-full' />
+    </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<LoginPageFallback />}>
+      <LoginPageClient />
+    </Suspense>
   );
 }

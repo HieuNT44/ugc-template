@@ -17,8 +17,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { PasswordInput } from "@/components/ui/password-input";
-import { resetPasswordWithCode } from "@/core/auth/lib/auth-client";
-import { resetPasswordAction } from "@/core/auth/actions/resetPasswordAction";
+import { clientResetPassword } from "@/core/api/client/auth-client";
+import { mapApiAuthFailure } from "@/core/auth/lib/map-api-auth-error";
 import {
   resetPasswordSchema,
   type ResetPasswordFormData,
@@ -40,8 +40,8 @@ export function ResetPasswordForm({
 }: ResetPasswordFormProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const oobCode =
-    tokenProp ?? searchParams.get("oobCode") ?? searchParams.get("token");
+  const resetToken =
+    tokenProp ?? searchParams.get("token") ?? searchParams.get("oobCode");
   const formState = useFormState();
 
   const form = useForm<ResetPasswordFormData>({
@@ -50,56 +50,71 @@ export function ResetPasswordForm({
   });
 
   const onSubmit = async (values: ResetPasswordFormData) => {
-    if (!oobCode) {
+    if (!resetToken) {
       return;
     }
 
     formState.startSubmit();
 
-    const validation = await resetPasswordAction(values);
-    if (!validation.success) {
-      formState.setError(validation.error);
+    const parsed = resetPasswordSchema.safeParse(values);
+    if (!parsed.success) {
+      const fieldErrors = parsed.error.flatten().fieldErrors;
+      const message =
+        fieldErrors.password?.[0] ??
+        fieldErrors.confirmPassword?.[0] ??
+        "Invalid password data";
+      formState.setError(message);
       return;
     }
 
-    try {
-      await resetPasswordWithCode(oobCode, values.password);
-      formState.setSuccess("Password updated. Redirecting to sign in...");
-      onSuccess?.();
-      setTimeout(() => {
-        router.push("/login");
-        router.refresh();
-      }, 2000);
-    } catch {
-      formState.setError("Unable to reset password. Request a new link.");
+    const apiResult = await clientResetPassword({
+      token: resetToken,
+      password: parsed.data.password,
+      password_confirmation: parsed.data.confirmPassword,
+    });
+
+    if (!apiResult.ok) {
+      const failure = mapApiAuthFailure(apiResult.error);
+      formState.setError(failure.error);
+      return;
     }
+
+    formState.setSuccess(
+      apiResult.message ?? "Password updated. Redirecting to sign in..."
+    );
+    onSuccess?.();
+    setTimeout(() => {
+      router.push("/login");
+      router.refresh();
+    }, 2000);
   };
 
-  if (!oobCode) {
+  if (!resetToken) {
     return (
       <AuthFormCard className={className ?? "ResetPasswordForm"}>
         <Alert variant='destructive'>
           <AlertCircle className='size-4' />
           <AlertDescription>
-            This password reset link is invalid or has expired.
+            Reset link is invalid or expired. Request a new one.
           </AlertDescription>
         </Alert>
+        <Button variant='link' className='mt-4 px-0' asChild>
+          <Link href='/forgot-password'>
+            <ArrowLeft className='mr-2 size-4' />
+            Back to forgot password
+          </Link>
+        </Button>
       </AuthFormCard>
     );
   }
+
+  const displayError = formState.error ?? form.formState.errors.root?.message;
 
   return (
     <AuthFormCard className={className ?? "ResetPasswordForm"}>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className='grid gap-4'>
-            {formState.error && (
-              <Alert variant='destructive'>
-                <AlertCircle className='size-4' />
-                <AlertDescription>{formState.error}</AlertDescription>
-              </Alert>
-            )}
-
             {formState.success && (
               <Alert>
                 <CheckCircle className='size-4' />
@@ -107,18 +122,21 @@ export function ResetPasswordForm({
               </Alert>
             )}
 
+            {displayError && (
+              <Alert variant='destructive'>
+                <AlertCircle className='size-4' />
+                <AlertDescription>{displayError}</AlertDescription>
+              </Alert>
+            )}
+
             <FormField
               control={form.control}
               name='password'
               render={({ field }) => (
-                <FormItem className='grid gap-2'>
+                <FormItem>
                   <FormLabel>New password</FormLabel>
                   <FormControl>
-                    <PasswordInput
-                      placeholder='Enter new password'
-                      autoComplete='new-password'
-                      {...field}
-                    />
+                    <PasswordInput {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -129,14 +147,10 @@ export function ResetPasswordForm({
               control={form.control}
               name='confirmPassword'
               render={({ field }) => (
-                <FormItem className='grid gap-2'>
-                  <FormLabel>Confirm password</FormLabel>
+                <FormItem>
+                  <FormLabel>Confirm new password</FormLabel>
                   <FormControl>
-                    <PasswordInput
-                      placeholder='Confirm new password'
-                      autoComplete='new-password'
-                      {...field}
-                    />
+                    <PasswordInput {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -148,18 +162,15 @@ export function ResetPasswordForm({
               className='w-full'
               disabled={formState.isLoading || !!formState.success}
             >
-              {formState.isLoading ? "Updating..." : "Update password"}
+              {formState.isLoading ? "Updating..." : "Reset password"}
             </Button>
-          </div>
 
-          <div className='mt-4 text-center text-sm'>
-            <Link
-              href='/login'
-              className='inline-flex items-center gap-2 underline'
-            >
-              <ArrowLeft className='size-4' />
-              Back to sign in
-            </Link>
+            <Button variant='link' className='px-0' asChild>
+              <Link href='/login'>
+                <ArrowLeft className='mr-2 size-4' />
+                Back to sign in
+              </Link>
+            </Button>
           </div>
         </form>
       </Form>

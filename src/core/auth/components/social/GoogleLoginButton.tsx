@@ -1,46 +1,92 @@
 "use client";
 
+import { GoogleLogin, type CredentialResponse } from "@react-oauth/google";
 import { useState } from "react";
+import { useSession } from "next-auth/react";
 
-import { Button } from "@/components/ui/button";
-import { loginWithProvider } from "@/core/auth/lib/auth-client";
+import { clientLoginWithGoogle } from "@/core/api/client/auth-client";
+import { mapApiRoleToAppRole } from "@/core/api/mappers/auth-user.mapper";
+import { establishLaravelSession } from "@/core/auth/lib/auth-session-client";
+import { resolvePostAuthRedirect } from "@/core/auth/lib/resolve-post-auth-redirect";
+import { resolveAuthTokenResult } from "@/core/auth/lib/resolve-auth-token-result";
 import { cn } from "@/lib/utils";
-
-import { GoogleIcon } from "../icons/GoogleIcon";
 
 interface GoogleLoginButtonProps {
   disabled?: boolean;
   className?: string;
   onError?: (message: string) => void;
+  onSuccess?: (redirectTo: string) => void;
 }
 
 export function GoogleLoginButton({
   disabled = false,
   className,
   onError,
+  onSuccess,
 }: GoogleLoginButtonProps) {
+  const { update } = useSession();
   const [loading, setLoading] = useState(false);
+  const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
 
-  const handleClick = async () => {
-    setLoading(true);
-    const result = await loginWithProvider("google");
-    setLoading(false);
-    if (!result.ok) {
-      onError?.(result.error ?? "Google sign-in failed");
+  const handleSuccess = async (credentialResponse: CredentialResponse) => {
+    const idToken = credentialResponse.credential;
+    if (!idToken) {
+      onError?.("Google sign-in failed");
+      return;
     }
+
+    setLoading(true);
+    const apiResult = await clientLoginWithGoogle({ id_token: idToken });
+    const actionResult = resolveAuthTokenResult(apiResult);
+    setLoading(false);
+
+    if (!actionResult.success) {
+      onError?.(actionResult.error);
+      return;
+    }
+
+    const sessionResult = await establishLaravelSession(actionResult);
+    if (!sessionResult.ok) {
+      onError?.(sessionResult.error ?? "Google sign-in failed");
+      return;
+    }
+
+    await update();
+
+    if (!apiResult.ok) {
+      onError?.("Google sign-in failed");
+      return;
+    }
+
+    const role = mapApiRoleToAppRole(apiResult.data.user.role);
+    const redirectTo = await resolvePostAuthRedirect(
+      actionResult.accessToken,
+      role
+    );
+    onSuccess?.(redirectTo);
   };
 
+  if (!clientId) {
+    return null;
+  }
+
   return (
-    <Button
-      type='button'
-      variant='outline'
-      size='icon'
-      className={cn("rounded-full", className)}
-      onClick={handleClick}
-      disabled={disabled || loading}
-      aria-label='Continue with Google'
+    <div
+      className={cn(
+        "GoogleLoginButton",
+        (disabled || loading) && "pointer-events-none opacity-50",
+        className
+      )}
+      aria-busy={loading}
     >
-      <GoogleIcon />
-    </Button>
+      <GoogleLogin
+        type='icon'
+        shape='circle'
+        theme='outline'
+        size='large'
+        onSuccess={handleSuccess}
+        onError={() => onError?.("Google sign-in failed")}
+      />
+    </div>
   );
 }

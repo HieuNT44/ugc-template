@@ -1,24 +1,5 @@
-import { getServerSession } from "next-auth";
-import { redirect } from "next/navigation";
+import { RegisterPageClient } from "@/core/auth/components/RegisterPageClient";
 
-import { authOptions } from "@/core/auth";
-import { RegisterForm } from "@/core/auth";
-import { AuthPageHeader } from "@/core/auth";
-
-export default async function RegisterPage() {
-  const session = await getServerSession(authOptions);
-
-  if (session) {
-    redirect("/");
-  }
-
-  return (
-    <>
-      <AuthPageHeader
-        title='Create account'
-        description='Sign up with email or continue with a social provider.'
-      />
-      <RegisterForm redirectTo='/' />
-    </>
-  );
+export default function RegisterPage() {
+  return <RegisterPageClient />;
 }

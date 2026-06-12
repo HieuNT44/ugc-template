@@ -50,7 +50,7 @@ You are an expert Frontend Engineer. Strictly follow these rules when generating
 # ═══════════════════════════════════════════════════
 
 1. ✅ Check import rules (không import ngược/ngang)
-2. ✅ Đặt file đúng layer (ui/core/shared/features)
+2. ✅ Đặt file đúng layer (ui/core/features — core gồm infra + UI dùng chung)
 3. ✅ Follow naming conventions (kebab-case files, PascalCase components)
 4. ✅ Validate với Zod
 5. ✅ Type everything (no any)

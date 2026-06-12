@@ -1,17 +1,10 @@
 import type { UserRole } from "../types";
 
 export const roleConfig = {
-  roles: [
-    "admin",
-    "creator",
-    "reader",
-    "staff",
-  ] as const satisfies readonly UserRole[],
+  roles: ["creator", "reader"] as const satisfies readonly UserRole[],
   permissions: {
-    admin: ["*"],
     creator: ["read", "write:own", "edit:own", "delete:own"],
     reader: ["read"],
-    staff: ["read", "approve:ai"],
   },
 } as const;
 

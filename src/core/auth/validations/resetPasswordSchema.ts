@@ -1,15 +1,10 @@
 import { z } from "zod";
 
-import { authConfig } from "../config/auth.config";
+import { apiPasswordSchema } from "./password-field";
 
 export const resetPasswordSchema = z
   .object({
-    password: z
-      .string()
-      .min(
-        authConfig.passwordMinLength,
-        `Password must be at least ${authConfig.passwordMinLength} characters`
-      ),
+    password: apiPasswordSchema,
     confirmPassword: z.string(),
   })
   .refine((data) => data.password === data.confirmPassword, {

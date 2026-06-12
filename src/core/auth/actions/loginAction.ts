@@ -1,53 +1,31 @@
 "use server";
 
-import {
-  getAdminAuth,
-  isFirebaseAdminConfigured,
-} from "@/core/auth/lib/firebase-admin";
-import { ensureUserProfile } from "@/core/auth/lib/user-repository";
-import { getRedirectUrl } from "@/core/auth/lib/authUtils";
-import { loginSchema } from "@/core/auth/validations";
-import type { LoginResponse } from "@/core/auth/types";
+import { login } from "@/core/api/endpoints/auth";
 
-export async function loginAction(
-  input: unknown,
-  idToken?: string
-): Promise<LoginResponse> {
+import { createAuthSessionSuccess } from "../lib/create-auth-session-result";
+import { mapApiAuthFailure } from "../lib/map-api-auth-error";
+import { loginSchema } from "../validations";
+import type { LoginResponse } from "../types";
+
+export async function loginAction(input: unknown): Promise<LoginResponse> {
   const parsed = loginSchema.safeParse(input);
   if (!parsed.success) {
+    const fieldErrors = parsed.error.flatten().fieldErrors;
     const message =
-      parsed.error.flatten().fieldErrors.email?.[0] ??
-      parsed.error.flatten().fieldErrors.password?.[0] ??
+      fieldErrors.email?.[0] ??
+      fieldErrors.password?.[0] ??
       "Invalid login credentials";
-    return { success: false, error: message };
+    return { success: false, error: message, fieldErrors };
   }
 
-  if (!idToken) {
-    return { success: false, error: "Authentication token is required" };
+  const result = await login({
+    email: parsed.data.email,
+    password: parsed.data.password,
+  });
+
+  if (!result.ok) {
+    return { success: false, ...mapApiAuthFailure(result.error) };
   }
 
-  if (!isFirebaseAdminConfigured()) {
-    return {
-      success: false,
-      error: "Authentication service is not configured",
-    };
-  }
-
-  try {
-    const decoded = await getAdminAuth().verifyIdToken(idToken);
-    const profile = await ensureUserProfile({
-      uid: decoded.uid,
-      email: decoded.email ?? parsed.data.email,
-      name: decoded.name ?? parsed.data.email.split("@")[0] ?? "User",
-      emailVerified: decoded.email_verified ?? false,
-    });
-
-    if (profile.status === "banned") {
-      return { success: false, error: "Your account has been suspended" };
-    }
-
-    return { success: true, redirectTo: getRedirectUrl(profile.role) };
-  } catch {
-    return { success: false, error: "Invalid email or password" };
-  }
+  return createAuthSessionSuccess(result.data);
 }

@@ -1,0 +1,13 @@
+/* reactjs-tiptap-editor has no option to hide the image "Inline" toggle */
+[data-richtext-portal]
+  .richtext-my-\[10px\].richtext-flex.richtext-items-center.richtext-gap-\[4px\] {
+  display: none;
+}
+
+/* The crop upload button is not configurable from the image extension API */
+[data-richtext-portal]
+  [id$="-content-upload"]
+  > .richtext-flex.richtext-items-center.richtext-gap-\[10px\]
+  > button:nth-of-type(2) {
+  display: none;
+}

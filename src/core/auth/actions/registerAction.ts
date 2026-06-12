@@ -1,10 +1,19 @@
 "use server";
 
-import type { RegisterResponse } from "@/core/auth/types";
-import { registerSchema } from "@/core/auth/validations";
+import { registerCreator, registerReader } from "@/core/api/endpoints/auth";
+
+import { createAuthSessionSuccess } from "../lib/create-auth-session-result";
+import { mapApiAuthFailure } from "../lib/map-api-auth-error";
+import { registerSchema } from "../validations";
+import type { RegisterResponse } from "../types";
+
+interface RegisterActionOptions {
+  asCreator?: boolean;
+}
 
 export async function registerAction(
-  input: unknown
+  input: unknown,
+  options?: RegisterActionOptions
 ): Promise<RegisterResponse> {
   const parsed = registerSchema.safeParse(input);
   if (!parsed.success) {
@@ -13,10 +22,27 @@ export async function registerAction(
       fieldErrors.email?.[0] ??
       fieldErrors.password?.[0] ??
       fieldErrors.confirmPassword?.[0] ??
-      fieldErrors.name?.[0] ??
+      fieldErrors.full_name?.[0] ??
+      fieldErrors.username?.[0] ??
       "Invalid registration data";
-    return { success: false, error: message };
+    return { success: false, error: message, fieldErrors };
   }
 
-  return { success: true, userId: "" };
+  const payload = {
+    email: parsed.data.email,
+    username: parsed.data.username,
+    full_name: parsed.data.full_name,
+    password: parsed.data.password,
+    password_confirmation: parsed.data.confirmPassword,
+  };
+
+  const result = options?.asCreator
+    ? await registerCreator(payload)
+    : await registerReader(payload);
+
+  if (!result.ok) {
+    return { success: false, ...mapApiAuthFailure(result.error) };
+  }
+
+  return createAuthSessionSuccess(result.data);
 }

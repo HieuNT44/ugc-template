@@ -2,11 +2,22 @@
 
 import { useState } from "react";
 
-import { registerWithEmail } from "@/core/auth/lib/auth-client";
-import { registerAction } from "@/core/auth/actions/registerAction";
+import {
+  clientRegisterCreator,
+  clientRegisterReader,
+} from "@/core/api/client/auth-client";
+import { establishLaravelSession } from "@/core/auth/lib/auth-session-client";
+import { resolvePostAuthRedirect } from "@/core/auth/lib/resolve-post-auth-redirect";
+import { mapApiRoleToAppRole } from "@/core/api/mappers/auth-user.mapper";
+import { resolveAuthTokenResult } from "@/core/auth/lib/resolve-auth-token-result";
 import type { RegisterFormData } from "@/core/auth/validations";
+import { registerSchema } from "@/core/auth/validations";
 
-export function useRegister() {
+interface UseRegisterOptions {
+  asCreator?: boolean;
+}
+
+export function useRegister(options?: UseRegisterOptions) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -14,32 +25,60 @@ export function useRegister() {
     setIsLoading(true);
     setError(null);
 
-    const validation = await registerAction(data);
-    if (!validation.success) {
-      setError(validation.error);
-      setIsLoading(false);
-      return validation;
-    }
-
     try {
-      const result = await registerWithEmail({
-        email: data.email,
-        password: data.password,
-        name: data.name,
-      });
+      const parsed = registerSchema.safeParse(data);
+      if (!parsed.success) {
+        const fieldErrors = parsed.error.flatten().fieldErrors;
+        const message =
+          fieldErrors.email?.[0] ??
+          fieldErrors.password?.[0] ??
+          fieldErrors.confirmPassword?.[0] ??
+          fieldErrors.full_name?.[0] ??
+          fieldErrors.username?.[0] ??
+          "Invalid registration data";
+        setError(message);
+        return { success: false as const, error: message, fieldErrors };
+      }
 
-      if (!result.ok) {
-        setError(result.error ?? "Registration failed");
+      const payload = {
+        email: parsed.data.email,
+        username: parsed.data.username,
+        full_name: parsed.data.full_name,
+        password: parsed.data.password,
+        password_confirmation: parsed.data.confirmPassword,
+      };
+
+      const apiResult = options?.asCreator
+        ? await clientRegisterCreator(payload)
+        : await clientRegisterReader(payload);
+      const actionResult = resolveAuthTokenResult(apiResult);
+
+      if (!actionResult.success) {
+        setError(actionResult.error);
+        return actionResult;
+      }
+
+      const sessionResult = await establishLaravelSession(actionResult);
+      if (!sessionResult.ok) {
+        const message = sessionResult.error ?? "Unable to start session";
+        setError(message);
+        return { success: false as const, error: message };
+      }
+
+      if (!apiResult.ok) {
         return {
           success: false as const,
-          error: result.error ?? "Registration failed",
+          error: "Invalid registration response",
         };
       }
 
-      return {
-        success: true as const,
-        userId: result.userId ?? "",
-      };
+      const role = mapApiRoleToAppRole(apiResult.data.user.role);
+      const redirectTo = await resolvePostAuthRedirect(
+        actionResult.accessToken,
+        role
+      );
+
+      return { ...actionResult, redirectTo };
     } catch {
       const message = "Unable to create account. Try again later.";
       setError(message);

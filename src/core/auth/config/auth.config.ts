@@ -3,5 +3,6 @@ export const authConfig = {
   maxLoginAttempts: 5,
   lockoutDuration: 15 * 60,
   passwordMinLength: 8,
+  passwordMaxLength: 24,
   requireEmailVerification: true,
 } as const;

@@ -1,21 +1,16 @@
 import { z } from "zod";
 
-import { authConfig } from "../config/auth.config";
+import { fullNameSchema } from "./full-name-field";
+import { apiPasswordSchema } from "./password-field";
+import { usernameSchema } from "./username-field";
 
 export const registerSchema = z
   .object({
     email: z.string().email("Invalid email address"),
-    password: z
-      .string()
-      .min(
-        authConfig.passwordMinLength,
-        `Password must be at least ${authConfig.passwordMinLength} characters`
-      ),
+    username: usernameSchema,
+    full_name: fullNameSchema,
+    password: apiPasswordSchema,
     confirmPassword: z.string(),
-    name: z
-      .string()
-      .min(2, "Name must be at least 2 characters")
-      .max(50, "Name must be at most 50 characters"),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "Passwords do not match",

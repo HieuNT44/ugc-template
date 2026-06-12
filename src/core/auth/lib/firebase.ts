@@ -1,5 +1,8 @@
+/**
+ * Firebase client SDK — reserved for FCM push notifications (future).
+ * Auth is handled by Laravel API + NextAuth; do not use Firebase Auth here.
+ */
 import { getApp, getApps, initializeApp, type FirebaseApp } from "firebase/app";
-import { getAuth, type Auth } from "firebase/auth";
 import { getFirestore, type Firestore } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -28,7 +31,6 @@ function createFirebaseApp(): FirebaseApp {
 }
 
 let app: FirebaseApp | undefined;
-let auth: Auth | undefined;
 let db: Firestore | undefined;
 
 export function getFirebaseApp(): FirebaseApp {
@@ -41,13 +43,6 @@ export function getFirebaseApp(): FirebaseApp {
     app = createFirebaseApp();
   }
   return app;
-}
-
-export function getFirebaseAuth(): Auth {
-  if (!auth) {
-    auth = getAuth(getFirebaseApp());
-  }
-  return auth;
 }
 
 export function getFirestoreDb(): Firestore {

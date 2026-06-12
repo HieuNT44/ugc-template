@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 
-import { sendResetPasswordEmail } from "@/core/auth/lib/auth-client";
-import { forgotPasswordAction } from "@/core/auth/actions/forgotPasswordAction";
+import { clientForgotPassword } from "@/core/api/client/auth-client";
+import { mapApiAuthFailure } from "@/core/auth/lib/map-api-auth-error";
 import type { ForgotPasswordFormData } from "@/core/auth/validations";
+import { forgotPasswordSchema } from "@/core/auth/validations";
 
 export function useForgotPassword() {
   const [isLoading, setIsLoading] = useState(false);
@@ -14,26 +15,26 @@ export function useForgotPassword() {
     setIsLoading(true);
     setError(null);
 
-    const validation = await forgotPasswordAction(data);
-    if (!validation.success) {
-      setError(validation.error);
+    const parsed = forgotPasswordSchema.safeParse(data);
+    if (!parsed.success) {
+      const message =
+        parsed.error.flatten().fieldErrors.email?.[0] ?? "Invalid email";
+      setError(message);
       setIsLoading(false);
-      return validation;
+      return { success: false as const, error: message };
     }
 
-    try {
-      await sendResetPasswordEmail(data.email);
-      return { success: true as const };
-    } catch {
-      const message = "Unable to send reset email. Try again later.";
-      setError(message);
-      return { success: false as const, error: message } satisfies {
-        success: false;
-        error: string;
-      };
-    } finally {
+    const result = await clientForgotPassword({ email: parsed.data.email });
+
+    if (!result.ok) {
+      const failure = mapApiAuthFailure(result.error);
+      setError(failure.error);
       setIsLoading(false);
+      return { success: false as const, ...failure };
     }
+
+    setIsLoading(false);
+    return { success: true as const, message: result.message };
   };
 
   return { mutate: forgotPassword, isLoading, error };

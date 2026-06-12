@@ -9,16 +9,14 @@ description: Hướng dẫn kiến trúc modular 5 tầng cho Next.js + ShadcnUI
 
 ## Quick Reference
 
-### 5 Layers
+### 4 Layers
 
 ```
 APP (src/app/)           → Routing only
     ↓
 FEATURES (src/features/) → Business modules
     ↓
-SHARED (src/shared/)     → Cross-feature code
-    ↓
-CORE (src/core/)         → Infrastructure
+CORE (src/core/)         → Infrastructure + cross-feature UI/types
     ↓
 UI (src/components/ui/)  → ShadcnUI primitives
 ```
@@ -28,13 +26,14 @@ UI (src/components/ui/)  → ShadcnUI primitives
 ```typescript
 // ✅ OK
 import { Button } from "@/components/ui/button";
-import { cn } from "@/core/lib/utils";
-import { DataTable } from "@/shared/components/data-table";
+import { PostLabelBadge } from "@/core/components/post";
 import { LoginForm } from "@/core/auth";
 
 // ❌ NGHIÊM CẤM
-import { UserForm } from "@/features/users"; // trong core/auth
+import { UserForm } from "@/features/users"; // trong core/*
 ```
+
+`core/` gồm `auth/`, `components/` (post, badges, …), `types/`, `constants/`, `lib/`.
 
 ### Feature Structure
 
