@@ -11,7 +11,7 @@ export default async function ReportPublishPage() {
     <CreateContentShell
       step={3}
       totalSteps={3}
-      title='Publish settings'
+      title='公開設定'
       backHref='/studio/create/report/edit'
     >
       <ReportPublishFlow />

@@ -160,11 +160,11 @@ export async function saveContentDraft(
   if (draftId) {
     const snap = await ref.get();
     if (!snap.exists) {
-      throw new Error("Draft not found");
+      throw new Error("下書きが見つかりません");
     }
     const data = snap.data();
     if (data?.authorId !== authorId) {
-      throw new Error("Unauthorized");
+      throw new Error("認証が必要です");
     }
     await ref.update(payload);
   } else {

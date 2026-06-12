@@ -76,7 +76,7 @@ export function PreviewModal({
         style={{ maxWidth: "80vw", width: "80vw" }}
       >
         <SheetHeader className='border-border border-b px-6 py-4'>
-          <SheetTitle>Article preview</SheetTitle>
+          <SheetTitle>記事プレビュー</SheetTitle>
           <SheetDescription>
             Rendered with the same structure as the post detail page.
           </SheetDescription>

@@ -101,7 +101,7 @@ export function ProfileSocialSummary({
       <div className='flex items-center justify-center gap-2'>
         <SocialIconLink
           href={websiteUrl}
-          label='Website'
+          label='ウェブサイト'
           settingsProfileHref={settingsProfileHref}
         >
           <Globe className='size-5' />
@@ -143,9 +143,9 @@ export function ProfileSocialSummary({
 
       <div className='border-border mt-2 overflow-hidden rounded-lg border'>
         <div className='divide-border grid min-h-16 grid-cols-3 divide-x'>
-          <StatCell label='Posts' value={posts} />
-          <StatCell label='Following' value={following} />
-          <StatCell label='Followers' value={followers} />
+          <StatCell label='投稿' value={posts} />
+          <StatCell label='フォロー中' value={following} />
+          <StatCell label='フォロワー' value={followers} />
         </div>
       </div>
     </div>

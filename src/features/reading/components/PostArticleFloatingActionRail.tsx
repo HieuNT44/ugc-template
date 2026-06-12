@@ -123,11 +123,11 @@ export function PostArticleFloatingActionRail({
           className
         )}
         aria-hidden={!showFloatingBar}
-        aria-label='Floating article actions'
+        aria-label='記事のフローティング操作'
       >
         <div className={desktopPillClass}>
           <FloatingActionIconButton
-            label={clapped ? "Unlike story" : "Like story"}
+            label={clapped ? "いいねを取り消す" : "いいねする"}
             pressed={clapped}
             onClick={() => {
               handleProtectedAction(toggleClapped);
@@ -158,7 +158,7 @@ export function PostArticleFloatingActionRail({
           </FloatingActionIconButton>
 
           <FloatingActionIconButton
-            label={saved ? "Remove from list" : "Save story"}
+            label={saved ? "リストから削除" : "記事を保存"}
             pressed={saved}
             onClick={() => {
               handleProtectedAction(toggleSaved);
@@ -168,7 +168,7 @@ export function PostArticleFloatingActionRail({
           </FloatingActionIconButton>
 
           <FloatingActionIconButton
-            label='Share story'
+            label='記事をシェア'
             onClick={() => handleProtectedAction(handleShare)}
           >
             <Share2 className='size-5' />
@@ -185,9 +185,9 @@ export function PostArticleFloatingActionRail({
         )}
         aria-hidden={!showFloatingBar}
       >
-        <div className={mobileBarClass} aria-label='Floating article actions'>
+        <div className={mobileBarClass} aria-label='記事のフローティング操作'>
           <FloatingActionIconButton
-            label={clapped ? "Unlike story" : "Like story"}
+            label={clapped ? "いいねを取り消す" : "いいねする"}
             pressed={clapped}
             onClick={() => {
               handleProtectedAction(toggleClapped);
@@ -201,14 +201,14 @@ export function PostArticleFloatingActionRail({
           <Link
             href={commentsHref}
             className={floatingActionBtnClass}
-            aria-label='View comments'
+            aria-label='コメントを見る'
             onClick={handleProtectedLinkClick}
           >
             <MessageCircle className='size-5' />
           </Link>
 
           <FloatingActionIconButton
-            label={saved ? "Remove from list" : "Save story"}
+            label={saved ? "リストから削除" : "記事を保存"}
             pressed={saved}
             onClick={() => {
               handleProtectedAction(toggleSaved);
@@ -218,7 +218,7 @@ export function PostArticleFloatingActionRail({
           </FloatingActionIconButton>
 
           <FloatingActionIconButton
-            label='Share story'
+            label='記事をシェア'
             onClick={() => handleProtectedAction(handleShare)}
           >
             <Share2 className='size-5' />
@@ -243,7 +243,7 @@ export function PostArticleFloatingActionRail({
               Later
             </Button>
             <Button asChild>
-              <Link href='/login'>Login</Link>
+              <Link href='/login'>ログイン</Link>
             </Button>
           </DialogFooter>
         </DialogContent>

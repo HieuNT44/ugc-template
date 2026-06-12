@@ -20,11 +20,11 @@ export async function saveDraftAction(
 ): Promise<SaveDraftResult> {
   const session = await getServerSession(authOptions);
   if (!session?.user?.id || !session.accessToken) {
-    return { error: "Unauthorized" };
+    return { error: "認証が必要です" };
   }
 
   if (session.user.role !== "creator") {
-    return { error: "Creator role required" };
+    return { error: "クリエイター権限が必要です" };
   }
 
   try {
@@ -47,6 +47,6 @@ export async function saveDraftAction(
 
     return { success: true, draft: mapApiContentToDocument(result.data) };
   } catch {
-    return { error: "Connection lost, please try again" };
+    return { error: "接続が切れました。もう一度お試しください" };
   }
 }

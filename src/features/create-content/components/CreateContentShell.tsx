@@ -39,7 +39,7 @@ export function CreateContentShell({
           <div className='mb-6'>
             {backHref ? (
               <Button variant='ghost' size='sm' className='mb-4 -ml-2' asChild>
-                <Link href={backHref}>Back</Link>
+                <Link href={backHref}>戻る</Link>
               </Button>
             ) : null}
             {showSteps ? (

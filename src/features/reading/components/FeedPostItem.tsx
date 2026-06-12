@@ -137,7 +137,7 @@ export function FeedPostItem({
                 size='icon'
                 className={cn(feedActionIconClass, isSaved && "text-amber-500")}
                 onClick={handleSaveClick}
-                aria-label={isSaved ? "Remove from saved" : "Save story"}
+                aria-label={isSaved ? "保存から削除" : "記事を保存"}
                 aria-pressed={isSaved}
               >
                 <Bookmark

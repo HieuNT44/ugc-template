@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     template: "%s | RealRead",
   },
   description:
-    "Discover stories, ideas, and knowledge from creators around the world.",
+    "世界中のクリエイターからストーリー、アイデア、知識を見つけましょう。",
 };
 
 export default function RootLayout({
@@ -30,7 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang='en'
+      lang='ja'
       className={`${outfit.variable} h-full font-sans antialiased`}
       suppressHydrationWarning
     >

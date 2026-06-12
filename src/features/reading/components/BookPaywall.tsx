@@ -39,7 +39,7 @@ export function BookPaywall({
     ? formatPaidLabel(
         paidLabel.amountCents,
         paidLabel.currency ?? "JPY"
-      ).replace("Paid · ", "")
+      ).replace("有料 · ", "")
     : null;
 
   const [loading, setLoading] = useState(false);
@@ -67,17 +67,19 @@ export function BookPaywall({
       const data = (await response.json()) as { url?: string; error?: string };
 
       if (!response.ok) {
-        throw new Error(data.error ?? "Checkout failed");
+        throw new Error(data.error ?? "チェックアウトに失敗しました");
       }
 
       if (!data.url) {
-        throw new Error("No redirect URL returned");
+        throw new Error("リダイレクトURLが返されませんでした");
       }
 
       window.location.href = data.url;
     } catch (error) {
       setErrorMessage(
-        error instanceof Error ? error.message : "Unable to start checkout"
+        error instanceof Error
+          ? error.message
+          : "チェックアウトを開始できませんでした"
       );
       setLoading(false);
     }
@@ -113,10 +115,10 @@ export function BookPaywall({
             className='mt-6 rounded-full bg-[#2A2A2A] px-8 text-[#F8F3E7] hover:bg-[#111111]'
           >
             {loading
-              ? "Redirecting..."
+              ? "リダイレクト中..."
               : priceText
                 ? `Unlock book · ${priceText}`
-                : "Unlock book"}
+                : "ブックを購入して読む"}
           </Button>
         </div>
       </div>
@@ -138,7 +140,7 @@ export function BookPaywall({
               Later
             </Button>
             <Button asChild>
-              <Link href='/login'>Login</Link>
+              <Link href='/login'>ログイン</Link>
             </Button>
           </DialogFooter>
         </DialogContent>

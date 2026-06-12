@@ -33,26 +33,26 @@ type StudioKanbanColumnConfig = Omit<StudioKanbanColumn, "items"> & {
 const STUDIO_KANBAN_COLUMNS: StudioKanbanColumnConfig[] = [
   {
     id: "draft",
-    title: "Draft",
-    description: "Works in progress",
+    title: "下書き",
+    description: "作成中",
     statuses: ["draft"],
   },
   {
     id: "review",
-    title: "Review",
-    description: "Awaiting AI or admin approval",
+    title: "審査",
+    description: "AIまたは管理者の承認待ち",
     statuses: ["pending_review"],
   },
   {
     id: "rejected",
-    title: "Reject",
-    description: "Needs revision before resubmitting",
+    title: "差し戻し",
+    description: "再提出前に修正が必要です",
     statuses: ["rejected"],
   },
   {
     id: "published",
-    title: "Published",
-    description: "Live on RealRead",
+    title: "公開済み",
+    description: "RealReadで公開中",
     statuses: ["published"],
   },
 ];

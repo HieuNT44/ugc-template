@@ -93,13 +93,13 @@ export function PostArticleInlineActionBar() {
       <div
         ref={registerInlineBar}
         className='PostArticleActionBar border-border flex flex-wrap items-center justify-between gap-3 border-y py-3'
-        aria-label='Article engagement'
+        aria-label='記事エンゲージメント'
       >
         <div className='flex flex-wrap items-center gap-4 sm:gap-5'>
           <button
             type='button'
             className={cn(statButtonClass, clapped && "text-foreground")}
-            aria-label={clapped ? "Unlike story" : "Like story"}
+            aria-label={clapped ? "いいねを取り消す" : "いいねする"}
             aria-pressed={clapped}
             onClick={() => {
               handleProtectedAction(toggleClapped);
@@ -141,7 +141,7 @@ export function PostArticleInlineActionBar() {
             variant='ghost'
             size='icon'
             className={cn(actionIconClass, saved && "text-foreground")}
-            aria-label={saved ? "Remove from list" : "Save story"}
+            aria-label={saved ? "リストから削除" : "記事を保存"}
             aria-pressed={saved}
             onClick={() => {
               handleProtectedAction(toggleSaved);
@@ -155,7 +155,7 @@ export function PostArticleInlineActionBar() {
             variant='ghost'
             size='icon'
             className={actionIconClass}
-            aria-label='Share story'
+            aria-label='記事をシェア'
             onClick={() => handleProtectedAction(handleShare)}
           >
             <Share2 className='size-[18px]' />
@@ -168,7 +168,7 @@ export function PostArticleInlineActionBar() {
                 variant='ghost'
                 size='icon'
                 className={actionIconClass}
-                aria-label='More options'
+                aria-label='その他の操作'
                 onClick={handleProtectedMenuTriggerClick}
               >
                 <MoreHorizontal className='size-[18px]' />
@@ -178,10 +178,10 @@ export function PostArticleInlineActionBar() {
               <DropdownMenuItem
                 onClick={() => handleProtectedAction(handleShare)}
               >
-                Copy link
+                リンクをコピー
               </DropdownMenuItem>
               <DropdownMenuItem onClick={() => handleProtectedAction()}>
-                Show less like this
+                このような記事を減らす
               </DropdownMenuItem>
               <DropdownMenuItem onClick={() => handleProtectedAction()}>
                 Report story
@@ -208,7 +208,7 @@ export function PostArticleInlineActionBar() {
               Later
             </Button>
             <Button asChild>
-              <Link href='/login'>Login</Link>
+              <Link href='/login'>ログイン</Link>
             </Button>
           </DialogFooter>
         </DialogContent>

@@ -35,7 +35,7 @@ export function useRegister(options?: UseRegisterOptions) {
           fieldErrors.confirmPassword?.[0] ??
           fieldErrors.full_name?.[0] ??
           fieldErrors.username?.[0] ??
-          "Invalid registration data";
+          "登録内容が正しくありません";
         setError(message);
         return { success: false as const, error: message, fieldErrors };
       }
@@ -60,7 +60,8 @@ export function useRegister(options?: UseRegisterOptions) {
 
       const sessionResult = await establishLaravelSession(actionResult);
       if (!sessionResult.ok) {
-        const message = sessionResult.error ?? "Unable to start session";
+        const message =
+          sessionResult.error ?? "セッションを開始できませんでした";
         setError(message);
         return { success: false as const, error: message };
       }
@@ -68,7 +69,7 @@ export function useRegister(options?: UseRegisterOptions) {
       if (!apiResult.ok) {
         return {
           success: false as const,
-          error: "Invalid registration response",
+          error: "登録レスポンスが正しくありません",
         };
       }
 
@@ -80,7 +81,8 @@ export function useRegister(options?: UseRegisterOptions) {
 
       return { ...actionResult, redirectTo };
     } catch {
-      const message = "Unable to create account. Try again later.";
+      const message =
+        "アカウントを作成できませんでした。時間をおいて再度お試しください。";
       setError(message);
       return { success: false as const, error: message };
     } finally {

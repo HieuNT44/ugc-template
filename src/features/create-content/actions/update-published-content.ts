@@ -45,11 +45,11 @@ export async function updatePublishedContentAction(
 ): Promise<UpdatePublishedContentResult> {
   const session = await getServerSession(authOptions);
   if (!session?.user?.id || !session.accessToken) {
-    return { error: "Unauthorized" };
+    return { error: "認証が必要です" };
   }
 
   if (session.user.role !== "creator") {
-    return { error: "Creator role required" };
+    return { error: "クリエイター権限が必要です" };
   }
 
   try {
@@ -77,6 +77,6 @@ export async function updatePublishedContentAction(
       contentId: updated.id,
     };
   } catch {
-    return { error: "Something went wrong, please try again later" };
+    return { error: "問題が発生しました。時間をおいて再度お試しください" };
   }
 }

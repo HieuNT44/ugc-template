@@ -19,10 +19,10 @@ import { formatPaidLabel, getPaidLabel } from "@/core/lib/post-labels";
 import type { PostLabel } from "@/core/types/post-label";
 
 const PAYWALL_BENEFITS = [
-  "Read the full story and every paid article on RealRead",
-  "Support independent writers you follow",
-  "Fair previews — know what you unlock before you pay",
-  "Keep your library and purchases across devices",
+  "RealReadで記事全文とすべての有料記事を読めます",
+  "フォローしている独立系ライターを支援できます",
+  "公正なプレビューで、購入前に内容を確認できます",
+  "ライブラリと購入履歴を複数デバイスで利用できます",
 ] as const;
 
 interface PostPaywallProps {
@@ -46,7 +46,7 @@ export function PostPaywall({
     ? formatPaidLabel(
         paidLabel.amountCents,
         paidLabel.currency ?? "USD"
-      ).replace("Paid · ", "")
+      ).replace("有料 · ", "")
     : null;
 
   const [loading, setLoading] = useState(false);
@@ -75,17 +75,19 @@ export function PostPaywall({
       const data = (await response.json()) as { url?: string; error?: string };
 
       if (!response.ok) {
-        throw new Error(data.error ?? "Checkout failed");
+        throw new Error(data.error ?? "チェックアウトに失敗しました");
       }
 
       if (!data.url) {
-        throw new Error("No redirect URL returned");
+        throw new Error("リダイレクトURLが返されませんでした");
       }
 
       window.location.href = data.url;
     } catch (err) {
       setErrorMessage(
-        err instanceof Error ? err.message : "Unable to start checkout"
+        err instanceof Error
+          ? err.message
+          : "チェックアウトを開始できませんでした"
       );
       setLoading(false);
     }
@@ -131,10 +133,10 @@ export function PostPaywall({
         className='mt-10 h-12 rounded-full bg-[#1A8917] px-10 text-base font-medium text-white hover:bg-[#156D12]'
       >
         {loading
-          ? "Redirecting…"
+          ? "リダイレクト中…"
           : priceText
             ? `Pay to read · ${priceText}`
-            : "Pay to read"}
+            : "購入して読む"}
       </Button>
 
       <Dialog open={loginDialogOpen} onOpenChange={setLoginDialogOpen}>
@@ -154,7 +156,7 @@ export function PostPaywall({
               Later
             </Button>
             <Button asChild>
-              <Link href='/login'>Login</Link>
+              <Link href='/login'>ログイン</Link>
             </Button>
           </DialogFooter>
         </DialogContent>

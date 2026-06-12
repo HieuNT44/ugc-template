@@ -25,47 +25,47 @@ export interface SiteFooterGroup {
 }
 
 export const headerNavLinks: SiteNavLink[] = [
-  { label: "Home", href: "/", icon: Home },
-  { label: "Explore", href: "/explore", icon: BookOpen },
+  { label: "ホーム", href: "/", icon: Home },
+  { label: "探索", href: "/explore", icon: BookOpen },
   {
-    label: "Studio",
+    label: "スタジオ",
     href: "/studio",
     icon: PenLine,
     authOnly: true,
     creatorOnly: true,
   },
-  { label: "Profile", href: "/profile", icon: User, authOnly: true },
+  { label: "プロフィール", href: "/profile", icon: User, authOnly: true },
 ];
 
 export const footerSitemap: SiteFooterGroup[] = [
   {
-    title: "Platform",
+    title: "プラットフォーム",
     links: [
-      { label: "Home", href: "/" },
-      { label: "Explore", href: "/explore" },
-      { label: "Studio", href: "/studio", authOnly: true, creatorOnly: true },
-      { label: "Profile", href: "/profile", authOnly: true },
+      { label: "ホーム", href: "/" },
+      { label: "探索", href: "/explore" },
+      { label: "スタジオ", href: "/studio", authOnly: true, creatorOnly: true },
+      { label: "プロフィール", href: "/profile", authOnly: true },
     ],
   },
   {
-    title: "Account",
+    title: "アカウント",
     links: [
-      { label: "Sign in", href: "/login", icon: LogIn },
-      { label: "Create account", href: "/register" },
+      { label: "ログイン", href: "/login", icon: LogIn },
+      { label: "アカウント作成", href: "/register" },
     ],
   },
   {
-    title: "Company",
+    title: "会社",
     links: [
-      { label: "About RealRead", href: "/about", icon: Info },
-      { label: "Contact", href: "/contact" },
+      { label: "RealReadについて", href: "/about", icon: Info },
+      { label: "お問い合わせ", href: "/contact" },
     ],
   },
   {
-    title: "Legal",
+    title: "法務",
     links: [
-      { label: "Terms of Service", href: "/terms" },
-      { label: "Privacy Policy", href: "/privacy", icon: Shield },
+      { label: "利用規約", href: "/terms" },
+      { label: "プライバシーポリシー", href: "/privacy", icon: Shield },
     ],
   },
 ];

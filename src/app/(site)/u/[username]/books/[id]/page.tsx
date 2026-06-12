@@ -31,7 +31,7 @@ export async function generateMetadata({
 
   if (!book) {
     return {
-      title: "Book not found",
+      title: "ブックが見つかりません",
     };
   }
 

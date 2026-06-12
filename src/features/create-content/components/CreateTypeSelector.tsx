@@ -39,48 +39,48 @@ type ContentTypeOption = {
 const CONTENT_TYPES: ContentTypeOption[] = [
   {
     type: "blog",
-    title: "Blog",
-    description: "Long-form articles with rich text or Markdown.",
+    title: "ブログ",
+    description: "リッチテキストまたはMarkdownで長文記事を作成します。",
     icon: Newspaper,
     editPath: "/studio/create/blog/new",
     available: true,
     required: [
-      "Title (10–150 characters)",
-      "Editor mode (WYSIWYG or Markdown)",
-      "Article body (at least 200 words)",
-      "Pricing: Free or paid (¥100–¥500)",
-      "Paid articles show the first 30% as a reader preview",
+      "タイトル（10〜150文字）",
+      "編集モード（WYSIWYGまたはMarkdown）",
+      "記事本文（200語以上）",
+      "価格設定：無料または有料（¥100〜¥500）",
+      "有料記事では冒頭30%を読者プレビューとして表示します",
     ],
   },
   {
     type: "report",
-    title: "Report",
-    description: "Upload a PDF report with a reader preview.",
+    title: "レポート",
+    description: "読者プレビュー付きのPDFレポートをアップロードします。",
     icon: FileText,
     editPath: "/studio/create/report/edit",
     available: false,
     required: [
-      "Title (10–150 characters)",
-      "Description (20–2,000 characters)",
-      "PDF file",
-      "Preview range (5–10 pages)",
-      "Pricing: Free or paid (¥1,000–¥5,000)",
-      "Paid reports cannot be downloaded as PDF files",
+      "タイトル（10〜150文字）",
+      "説明（20〜2,000文字）",
+      "PDFファイル",
+      "プレビュー範囲（5〜10ページ）",
+      "価格設定：無料または有料（¥1,000〜¥5,000）",
+      "有料レポートはPDFファイルとしてダウンロードできません",
     ],
   },
   {
     type: "book",
-    title: "Book",
-    description: "Multi-chapter books with optional per-chapter sales.",
+    title: "ブック",
+    description: "複数章のブックを作成し、章ごとの販売も選べます。",
     icon: BookOpen,
     editPath: "/studio/create/book/edit",
     available: false,
     required: [
-      "Title (10–150 characters)",
-      "Description (20–2,000 characters)",
-      "At least 2 chapters (title + content)",
-      "Pricing: Free or paid (¥500–¥3,000)",
-      "Paid books show the first 30% of each chapter as a reader preview",
+      "タイトル（10〜150文字）",
+      "説明（20〜2,000文字）",
+      "2章以上（タイトル＋本文）",
+      "価格設定：無料または有料（¥500〜¥3,000）",
+      "有料ブックでは各章の冒頭30%を読者プレビューとして表示します",
     ],
   },
 ];
@@ -122,7 +122,7 @@ export function CreateTypeSelector() {
       <div className='CreateTypeSelector mx-auto flex w-full max-w-6xl flex-col items-center px-6 py-10 lg:max-w-7xl lg:py-14'>
         <div className='mb-10 w-full max-w-2xl text-center'>
           <h1 className='font-serif text-3xl font-bold lg:text-4xl'>
-            Create content
+            コンテンツを作成
           </h1>
           <p className='text-muted-foreground mt-3 text-sm leading-relaxed lg:text-base'>
             Choose a format to get started. Each type has different required
@@ -194,9 +194,9 @@ export function CreateTypeSelector() {
       >
         <DialogContent className='CreateTypeComingSoonDialog sm:max-w-[420px]'>
           <DialogHeader>
-            <DialogTitle>Coming soon</DialogTitle>
+            <DialogTitle>近日公開</DialogTitle>
             <DialogDescription>
-              Chức năng này sẽ được triển khai sau nhé!
+              この機能は近日中に公開予定です。
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>

@@ -15,12 +15,15 @@ export async function changePasswordAction(input: {
 }): Promise<ActionResponse> {
   const session = await getServerSession(authOptions);
   if (!session?.user?.id) {
-    return { success: false, error: "Unauthorized" };
+    return { success: false, error: "認証が必要です" };
   }
 
   const accessToken = await getServerAccessToken();
   if (!accessToken) {
-    return { success: false, error: "Session expired. Please sign in again." };
+    return {
+      success: false,
+      error: "セッションの有効期限が切れました。再度ログインしてください。",
+    };
   }
 
   const result = await changePassword(accessToken, {

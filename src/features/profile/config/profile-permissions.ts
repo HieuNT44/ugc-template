@@ -81,8 +81,8 @@ const CREATOR_POST_TABS: ProfilePostsTabId[] = [
 export const PROFILE_POSTS_TAB_LABELS: Record<ProfilePostsTabId, string> = {
   posts: "Your posts",
   books: "Your books",
-  purchased: "Purchased",
-  saved: "Saved",
+  purchased: "購入済み",
+  saved: "保存済み",
   drafts: "Drafts",
 };
 

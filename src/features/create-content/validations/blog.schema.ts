@@ -8,7 +8,7 @@ export const blogEditSchema = z.object({
   title: titleSchema,
   shortDescription: z
     .string()
-    .max(500, "Short description must be 500 characters or less")
+    .max(500, "短い説明は500文字以内で入力してください")
     .optional(),
   field: z.string().optional(),
   tags: tagsSchema,
@@ -16,7 +16,7 @@ export const blogEditSchema = z.object({
   editorMode: z.enum(["wysiwyg", "markdown"]),
   content: z
     .string()
-    .min(1, "Please write your content")
+    .min(1, "本文を入力してください")
     .refine(
       (value) => value.trim().length >= MIN_BLOG_CONTENT_CHARS,
       `Content must be at least ${MIN_BLOG_CONTENT_CHARS} characters`
@@ -33,13 +33,13 @@ export const blogPublishSchema = z
     (data) =>
       data.pricingType === "free" ||
       (data.priceYen != null && data.priceYen >= 100),
-    { message: "Please select a price", path: ["priceYen"] }
+    { message: "価格を選択してください", path: ["priceYen"] }
   )
   .refine(
     (data) =>
       data.pricingType === "free" ||
       (data.priceYen != null && data.priceYen <= 500),
-    { message: "Blog price must be between ¥100 and ¥500", path: ["priceYen"] }
+    { message: "ブログ価格は¥100〜¥500で設定してください", path: ["priceYen"] }
   );
 
 export type BlogEditFormData = z.infer<typeof blogEditSchema>;

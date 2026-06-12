@@ -30,7 +30,7 @@ export function StudioKanbanCard({ item }: StudioKanbanCardProps) {
       {editHref ? (
         <div className='border-border/60 border-t px-4 pb-4'>
           <Button asChild size='sm' variant='outline' className='w-full'>
-            <Link href={editHref}>Edit</Link>
+            <Link href={editHref}>編集</Link>
           </Button>
         </div>
       ) : null}

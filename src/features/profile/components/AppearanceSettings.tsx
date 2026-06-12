@@ -91,17 +91,17 @@ export function AppearanceSettings({ settings }: AppearanceSettingsProps) {
 
     setIsLoading(false);
     if (!result.success) {
-      setError(result.error ?? "Failed to save appearance settings");
+      setError(result.error ?? "外観設定の保存に失敗しました");
       return;
     }
 
-    setMessage(result.message ?? "Appearance settings saved");
+    setMessage(result.message ?? "外観設定を保存しました");
   }
 
   return (
     <Card className='AppearanceSettings'>
       <CardHeader>
-        <CardTitle>Appearance</CardTitle>
+        <CardTitle>外観</CardTitle>
         <CardDescription>Customize theme and font size.</CardDescription>
       </CardHeader>
       <CardContent className='space-y-6'>
@@ -151,7 +151,7 @@ export function AppearanceSettings({ settings }: AppearanceSettingsProps) {
         </div>
 
         <Button type='button' onClick={handleSaveTheme} disabled={isLoading}>
-          {isLoading ? "Saving..." : "Save appearance"}
+          {isLoading ? "保存中..." : "外観設定を保存"}
         </Button>
       </CardContent>
     </Card>

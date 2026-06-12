@@ -21,11 +21,11 @@ export function getMockFeedPosts(): FeedPost[] {
         avatarUrl: "",
       },
       authorDisplayName: "TOMOSIA-HieuNT",
-      authorSubtitle: "RealRead Creator",
+      authorSubtitle: "RealReadクリエイター",
       publishedAt: "May 19",
-      title: "Why clean architecture matters for Next.js App Router",
+      title: "Next.js App Routerでクリーンアーキテクチャが重要な理由",
       snippet:
-        "A practical mental model for server and client boundaries without over-engineering your folder structure.",
+        "フォルダ構成を過剰設計せず、サーバーとクライアントの境界を理解するための実践的な考え方。",
       coverImageUrl: null,
       likeCount: 154,
       commentCount: 3,
@@ -43,11 +43,11 @@ export function getMockFeedPosts(): FeedPost[] {
         avatarUrl: "",
       },
       authorDisplayName: "Sarah Chen",
-      authorSubtitle: "Product & Growth",
+      authorSubtitle: "プロダクト＆グロース",
       publishedAt: "Jun 1",
-      title: "Monetizing long-form content in 2026",
+      title: "2026年の長文コンテンツ収益化",
       snippet:
-        "What paid posts, bundles, and memberships mean for independent writers on RealRead.",
+        "有料投稿、バンドル、メンバーシップがRealReadの独立系ライターにもたらす意味。",
       coverImageUrl: null,
       likeCount: 320,
       commentCount: 45,
@@ -61,11 +61,11 @@ export function getMockFeedPosts(): FeedPost[] {
         avatarUrl: "",
       },
       authorDisplayName: "TOMOSIA-HieuNT",
-      authorSubtitle: "RealRead Creator",
+      authorSubtitle: "RealReadクリエイター",
       publishedAt: "Apr 28",
-      title: "Performance tuning checklist for React Server Components",
+      title: "React Server Componentsのパフォーマンス調整チェックリスト",
       snippet:
-        "Waterfalls, bundle size, and cache boundaries — a list to run before you ship.",
+        "ウォーターフォール、バンドルサイズ、キャッシュ境界など、リリース前に確認したいチェックリスト。",
       coverImageUrl: null,
       likeCount: 89,
       commentCount: 12,
@@ -79,7 +79,7 @@ export function getMockFeedPosts(): FeedPost[] {
         avatarUrl: "",
       },
       authorDisplayName: "Alex Reads",
-      authorSubtitle: "Editor",
+      authorSubtitle: "エディター",
       publishedAt: "May 5",
       title: "The comeback of thoughtful reading",
       snippet:
@@ -97,11 +97,11 @@ export function getMockFeedPosts(): FeedPost[] {
         avatarUrl: "",
       },
       authorDisplayName: "TOMOSIA-HieuNT",
-      authorSubtitle: "RealRead Creator",
+      authorSubtitle: "RealReadクリエイター",
       publishedAt: "Mar 12",
-      title: "Firebase Auth patterns in production apps",
+      title: "本番アプリのFirebase Authパターン",
       snippet:
-        "Combining Firebase Auth, Firestore profiles, and NextAuth sessions without duplicating user state.",
+        "ユーザー状態を重複させずにFirebase Auth、Firestoreプロフィール、NextAuthセッションを組み合わせる方法。",
       coverImageUrl: null,
       likeCount: 41,
       commentCount: 7,
@@ -115,7 +115,7 @@ export function getMockFeedPosts(): FeedPost[] {
         avatarUrl: "",
       },
       authorDisplayName: "Sarah Chen",
-      authorSubtitle: "Product & Growth",
+      authorSubtitle: "プロダクト＆グロース",
       publishedAt: "Apr 14",
       title: "Designing paywalls readers actually trust",
       snippet:
@@ -136,12 +136,12 @@ export function getMockFollowingFeedPosts(): FeedPost[] {
 }
 
 export const FEED_SUGGESTED_TOPICS = [
-  "Technology",
+  "テクノロジー",
   "Product",
   "Writing",
   "Next.js",
   "Startups",
-  "Culture",
+  "カルチャー",
 ] as const;
 
 export const FEED_SUGGESTED_AUTHORS = [

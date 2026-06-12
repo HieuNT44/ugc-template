@@ -47,17 +47,17 @@ export function PublishStatusModal({
         <DialogHeader>
           <DialogTitle>
             {phase === "processing"
-              ? "Running AI detection"
+              ? "AI検出を実行中"
               : phase === "published"
-                ? "Published successfully"
-                : "Submitted for review"}
+                ? "公開しました"
+                : "審査に提出しました"}
           </DialogTitle>
           <DialogDescription>
             {phase === "processing"
-              ? "Checking whether your content meets our human-written standards."
+              ? "コンテンツが人間による執筆基準を満たしているか確認しています。"
               : phase === "published"
-                ? "Your content is live with a Human-Written badge."
-                : "Your content is in the review queue."}
+                ? "コンテンツが人間が執筆バッジ付きで公開されました。"
+                : "コンテンツは審査キューに入っています。"}
           </DialogDescription>
         </DialogHeader>
 
@@ -76,7 +76,7 @@ export function PublishStatusModal({
               {phase === "published" ? (
                 <Badge variant='success'>Human-Written</Badge>
               ) : (
-                <Badge variant='warning'>Pending review</Badge>
+                <Badge variant='warning'>審査待ち</Badge>
               )}
             </div>
           ) : null}

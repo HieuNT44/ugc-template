@@ -102,7 +102,7 @@ function MarkdownPreviewContent({
   if (!hasContent) {
     return (
       <div className='text-muted-foreground flex h-full items-center justify-center px-4 py-4 text-center text-sm leading-relaxed'>
-        Start writing in Markdown to see a live preview.
+        Markdownを書き始めるとライブプレビューが表示されます。
       </div>
     );
   }
@@ -144,7 +144,7 @@ export function BlogMarkdownEditor({
   onChange,
   viewMode,
   className,
-  placeholder = "Write your article in Markdown…",
+  placeholder = "Markdownで記事を書く…",
 }: BlogMarkdownEditorProps) {
   const showEditor = viewMode === "edit" || viewMode === "split";
   const showPreview = viewMode === "preview" || viewMode === "split";
@@ -161,7 +161,7 @@ export function BlogMarkdownEditor({
           className='h-full min-h-0'
         >
           <ResizablePanel defaultSize={50} minSize={30}>
-            <SidePanel label='Edit'>
+            <SidePanel label='編集'>
               <MarkdownEditorPane
                 value={value}
                 onChange={onChange}
@@ -173,7 +173,7 @@ export function BlogMarkdownEditor({
           <ResizableHandle withHandle />
 
           <ResizablePanel defaultSize={50} minSize={30}>
-            <SidePanel label='Preview'>
+            <SidePanel label='プレビュー'>
               <MarkdownPreviewContent value={value} hasContent={hasContent} />
             </SidePanel>
           </ResizablePanel>
@@ -190,7 +190,7 @@ export function BlogMarkdownEditor({
       )}
     >
       {showEditor ? (
-        <SidePanel label='Edit' className='h-full flex-1'>
+        <SidePanel label='編集' className='h-full flex-1'>
           <MarkdownEditorPane
             value={value}
             onChange={onChange}
@@ -200,7 +200,7 @@ export function BlogMarkdownEditor({
       ) : null}
 
       {showPreview ? (
-        <SidePanel label='Preview' className='h-full flex-1'>
+        <SidePanel label='プレビュー' className='h-full flex-1'>
           <MarkdownPreviewContent value={value} hasContent={hasContent} />
         </SidePanel>
       ) : null}

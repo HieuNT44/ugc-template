@@ -5,23 +5,23 @@ import type { ContentDocument } from "../types/content-document";
 
 const CONTENT_MESSAGES = {
   draft_saved: {
-    en: "Draft saved successfully",
+    en: "下書きを保存しました",
     ja: "下書きを保存しました",
   },
   draft_save_failed: {
-    en: "Failed to save draft",
+    en: "下書きの保存に失敗しました",
     ja: "下書きの保存に失敗しました",
   },
   validation_failed: {
-    en: "Validation failed",
+    en: "入力内容を確認してください",
     ja: "入力内容を確認してください",
   },
   published_success: {
-    en: "Published successfully",
+    en: "公開しました",
     ja: "公開しました",
   },
   updated_success: {
-    en: "Updated successfully",
+    en: "更新しました",
     ja: "更新しました",
   },
 } as const;

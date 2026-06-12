@@ -64,11 +64,11 @@ export function BlogArticlePreview({
   return (
     <section
       className='BlogArticlePreview border-border bg-card overflow-hidden rounded-lg border'
-      aria-label='Article preview'
+      aria-label='記事プレビュー'
     >
       <div className='border-border border-b px-5 py-3'>
         <p className='text-muted-foreground text-xs font-medium tracking-wide uppercase'>
-          Preview
+          プレビュー
         </p>
         <p className='text-muted-foreground mt-1 text-sm'>
           How your draft will appear after publishing.

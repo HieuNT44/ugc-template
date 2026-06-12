@@ -36,7 +36,7 @@ export function ProfileFeaturedPosts({
             className='size-8 shrink-0'
             asChild
           >
-            <Link href='/settings/profile' aria-label='Manage featured posts'>
+            <Link href='/settings/profile' aria-label='注目投稿を管理'>
               <Settings className='size-4' />
             </Link>
           </Button>

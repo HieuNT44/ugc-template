@@ -13,7 +13,7 @@ interface MarkdownPreviewPaneProps {
 export function MarkdownPreviewPane({
   content,
   className,
-  emptyMessage = "Start writing in Markdown to see a live preview.",
+  emptyMessage = "Markdownを書き始めるとライブプレビューが表示されます。",
 }: MarkdownPreviewPaneProps) {
   const trimmed = content.trim();
 

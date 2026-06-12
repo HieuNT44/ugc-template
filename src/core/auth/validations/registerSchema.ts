@@ -6,14 +6,14 @@ import { usernameSchema } from "./username-field";
 
 export const registerSchema = z
   .object({
-    email: z.string().email("Invalid email address"),
+    email: z.string().email("有効なメールアドレスを入力してください"),
     username: usernameSchema,
     full_name: fullNameSchema,
     password: apiPasswordSchema,
     confirmPassword: z.string(),
   })
   .refine((data) => data.password === data.confirmPassword, {
-    message: "Passwords do not match",
+    message: "パスワードが一致しません",
     path: ["confirmPassword"],
   });
 

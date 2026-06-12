@@ -41,7 +41,7 @@ export function validateImage(file: File): { mimeType: string } {
 
   if (!mimeType.startsWith("image/")) {
     throw new UploadServiceError(
-      "Only image files are allowed",
+      "画像ファイルのみアップロードできます",
       "validate",
       "not_image"
     );
@@ -49,7 +49,7 @@ export function validateImage(file: File): { mimeType: string } {
 
   if (file.size <= 0) {
     throw new UploadServiceError(
-      "The selected file is empty",
+      "選択したファイルが空です",
       "validate",
       "empty"
     );
@@ -57,7 +57,7 @@ export function validateImage(file: File): { mimeType: string } {
 
   if (file.size > MAX_IMAGE_UPLOAD_BYTES) {
     throw new UploadServiceError(
-      "Image must be 10 MB or smaller",
+      "画像は10MB以下にしてください",
       "validate",
       "too_large"
     );
@@ -119,7 +119,7 @@ export async function uploadPartsToS3(
 
   if (blobs.length !== uploadUrls.length) {
     throw new UploadServiceError(
-      "Part count mismatch between client and server",
+      "クライアントとサーバーのパート数が一致しません",
       "s3",
       "part_mismatch"
     );
@@ -146,7 +146,7 @@ export async function uploadPartsToS3(
         const etag = response.headers.get("ETag");
         if (!etag) {
           throw new UploadServiceError(
-            "S3 response missing ETag header",
+            "S3レスポンスにETagヘッダーがありません",
             "s3",
             "missing_etag"
           );
@@ -161,7 +161,7 @@ export async function uploadPartsToS3(
     }
 
     throw new UploadServiceError(
-      error instanceof Error ? error.message : "S3 upload failed",
+      error instanceof Error ? error.message : "S3アップロードに失敗しました",
       "s3",
       "s3_network_error"
     );

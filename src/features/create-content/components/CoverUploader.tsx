@@ -38,7 +38,9 @@ export function CoverUploader({
       const completed = await upload(file);
       onChange(completed.url, completed.upload_file_id);
     } catch (error) {
-      setUploadError(error instanceof Error ? error.message : "Upload failed");
+      setUploadError(
+        error instanceof Error ? error.message : "アップロードに失敗しました"
+      );
     }
   }
 
@@ -70,7 +72,7 @@ export function CoverUploader({
       accept='image/*'
       className='sr-only'
       onChange={(e) => onFileSelect(e.target.files?.[0])}
-      aria-label='Upload cover image'
+      aria-label='カバー画像をアップロード'
     />
   );
 
@@ -97,21 +99,21 @@ export function CoverUploader({
           onDragOver={onDragOver}
           onDragLeave={onDragLeave}
           onDrop={onDrop}
-          aria-label='Upload cover image by drag and drop or click'
+          aria-label='ドラッグ＆ドロップまたはクリックでカバー画像をアップロード'
         >
           {previewUrl ? (
             <>
               <div className='ring-foreground/10 relative size-12 shrink-0 overflow-hidden rounded-md ring-1'>
                 <Image
                   src={previewUrl}
-                  alt='Cover preview'
+                  alt='カバープレビュー'
                   fill
                   className='object-cover'
                   unoptimized
                 />
               </div>
               <div className='min-w-0 flex-1'>
-                <p className='text-sm font-medium'>Cover image</p>
+                <p className='text-sm font-medium'>カバー画像</p>
                 <p className='text-muted-foreground text-xs'>
                   Drop a new image or click to replace
                 </p>
@@ -125,10 +127,10 @@ export function CoverUploader({
                   e.stopPropagation();
                   onChange(null, null);
                 }}
-                aria-label='Remove cover image'
+                aria-label='カバー画像を削除'
               >
                 <Trash2 className='size-4' />
-                Remove
+                削除
               </Button>
             </>
           ) : (
@@ -137,11 +139,11 @@ export function CoverUploader({
                 <ImagePlus className='text-muted-foreground size-5' />
               </div>
               <div className='min-w-0 flex-1'>
-                <p className='text-sm font-medium'>Cover image</p>
+                <p className='text-sm font-medium'>カバー画像</p>
                 <p className='text-muted-foreground text-xs'>
                   {isUploading
-                    ? "Uploading cover image..."
-                    : "Drag and drop an image here, or click to browse (optional)"}
+                    ? "カバー画像をアップロード中..."
+                    : "ここに画像をドラッグ＆ドロップ、またはクリックして選択（任意）"}
                 </p>
               </div>
             </>
@@ -161,7 +163,7 @@ export function CoverUploader({
         <div className='ring-foreground/10 relative aspect-[16/9] w-full overflow-hidden rounded-lg ring-1'>
           <Image
             src={previewUrl}
-            alt='Cover preview'
+            alt='カバープレビュー'
             fill
             className='object-cover'
             unoptimized
@@ -172,10 +174,10 @@ export function CoverUploader({
             size='sm'
             className='absolute top-2 right-2'
             onClick={() => onChange(null)}
-            aria-label='Remove cover image'
+            aria-label='カバー画像を削除'
           >
             <Trash2 className='size-4' />
-            Remove
+            削除
           </Button>
         </div>
       ) : (
@@ -192,12 +194,12 @@ export function CoverUploader({
           onDragOver={onDragOver}
           onDragLeave={onDragLeave}
           onDrop={onDrop}
-          aria-label='Upload cover image'
+          aria-label='カバー画像をアップロード'
         >
           <ImagePlus className='size-8 opacity-60' />
           {isUploading
-            ? "Uploading cover image..."
-            : "Drag and drop or click to upload cover image (optional)"}
+            ? "カバー画像をアップロード中..."
+            : "ドラッグ＆ドロップまたはクリックでカバー画像をアップロード（任意）"}
         </button>
       )}
       {uploadError ? (

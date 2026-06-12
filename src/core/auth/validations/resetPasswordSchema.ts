@@ -8,7 +8,7 @@ export const resetPasswordSchema = z
     confirmPassword: z.string(),
   })
   .refine((data) => data.password === data.confirmPassword, {
-    message: "Passwords do not match",
+    message: "パスワードが一致しません",
     path: ["confirmPassword"],
   });
 

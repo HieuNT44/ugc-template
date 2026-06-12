@@ -27,11 +27,12 @@ import { ProfileFeaturedPosts } from "./ProfileFeaturedPosts";
 import { ReaderCreatorUpgradeCta } from "./ReaderCreatorUpgradeCta";
 
 const EMPTY_MESSAGES: Record<ProfilePostsTabId, string> = {
-  posts: "You have not published any posts yet.",
-  books: "You have not published any books yet.",
-  purchased: "No purchased posts yet.",
-  saved: "No saved posts in your archive.",
-  drafts: "No drafts yet. Start writing in Studio or create new content.",
+  posts: "まだ投稿を公開していません。",
+  books: "まだブックを公開していません。",
+  purchased: "購入済み投稿はまだありません。",
+  saved: "保存した投稿はまだありません。",
+  drafts:
+    "下書きはまだありません。スタジオで執筆するか、新しいコンテンツを作成しましょう。",
 };
 
 interface ProfilePostsTabsProps {

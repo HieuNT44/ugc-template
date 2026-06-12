@@ -11,7 +11,10 @@ export async function resetPasswordAction(
   token: string
 ): Promise<ActionResponse> {
   if (!token.trim()) {
-    return { success: false, error: "Reset link is invalid or expired" };
+    return {
+      success: false,
+      error: "リセットリンクが無効、または期限切れです",
+    };
   }
 
   const parsed = resetPasswordSchema.safeParse(input);
@@ -20,7 +23,7 @@ export async function resetPasswordAction(
     const message =
       fieldErrors.password?.[0] ??
       fieldErrors.confirmPassword?.[0] ??
-      "Invalid password data";
+      "パスワード情報が正しくありません";
     return { success: false, error: message, fieldErrors };
   }
 

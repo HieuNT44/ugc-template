@@ -16,7 +16,7 @@ import { Laptop, Monitor, Shield, Smartphone } from "lucide-react";
 type SessionItem = {
   id: string;
   device: string;
-  deviceIcon: "Monitor" | "Smartphone" | "Laptop";
+  deviceIcon: "モニター" | "スマートフォン" | "ノートPC";
   location: string;
   lastActive: string;
   current: boolean;
@@ -26,26 +26,26 @@ const MOCK_SESSIONS: SessionItem[] = [
   {
     id: "1",
     device: "Chrome on macOS",
-    deviceIcon: "Laptop",
-    location: "Hanoi, Vietnam",
+    deviceIcon: "ノートPC",
+    location: "ハノイ、ベトナム",
     lastActive: "Now",
     current: true,
   },
   {
     id: "2",
     device: "Safari on iPhone",
-    deviceIcon: "Smartphone",
-    location: "Hanoi, Vietnam",
-    lastActive: "2 hours ago",
+    deviceIcon: "スマートフォン",
+    location: "ハノイ、ベトナム",
+    lastActive: "2時間前",
     current: false,
   },
 ];
 
 function DeviceIcon({ type }: { type: SessionItem["deviceIcon"] }) {
   switch (type) {
-    case "Smartphone":
+    case "スマートフォン":
       return <Smartphone className='size-4' />;
-    case "Laptop":
+    case "ノートPC":
       return <Laptop className='size-4' />;
     default:
       return <Monitor className='size-4' />;
@@ -71,7 +71,7 @@ export function SecuritySettings() {
         <CardContent className='flex flex-wrap items-center gap-2'>
           <span className='text-muted-foreground text-sm'>Status:</span>
           <span className='bg-muted text-muted-foreground rounded-md px-2 py-0.5 text-xs font-medium'>
-            {twoFAEnabled ? "Enabled" : "Disabled"}
+            {twoFAEnabled ? "有効" : "無効"}
           </span>
           {!twoFAEnabled ? (
             <Button size='sm' onClick={() => setTwoFAEnabled(true)}>
@@ -150,7 +150,7 @@ export function SecuritySettings() {
           <CardDescription>Placeholder for 2FA setup flow.</CardDescription>
         </CardHeader>
         <CardContent>
-          <Input placeholder='6-digit code' className='max-w-xs' disabled />
+          <Input placeholder='6桁のコード' className='max-w-xs' disabled />
         </CardContent>
       </Card>
     </div>

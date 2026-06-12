@@ -36,7 +36,7 @@ let db: Firestore | undefined;
 export function getFirebaseApp(): FirebaseApp {
   if (!isFirebaseClientConfigured()) {
     throw new Error(
-      "Firebase client is not configured. Add NEXT_PUBLIC_FIREBASE_* variables."
+      "Firebaseクライアントが設定されていません。NEXT_PUBLIC_FIREBASE_* 変数を追加してください。"
     );
   }
   if (!app) {

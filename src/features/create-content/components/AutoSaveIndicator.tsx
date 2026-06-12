@@ -19,15 +19,15 @@ export function AutoSaveIndicator({
 }: AutoSaveIndicatorProps) {
   const label = (() => {
     if (status === "saving") {
-      return "Saving…";
+      return "保存中…";
     }
     if (status === "error") {
-      return "Connection lost, please try again";
+      return "接続が切れました。もう一度お試しください";
     }
     if (status === "saved" && lastSavedAt) {
       return `Saved at ${lastSavedAt.toLocaleTimeString()}`;
     }
-    return "Auto-save every 30 seconds";
+    return "30秒ごとに自動保存";
   })();
 
   return (

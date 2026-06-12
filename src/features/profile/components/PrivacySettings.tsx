@@ -47,16 +47,18 @@ export function PrivacySettings({ profile, settings }: PrivacySettingsProps) {
     setIsLoading(false);
 
     if (!visibilityResult.success) {
-      setError(visibilityResult.error ?? "Failed to update privacy settings");
+      setError(
+        visibilityResult.error ?? "プライバシー設定の更新に失敗しました"
+      );
       return;
     }
 
     if (!settingsResult.success) {
-      setError(settingsResult.error ?? "Failed to update privacy settings");
+      setError(settingsResult.error ?? "プライバシー設定の更新に失敗しました");
       return;
     }
 
-    setMessage("Privacy settings updated");
+    setMessage("プライバシー設定を更新しました");
   }
 
   return (
@@ -80,27 +82,29 @@ export function PrivacySettings({ profile, settings }: PrivacySettingsProps) {
         ) : null}
 
         <label className='flex items-center justify-between gap-4'>
-          <Label className='font-normal'>Public profile</Label>
+          <Label className='font-normal'>公開プロフィール</Label>
           <input
             type='checkbox'
             checked={isPublic}
             onChange={(event) => setIsPublic(event.target.checked)}
-            aria-label='Public profile'
+            aria-label='公開プロフィール'
           />
         </label>
 
         <label className='flex items-center justify-between gap-4'>
-          <Label className='font-normal'>Hide email on public profile</Label>
+          <Label className='font-normal'>
+            公開プロフィールでメールアドレスを非表示にする
+          </Label>
           <input
             type='checkbox'
             checked={privacyHideEmail}
             onChange={(event) => setPrivacyHideEmail(event.target.checked)}
-            aria-label='Hide email on public profile'
+            aria-label='公開プロフィールでメールアドレスを非表示にする'
           />
         </label>
 
         <Button type='button' onClick={handleSave} disabled={isLoading}>
-          {isLoading ? "Saving..." : "Save privacy settings"}
+          {isLoading ? "保存中..." : "プライバシー設定を保存"}
         </Button>
       </CardContent>
     </Card>

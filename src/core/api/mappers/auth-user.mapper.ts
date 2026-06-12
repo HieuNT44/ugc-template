@@ -10,5 +10,5 @@ export function mapApiRoleToAppRole(role: ApiUser["role"]): UserRole {
 }
 
 export function mapApiUserToDisplayName(user: ApiUser): string {
-  return user.email.split("@")[0] ?? "User";
+  return user.email.split("@")[0] ?? "ユーザー";
 }

@@ -104,7 +104,7 @@ export function BookEditor() {
 
     const result = await saveDraftClient(buildPayload(), session?.accessToken);
     if (!isSaveDraftSuccess(result)) {
-      setServerError("error" in result ? result.error : "Failed to save");
+      setServerError("error" in result ? result.error : "保存に失敗しました");
       return;
     }
 
@@ -136,9 +136,9 @@ export function BookEditor() {
             name='title'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Title</FormLabel>
+                <FormLabel>タイトル</FormLabel>
                 <FormControl>
-                  <Input placeholder='Book title' {...field} />
+                  <Input placeholder='ブックタイトル' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -150,13 +150,9 @@ export function BookEditor() {
             name='description'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Description</FormLabel>
+                <FormLabel>説明</FormLabel>
                 <FormControl>
-                  <Textarea
-                    placeholder='Book description'
-                    rows={4}
-                    {...field}
-                  />
+                  <Textarea placeholder='ブックの説明' rows={4} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -168,13 +164,13 @@ export function BookEditor() {
             name='field'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Field</FormLabel>
+                <FormLabel>分野</FormLabel>
                 <FormControl>
                   <select
                     className='border-input bg-background h-9 w-full rounded-lg border px-3 text-sm'
                     value={field.value}
                     onChange={field.onChange}
-                    aria-label='Select field'
+                    aria-label='分野を選択'
                   >
                     <option value=''>Select a field</option>
                     {CONTENT_FIELD_OPTIONS.map((option) => (
@@ -231,9 +227,9 @@ export function BookEditor() {
                   name={`chapters.${index}.title`}
                   render={({ field: chapterField }) => (
                     <FormItem className='mb-3'>
-                      <FormLabel>Chapter title</FormLabel>
+                      <FormLabel>章タイトル</FormLabel>
                       <FormControl>
-                        <Input placeholder='Chapter title' {...chapterField} />
+                        <Input placeholder='章タイトル' {...chapterField} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -248,7 +244,7 @@ export function BookEditor() {
                       <FormLabel>Chapter content</FormLabel>
                       <FormControl>
                         <Textarea
-                          placeholder='Write chapter content'
+                          placeholder='章の本文を書く'
                           rows={6}
                           {...chapterField}
                         />
@@ -275,7 +271,7 @@ export function BookEditor() {
                       const val = e.target.value;
                       field.onChange(val === "" ? null : Number(val));
                     }}
-                    aria-label='Select preview chapter'
+                    aria-label='プレビュー章を選択'
                   >
                     <option value=''>None</option>
                     {fields.map((_, index) => (

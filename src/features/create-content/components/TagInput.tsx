@@ -60,7 +60,7 @@ export function TagInput({ tags, onChange, className }: TagInputProps) {
       )}
       onClick={() => inputRef.current?.focus()}
       role='group'
-      aria-label='Tags'
+      aria-label='タグ'
     >
       <Tag className='text-muted-foreground size-4 shrink-0' aria-hidden />
 
@@ -101,12 +101,12 @@ export function TagInput({ tags, onChange, className }: TagInputProps) {
           isFull
             ? ""
             : tags.length === 0
-              ? "Add tags (space-separated, up to 5)"
+              ? "タグを追加（スペース区切り、最大5個）"
               : ""
         }
         disabled={isFull}
         className='placeholder:text-muted-foreground min-w-[140px] flex-1 border-0 bg-transparent text-sm outline-none disabled:cursor-not-allowed'
-        aria-label='Add tag'
+        aria-label='タグを追加'
       />
     </div>
   );

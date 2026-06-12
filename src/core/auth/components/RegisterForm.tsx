@@ -101,10 +101,10 @@ export function RegisterForm({
               name='full_name'
               render={({ field }) => (
                 <FormItem className='grid gap-2'>
-                  <FormLabel>Full name</FormLabel>
+                  <FormLabel>氏名</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder='Your full name'
+                      placeholder='氏名を入力してください'
                       autoComplete='name'
                       {...field}
                     />
@@ -119,7 +119,7 @@ export function RegisterForm({
               name='username'
               render={({ field }) => (
                 <FormItem className='grid gap-2'>
-                  <FormLabel>Username</FormLabel>
+                  <FormLabel>ユーザー名</FormLabel>
                   <FormControl>
                     <Input
                       placeholder='your_username'
@@ -137,7 +137,7 @@ export function RegisterForm({
               name='email'
               render={({ field }) => (
                 <FormItem className='grid gap-2'>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel>メールアドレス</FormLabel>
                   <FormControl>
                     <Input
                       type='email'
@@ -156,10 +156,10 @@ export function RegisterForm({
               name='password'
               render={({ field }) => (
                 <FormItem className='grid gap-2'>
-                  <FormLabel>Password</FormLabel>
+                  <FormLabel>パスワード</FormLabel>
                   <FormControl>
                     <PasswordInput
-                      placeholder='Create a password'
+                      placeholder='パスワードを作成してください'
                       autoComplete='new-password'
                       {...field}
                     />
@@ -174,10 +174,10 @@ export function RegisterForm({
               name='confirmPassword'
               render={({ field }) => (
                 <FormItem className='grid gap-2'>
-                  <FormLabel>Confirm password</FormLabel>
+                  <FormLabel>パスワード確認</FormLabel>
                   <FormControl>
                     <PasswordInput
-                      placeholder='Confirm your password'
+                      placeholder='パスワードを再入力してください'
                       autoComplete='new-password'
                       {...field}
                     />
@@ -192,7 +192,7 @@ export function RegisterForm({
               className='w-full'
               disabled={formState.isLoading || !!formState.success}
             >
-              {formState.isLoading ? "Creating account..." : "Create account"}
+              {formState.isLoading ? "アカウントを作成中..." : "アカウント作成"}
             </Button>
 
             <SocialLoginDivider />
@@ -217,7 +217,7 @@ export function RegisterForm({
           <div className='mt-4 text-center text-sm'>
             Already have an account?{" "}
             <Link href='/login' className='underline' onClick={onSwitchToLogin}>
-              Sign in
+              ログイン
             </Link>
           </div>
         </form>

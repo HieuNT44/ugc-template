@@ -30,7 +30,7 @@ export async function generateMetadata({
   const article = getPostArticleBySlug(slug);
 
   if (!article) {
-    return { title: "Story not found" };
+    return { title: "記事が見つかりません" };
   }
 
   return {
@@ -133,7 +133,7 @@ export default async function PostPage({
         currentReader={
           session?.user
             ? {
-                name: session.user.name ?? "Reader",
+                name: session.user.name ?? "読者",
                 avatarUrl: session.user.image ?? undefined,
               }
             : undefined

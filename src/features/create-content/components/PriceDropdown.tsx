@@ -24,10 +24,10 @@ export function PriceDropdown({
       value={value ?? ""}
       onChange={(e) => onChange(Number(e.target.value))}
       disabled={disabled}
-      aria-label='Select price'
+      aria-label='価格を選択'
     >
       <option value='' disabled>
-        Select price
+        価格を選択
       </option>
       {options.map((price) => (
         <option key={price} value={price}>

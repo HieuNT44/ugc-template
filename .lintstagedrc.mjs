@@ -1,4 +1,4 @@
-export default {
+const lintStagedConfig = {
   // TypeScript/JavaScript files in source
   "src/**/*.{ts,tsx,js,jsx}": ["eslint --fix", "prettier --write"],
 
@@ -8,3 +8,5 @@ export default {
   // CSS
   "*.css": ["prettier --write"],
 };
+
+export default lintStagedConfig;

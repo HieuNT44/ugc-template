@@ -62,7 +62,7 @@ export async function generateMetadata({ params }: PublicProfilePageProps) {
   const profile = await getPublicProfileByUsername(username);
 
   if (!profile) {
-    return { title: "Profile not found" };
+    return { title: "プロフィールが見つかりません" };
   }
 
   const displayName = profile.name ?? profile.username;

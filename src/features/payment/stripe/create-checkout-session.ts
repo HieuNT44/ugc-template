@@ -13,20 +13,20 @@ export async function createStripeCheckoutSession(
 ): Promise<{ url: string } | { error: string }> {
   const stripe = getStripeServer();
   if (!stripe) {
-    return { error: "Stripe is not configured" };
+    return { error: "Stripeが設定されていません" };
   }
 
   const {
     amount,
     currency = "usd",
-    productName = "Order",
+    productName = "注文",
     customerEmail,
     clientReferenceId,
     metadata,
   } = params;
 
   if (amount < 1) {
-    return { error: "Amount must be at least 1" };
+    return { error: "金額は1以上である必要があります" };
   }
 
   try {
@@ -54,12 +54,12 @@ export async function createStripeCheckoutSession(
     const session = await stripe.checkout.sessions.create(sessionParams);
 
     if (!session.url) {
-      return { error: "Failed to create checkout session" };
+      return { error: "チェックアウトセッションを作成できませんでした" };
     }
 
     return { url: session.url };
   } catch (err) {
-    const message = err instanceof Error ? err.message : "Unknown error";
+    const message = err instanceof Error ? err.message : "不明なエラー";
     console.error("Stripe createCheckoutSession error:", err);
     return { error: message };
   }

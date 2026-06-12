@@ -101,14 +101,17 @@ function toNetworkError(error: unknown): ClientApiError {
     return {
       status: 0,
       code: API_ERROR_CODES.NETWORK_ERROR,
-      message: "Request cancelled",
+      message: "リクエストをキャンセルしました",
     };
   }
 
   return {
     status: 0,
     code: API_ERROR_CODES.NETWORK_ERROR,
-    message: error instanceof Error ? error.message : "Network request failed",
+    message:
+      error instanceof Error
+        ? error.message
+        : "ネットワークリクエストに失敗しました",
   };
 }
 
@@ -146,7 +149,7 @@ export async function clientApiRequest<T>(
       error: {
         status: response.status,
         code: API_ERROR_CODES.INVALID_RESPONSE,
-        message: "Invalid API response shape",
+        message: "APIレスポンスの形式が正しくありません",
       },
     };
   } catch (error) {
@@ -194,7 +197,7 @@ export async function clientApiMessageRequest(
       error: {
         status: response.status,
         code: API_ERROR_CODES.INVALID_RESPONSE,
-        message: "Invalid API response shape",
+        message: "APIレスポンスの形式が正しくありません",
       },
     };
   } catch (error) {

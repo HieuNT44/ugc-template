@@ -12,7 +12,7 @@ export async function googleLoginAction(
   role?: ApiUserRole
 ): Promise<AuthSessionResponse> {
   if (!idToken.trim()) {
-    return { success: false, error: "Google sign-in failed" };
+    return { success: false, error: "Googleログインに失敗しました" };
   }
 
   const result = await loginWithGoogle({

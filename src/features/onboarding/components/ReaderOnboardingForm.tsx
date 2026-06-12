@@ -87,7 +87,7 @@ export function ReaderOnboardingForm() {
       }
 
       if (!isReaderCreatorProfile(result.data)) {
-        setLoadError("Unable to load profile.");
+        setLoadError("プロフィールを読み込めませんでした。");
         setIsLoadingProfile(false);
         return;
       }
@@ -117,7 +117,7 @@ export function ReaderOnboardingForm() {
   const onSubmit = async (values: ReaderOnboardingFormData) => {
     const token = session?.accessToken;
     if (!token) {
-      setSubmitError("Please sign in to continue.");
+      setSubmitError("続行するにはログインしてください。");
       return;
     }
 
@@ -180,7 +180,7 @@ export function ReaderOnboardingForm() {
             name='full_name'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Full name</FormLabel>
+                <FormLabel>氏名</FormLabel>
                 <FormControl>
                   <Input autoComplete='name' {...field} />
                 </FormControl>
@@ -194,7 +194,7 @@ export function ReaderOnboardingForm() {
             name='username'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Username</FormLabel>
+                <FormLabel>ユーザー名</FormLabel>
                 <FormControl>
                   <Input autoComplete='username' {...field} />
                 </FormControl>
@@ -208,11 +208,11 @@ export function ReaderOnboardingForm() {
             name='bio'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Bio (optional)</FormLabel>
+                <FormLabel>自己紹介（任意）</FormLabel>
                 <FormControl>
                   <Textarea
                     rows={4}
-                    placeholder='Tell us about yourself'
+                    placeholder='あなたについて教えてください'
                     {...field}
                   />
                 </FormControl>
@@ -226,9 +226,9 @@ export function ReaderOnboardingForm() {
             name='location'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Location (optional)</FormLabel>
+                <FormLabel>所在地（任意）</FormLabel>
                 <FormControl>
-                  <Input placeholder='City, Country' {...field} />
+                  <Input placeholder='市区町村、国' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -236,7 +236,7 @@ export function ReaderOnboardingForm() {
           />
 
           <Button type='submit' className='w-full' disabled={isSubmitting}>
-            {isSubmitting ? "Saving..." : "Complete setup"}
+            {isSubmitting ? "保存中..." : "設定を完了"}
           </Button>
         </form>
       </Form>

@@ -49,12 +49,14 @@ export function ForgotPasswordForm({
     const result = await forgotPassword(values);
 
     if (!result.success) {
-      formState.setError(result.error ?? "Unable to send reset email");
+      formState.setError(
+        result.error ?? "リセットメールを送信できませんでした"
+      );
       return;
     }
 
     formState.setSuccess(
-      "If an account exists for that email, a reset link has been sent."
+      "そのメールアドレスのアカウントが存在する場合、リセットリンクを送信しました。"
     );
     onSuccess?.();
   };
@@ -83,7 +85,7 @@ export function ForgotPasswordForm({
               name='email'
               render={({ field }) => (
                 <FormItem className='grid gap-2'>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel>メールアドレス</FormLabel>
                   <FormControl>
                     <Input
                       type='email'
@@ -102,7 +104,7 @@ export function ForgotPasswordForm({
               className='w-full'
               disabled={formState.isLoading || !!formState.success}
             >
-              {formState.isLoading ? "Sending..." : "Send reset link"}
+              {formState.isLoading ? "送信中..." : "リセットリンクを送信"}
             </Button>
           </div>
 

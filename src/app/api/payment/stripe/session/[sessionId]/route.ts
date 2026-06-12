@@ -10,13 +10,16 @@ export async function GET(
   const { sessionId } = await params;
 
   if (!sessionId.startsWith("cs_")) {
-    return NextResponse.json({ error: "Invalid session_id" }, { status: 400 });
+    return NextResponse.json(
+      { error: "session_idが正しくありません" },
+      { status: 400 }
+    );
   }
 
   const stripe = getStripeServer();
   if (!stripe) {
     return NextResponse.json(
-      { error: "Stripe not configured" },
+      { error: "Stripeが設定されていません" },
       { status: 503 }
     );
   }
@@ -36,7 +39,7 @@ export async function GET(
   } catch (err) {
     console.error("Stripe retrieve session error:", err);
     return NextResponse.json(
-      { error: "Session not found or expired" },
+      { error: "セッションが見つからないか、期限切れです" },
       { status: 404 }
     );
   }

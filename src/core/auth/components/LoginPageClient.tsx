@@ -6,8 +6,8 @@ export function LoginPageClient() {
   return (
     <GuestGuard>
       <AuthPageHeader
-        title='Sign in'
-        description='Enter your credentials to access your account.'
+        title='ログイン'
+        description='アカウントにアクセスするには認証情報を入力してください。'
       />
       <LoginForm redirectTo='/' />
     </GuestGuard>

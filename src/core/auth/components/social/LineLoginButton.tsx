@@ -23,9 +23,9 @@ export function LineLoginButton({
       size='icon'
       className={cn("rounded-full", className)}
       disabled={disabled}
-      aria-label='Continue with LINE'
+      aria-label='LINEで続行'
       onClick={() =>
-        onError?.("LINE login requires additional Firebase OAuth configuration")
+        onError?.("LINEログインには追加のFirebase OAuth設定が必要です")
       }
     >
       <LineIcon />

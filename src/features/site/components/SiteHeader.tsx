@@ -50,9 +50,9 @@ export function SiteHeader() {
           <Input
             type='search'
             name='q'
-            placeholder='Search'
+            placeholder='検索'
             className='bg-muted/60 h-9 rounded-full border-0 pl-9'
-            aria-label='Search RealRead'
+            aria-label='RealReadを検索'
           />
         </div>
       </form>
@@ -64,9 +64,9 @@ export function SiteHeader() {
           className='text-foreground hidden gap-2 px-2 sm:inline-flex'
           asChild
         >
-          <Link href={writeHref} aria-label='Write a story'>
+          <Link href={writeHref} aria-label='記事を書く'>
             <WriteIcon />
-            <span className='text-sm'>Write</span>
+            <span className='text-sm'>投稿する</span>
           </Link>
         </Button>
 
@@ -78,12 +78,12 @@ export function SiteHeader() {
                 variant='ghost'
                 size='icon'
                 className='size-9'
-                aria-label='Notifications'
+                aria-label='通知'
               >
                 <NotificationBellIcon />
               </Button>
             </TooltipTrigger>
-            <TooltipContent>Notifications coming soon</TooltipContent>
+            <TooltipContent>通知機能は近日公開予定です</TooltipContent>
           </Tooltip>
         ) : null}
 

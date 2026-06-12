@@ -121,10 +121,10 @@ export function TemplateSelector() {
           </div>
           <div className='flex shrink-0 items-center gap-2'>
             <Button variant='ghost' className='rounded-full' asChild>
-              <Link href='/studio/create'>Back</Link>
+              <Link href='/studio/create'>戻る</Link>
             </Button>
             <Button variant='outline' className='rounded-full' onClick={onSkip}>
-              Skip
+              スキップ
             </Button>
           </div>
         </div>

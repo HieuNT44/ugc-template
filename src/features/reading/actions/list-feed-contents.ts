@@ -88,7 +88,7 @@ export async function listFeedContentsPageAction(
       nextCursor: body.meta?.next_cursor ?? null,
     };
   } catch (error) {
-    console.error("Failed to list feed contents:", error);
+    console.error("フィードコンテンツの取得に失敗しました:", error);
 
     return {
       posts: [],

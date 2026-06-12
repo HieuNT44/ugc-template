@@ -38,11 +38,11 @@ export async function updateProfileAction(
 ): Promise<ActionState> {
   const apiSession = await requireApiSession();
   if (!apiSession) {
-    return { error: "Unauthorized" };
+    return { error: "認証が必要です" };
   }
 
   if (!hasProfileFeature(apiSession.session.user.role, "editProfile")) {
-    return { error: "You do not have permission to edit this profile" };
+    return { error: "このプロフィールを編集する権限がありません" };
   }
 
   const raw = {
@@ -91,7 +91,7 @@ export async function updateProfileAction(
   revalidatePath("/profile");
   revalidatePath("/profile/settings");
   revalidatePath("/settings/profile");
-  return { success: true, message: "Profile updated successfully" };
+  return { success: true, message: "プロフィールを更新しました" };
 }
 
 export async function updateSettingsProfileAction(
@@ -100,11 +100,11 @@ export async function updateSettingsProfileAction(
 ): Promise<ActionState> {
   const apiSession = await requireApiSession();
   if (!apiSession) {
-    return { error: "Unauthorized" };
+    return { error: "認証が必要です" };
   }
 
   if (!hasProfileFeature(apiSession.session.user.role, "editProfile")) {
-    return { error: "You do not have permission to edit this profile" };
+    return { error: "このプロフィールを編集する権限がありません" };
   }
 
   const skillsRaw = getStr(formData, "skills");
@@ -188,7 +188,7 @@ export async function changePasswordAction(
 ): Promise<ActionState> {
   const apiSession = await requireApiSession();
   if (!apiSession) {
-    return { error: "Unauthorized" };
+    return { error: "認証が必要です" };
   }
 
   if (!hasProfileFeature(apiSession.session.user.role, "changePassword")) {
@@ -218,7 +218,7 @@ export async function changePasswordAction(
 export async function deleteAccountAction(): Promise<ActionState> {
   const apiSession = await requireApiSession();
   if (!apiSession) {
-    return { error: "Unauthorized" };
+    return { error: "認証が必要です" };
   }
 
   if (!hasProfileFeature(apiSession.session.user.role, "deleteAccount")) {
@@ -240,11 +240,11 @@ export async function submitCreatorApplicationAction(
 ): Promise<SubmitCreatorApplicationResult> {
   const apiSession = await requireApiSession();
   if (!apiSession) {
-    return { error: "Unauthorized" };
+    return { error: "認証が必要です" };
   }
 
   if (apiSession.session.user.role !== "reader") {
-    return { error: "Only Reader accounts can apply to become a Creator" };
+    return { error: "読者アカウントのみクリエイター申請ができます" };
   }
 
   const validated = becomeCreatorApplicationSchema.safeParse(raw);
@@ -305,7 +305,7 @@ export async function syncCreatorExperiencesAction(
 ): Promise<ActionState> {
   const apiSession = await requireApiSession();
   if (!apiSession) {
-    return { error: "Unauthorized" };
+    return { error: "認証が必要です" };
   }
 
   if (apiSession.session.user.role !== "creator") {
@@ -326,7 +326,7 @@ export async function syncCreatorEducationsAction(
 ): Promise<ActionState> {
   const apiSession = await requireApiSession();
   if (!apiSession) {
-    return { error: "Unauthorized" };
+    return { error: "認証が必要です" };
   }
 
   if (apiSession.session.user.role !== "creator") {
@@ -347,7 +347,7 @@ export async function syncCreatorCertificationsAction(
 ): Promise<ActionState> {
   const apiSession = await requireApiSession();
   if (!apiSession) {
-    return { error: "Unauthorized" };
+    return { error: "認証が必要です" };
   }
 
   if (apiSession.session.user.role !== "creator") {
@@ -370,7 +370,7 @@ export async function syncCreatorAccomplishmentsAction(
 ): Promise<ActionState> {
   const apiSession = await requireApiSession();
   if (!apiSession) {
-    return { error: "Unauthorized" };
+    return { error: "認証が必要です" };
   }
 
   if (apiSession.session.user.role !== "creator") {

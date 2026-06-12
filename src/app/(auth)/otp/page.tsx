@@ -5,8 +5,8 @@ export default function OtpPage() {
   return (
     <>
       <AuthPageHeader
-        title='Verify code'
-        description='Enter the one-time code sent to your email.'
+        title='コードを確認'
+        description='メールに送信されたワンタイムコードを入力してください。'
       />
       <OTPVerificationForm email='your@email.com' />
     </>

@@ -27,7 +27,7 @@ export function useLogin() {
         const message =
           fieldErrors.email?.[0] ??
           fieldErrors.password?.[0] ??
-          "Invalid login credentials";
+          "ログイン情報が正しくありません";
         setError(message);
         return { success: false as const, error: message, fieldErrors };
       }
@@ -45,7 +45,8 @@ export function useLogin() {
 
       const sessionResult = await establishLaravelSession(actionResult);
       if (!sessionResult.ok) {
-        const message = sessionResult.error ?? "Unable to start session";
+        const message =
+          sessionResult.error ?? "セッションを開始できませんでした";
         setError(message);
         return { success: false as const, error: message };
       }
@@ -53,7 +54,10 @@ export function useLogin() {
       await update();
 
       if (!apiResult.ok) {
-        return { success: false as const, error: "Invalid login response" };
+        return {
+          success: false as const,
+          error: "ログインレスポンスが正しくありません",
+        };
       }
 
       const role = mapApiRoleToAppRole(apiResult.data.user.role);
@@ -67,7 +71,7 @@ export function useLogin() {
       const message =
         error instanceof Error
           ? error.message
-          : "Something went wrong. Please try again.";
+          : "問題が発生しました。もう一度お試しください。";
       setError(message);
       return { success: false as const, error: message };
     } finally {

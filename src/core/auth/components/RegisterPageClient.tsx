@@ -8,8 +8,8 @@ export function RegisterPageClient() {
   return (
     <GuestGuard>
       <AuthPageHeader
-        title='Create account'
-        description='Sign up with email or continue with a social provider.'
+        title='アカウント作成'
+        description='メールアドレスで登録するか、ソーシャルアカウントで続行してください。'
       />
       <RegisterForm redirectTo='/onboarding' />
     </GuestGuard>

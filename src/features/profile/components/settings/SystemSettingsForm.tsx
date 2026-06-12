@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useMemo, useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { z } from "zod";
 
 import { Bell, EyeOff, Globe2, Languages, Mail, Moon } from "lucide-react";
@@ -38,20 +38,20 @@ const SETTINGS_DISABLED = true;
 
 const LABELS = {
   en: {
-    title: "Settings",
-    description: "Manage account preferences, notifications, and privacy.",
-    save: "Save settings",
-    saving: "Saving...",
-    saved: "Settings saved successfully",
-    unauthorized: "Please sign in again to update settings.",
-    unavailable: "Settings data is unavailable.",
-    retry: "Refresh the page and try again.",
-    language: "Language",
-    timezone: "Timezone",
-    darkMode: "Dark mode",
-    emailNotify: "Email notifications",
-    inappNotify: "In-app notifications",
-    privacyHideEmail: "Hide email on public profile",
+    title: "設定",
+    description: "アカウント設定、通知、プライバシーを管理します。",
+    save: "設定を保存",
+    saving: "保存中...",
+    saved: "設定を保存しました",
+    unauthorized: "設定を更新するには再度ログインしてください。",
+    unavailable: "設定データを利用できません。",
+    retry: "ページを更新してもう一度お試しください。",
+    language: "言語",
+    timezone: "タイムゾーン",
+    darkMode: "ダークモード",
+    emailNotify: "メール通知",
+    inappNotify: "アプリ内通知",
+    privacyHideEmail: "公開プロフィールでメールアドレスを非表示にする",
   },
   ja: {
     title: "設定",
@@ -184,6 +184,9 @@ export function SystemSettingsForm({
   });
 
   const errors = form.formState.errors;
+  const settingsValues = useWatch({
+    control: form.control,
+  });
 
   useEffect(() => {
     if (settingsQuery.data) {
@@ -277,7 +280,7 @@ export function SystemSettingsForm({
                 aria-hidden
               />
               <CvNativeSelect
-                value={form.watch("language")}
+                value={settingsValues.language}
                 disabled={SETTINGS_DISABLED}
                 onChange={(event) =>
                   form.setValue("language", event.target.value as AppLanguage, {
@@ -288,7 +291,7 @@ export function SystemSettingsForm({
                 aria-invalid={Boolean(errors.language)}
                 className='h-9 border-0 bg-transparent px-0 focus-visible:ring-0'
               >
-                <option value='en'>English</option>
+                <option value='en'>英語</option>
                 <option value='ja'>日本語</option>
               </CvNativeSelect>
             </div>
@@ -302,7 +305,7 @@ export function SystemSettingsForm({
               />
               <Input
                 list='system-settings-timezones'
-                value={form.watch("timezone")}
+                value={settingsValues.timezone}
                 disabled={SETTINGS_DISABLED}
                 onChange={(event) =>
                   form.setValue("timezone", event.target.value, {
@@ -326,22 +329,22 @@ export function SystemSettingsForm({
           <SettingSwitchRow
             icon={<Moon className='size-4' />}
             label={labels.darkMode}
-            checked={form.watch("dark_mode")}
+            checked={Boolean(settingsValues.dark_mode)}
           />
           <SettingSwitchRow
             icon={<Mail className='size-4' />}
             label={labels.emailNotify}
-            checked={form.watch("email_notify")}
+            checked={Boolean(settingsValues.email_notify)}
           />
           <SettingSwitchRow
             icon={<Bell className='size-4' />}
             label={labels.inappNotify}
-            checked={form.watch("inapp_notify")}
+            checked={Boolean(settingsValues.inapp_notify)}
           />
           <SettingSwitchRow
             icon={<EyeOff className='size-4' />}
             label={labels.privacyHideEmail}
-            checked={form.watch("privacy_hide_email")}
+            checked={Boolean(settingsValues.privacy_hide_email)}
           />
         </div>
       </div>

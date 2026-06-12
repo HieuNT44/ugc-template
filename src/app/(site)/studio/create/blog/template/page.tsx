@@ -20,10 +20,10 @@ export default async function BlogTemplatePage() {
           </div>
           <div className='flex shrink-0 items-center gap-2'>
             <Button variant='ghost' className='rounded-full' asChild>
-              <Link href='/studio/create'>Back</Link>
+              <Link href='/studio/create'>戻る</Link>
             </Button>
             <Button variant='outline' className='rounded-full' asChild>
-              <Link href='/studio/create/blog/new'>Skip</Link>
+              <Link href='/studio/create/blog/new'>スキップ</Link>
             </Button>
           </div>
         </div>

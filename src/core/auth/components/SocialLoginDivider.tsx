@@ -6,7 +6,7 @@ export function SocialLoginDivider() {
       <div className='flex items-center gap-3'>
         <div className='w-full border-t' />
         <span className='text-muted-foreground shrink-0 text-sm'>
-          Or continue with
+          または以下で続行
         </span>
         <div className='w-full border-t' />
       </div>

@@ -15,9 +15,9 @@ export const POST_LABEL_DISPLAY: Record<
   Exclude<PostLabelType, "paid">,
   string
 > = {
-  purchased: "Buyed",
-  expert: "Expert",
-  human_written: "Human-written",
+  purchased: "購入済み",
+  expert: "エキスパート",
+  human_written: "人間が執筆",
 };
 
 const ZERO_DECIMAL_CURRENCIES = new Set([

@@ -247,7 +247,7 @@ export function buildBlogPublishPreviewArticle(
   const profile = input.authorProfile;
   const profileUsername = profile ? getProfileUsername(profile) : null;
   const profileDisplayName =
-    profile?.full_name?.trim() || profileUsername || "RealRead Creator";
+    profile?.full_name?.trim() || profileUsername || "RealReadクリエイター";
   const hasProfileAuthor = Boolean(profile);
 
   return {

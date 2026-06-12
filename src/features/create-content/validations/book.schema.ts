@@ -7,11 +7,11 @@ const chapterSchema = z.object({
   title: z
     .string()
     .transform((s) => s.trim())
-    .pipe(z.string().min(1, "Chapter title is required").max(200)),
+    .pipe(z.string().min(1, "章タイトルは必須です").max(200)),
   content: z
     .string()
     .transform((s) => s.trim())
-    .pipe(z.string().min(1, "Chapter content is required")),
+    .pipe(z.string().min(1, "章の本文は必須です")),
 });
 
 export const bookEditSchema = z
@@ -20,7 +20,7 @@ export const bookEditSchema = z
     description: descriptionSchema,
     field: fieldSchema,
     coverImageUrl: z.string().nullable().optional(),
-    chapters: z.array(chapterSchema).min(2, "Please add at least 2 chapters"),
+    chapters: z.array(chapterSchema).min(2, "章を2つ以上追加してください"),
     previewChapterIndex: z.number().int().min(0).nullable().optional(),
     sellByChapter: z.boolean().default(false),
   })
@@ -28,7 +28,7 @@ export const bookEditSchema = z
     (data) =>
       data.previewChapterIndex == null ||
       data.previewChapterIndex < data.chapters.length,
-    { message: "Invalid preview chapter", path: ["previewChapterIndex"] }
+    { message: "プレビュー章が無効です", path: ["previewChapterIndex"] }
   );
 
 export const bookPublishSchema = z
@@ -40,14 +40,14 @@ export const bookPublishSchema = z
     (data) =>
       data.pricingType === "free" ||
       (data.priceYen != null && data.priceYen >= 500),
-    { message: "Please select a price", path: ["priceYen"] }
+    { message: "価格を選択してください", path: ["priceYen"] }
   )
   .refine(
     (data) =>
       data.pricingType === "free" ||
       (data.priceYen != null && data.priceYen <= 3000),
     {
-      message: "Book price must be between ¥500 and ¥3,000",
+      message: "ブック価格は¥500〜¥3,000で設定してください",
       path: ["priceYen"],
     }
   );

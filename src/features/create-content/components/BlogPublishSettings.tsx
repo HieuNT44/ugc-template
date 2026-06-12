@@ -156,7 +156,7 @@ export function BlogPublishSettings({
           setServerError(updateResult.error);
         } else if ("errors" in updateResult) {
           const first = Object.values(updateResult.errors)[0]?.[0];
-          setServerError(first ?? "Validation failed");
+          setServerError(first ?? "入力内容を確認してください");
         }
         return;
       }
@@ -174,7 +174,7 @@ export function BlogPublishSettings({
         setServerError(publishResult.error);
       } else if ("errors" in publishResult) {
         const first = Object.values(publishResult.errors)[0]?.[0];
-        setServerError(first ?? "Validation failed");
+        setServerError(first ?? "入力内容を確認してください");
       }
       return;
     }
@@ -188,12 +188,12 @@ export function BlogPublishSettings({
       <div className='flex flex-wrap items-center justify-between gap-4'>
         <div>
           <h1 className='font-serif text-2xl font-bold'>
-            {isUpdateMode ? "Update settings" : "Publish settings"}
+            {isUpdateMode ? "設定を更新" : "公開設定"}
           </h1>
           <p className='text-muted-foreground mt-1 text-sm'>
             {isUpdateMode
-              ? "Review your changes and update pricing before saving."
-              : "Set pricing and review your post before publishing."}
+              ? "保存前に変更内容と価格設定を確認してください。"
+              : "公開前に価格を設定し、投稿内容を確認してください。"}
           </p>
         </div>
 
@@ -206,7 +206,7 @@ export function BlogPublishSettings({
             disabled={isBusy}
             onClick={onBackClick}
           >
-            Back
+            戻る
           </Button>
           <Button
             type='submit'
@@ -215,7 +215,7 @@ export function BlogPublishSettings({
             className='h-11 min-w-28 bg-emerald-600 px-6 text-base text-white hover:bg-emerald-700 focus-visible:ring-emerald-500'
             disabled={isBusy}
           >
-            {isUpdateMode ? "Update" : "Publish"}
+            {isUpdateMode ? "更新" : "公開"}
           </Button>
         </div>
       </div>
@@ -236,7 +236,7 @@ export function BlogPublishSettings({
 
           <div className='BlogPublishSettingsForm order-1 flex min-w-0 flex-col gap-5 md:order-2'>
             <div className='border-border border-b pb-4'>
-              <h2 className='text-lg font-semibold'>Settings</h2>
+              <h2 className='text-lg font-semibold'>設定</h2>
               <p className='text-muted-foreground mt-1 text-sm'>
                 Configure pricing and labels before publishing.
               </p>
@@ -252,7 +252,7 @@ export function BlogPublishSettings({
             </div>
 
             <section className='space-y-4'>
-              <h2 className='text-base font-semibold'>Pricing</h2>
+              <h2 className='text-base font-semibold'>価格設定</h2>
 
               <FormField
                 control={form.control}
@@ -267,7 +267,7 @@ export function BlogPublishSettings({
                             checked={field.value === "free"}
                             onChange={() => field.onChange("free")}
                           />
-                          Free
+                          無料
                         </label>
                         <label className='flex items-center gap-2 text-sm'>
                           <input
@@ -275,7 +275,7 @@ export function BlogPublishSettings({
                             checked={field.value === "paid"}
                             onChange={() => field.onChange("paid")}
                           />
-                          Paid
+                          有料
                         </label>
                       </div>
                     </FormControl>
@@ -289,7 +289,7 @@ export function BlogPublishSettings({
                   name='priceYen'
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Price</FormLabel>
+                      <FormLabel>価格</FormLabel>
                       <FormControl>
                         <PriceDropdown
                           contentType='blog'
@@ -315,7 +315,7 @@ export function BlogPublishSettings({
                   )}
                   onClick={onHumanWrittenToggle}
                   disabled={requestHumanWrittenBadge || isPublishing}
-                  aria-label='Check Human-written badge'
+                  aria-label='人間が執筆バッジを確認'
                   aria-pressed={requestHumanWrittenBadge}
                 >
                   {requestHumanWrittenBadge ? (
@@ -353,7 +353,7 @@ export function BlogPublishSettings({
               variant='outline'
               onClick={() => setBackWarningOpen(false)}
             >
-              Stay here
+              このページに残る
             </Button>
             <Button type='button' onClick={onConfirmBack}>
               Back to edit
@@ -365,9 +365,7 @@ export function BlogPublishSettings({
       {isPublishing ? (
         <PublishSavingOverlay
           message={
-            isUpdateMode
-              ? "Updating your content..."
-              : "Publishing your content..."
+            isUpdateMode ? "コンテンツを更新中..." : "コンテンツを公開中..."
           }
         />
       ) : null}

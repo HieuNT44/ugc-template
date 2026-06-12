@@ -2,19 +2,20 @@ import type { AppLanguage } from "../types/enums";
 
 const MESSAGES = {
   en: {
-    not_image: "Please select an image file (JPEG, PNG, GIF, or WebP).",
-    empty: "The selected file is empty.",
-    too_large: "Image must be 10 MB or smaller.",
-    unauthorized: "Please sign in to upload images.",
+    not_image: "JPEG、PNG、GIF、WebP形式の画像を選択してください。",
+    empty: "選択したファイルが空です。",
+    too_large: "画像は10MB以下にしてください。",
+    unauthorized: "画像をアップロードするにはログインしてください。",
     s3_failed:
-      "Failed to upload to storage. Check S3 CORS and ETag exposure for localhost:3000.",
-    upload_expired: "Upload session expired. Please select the image again.",
+      "ストレージへのアップロードに失敗しました。localhost:3000向けのS3 CORSとETag公開設定を確認してください。",
+    upload_expired:
+      "アップロードセッションの期限が切れました。画像を選択し直してください。",
     storage_access_denied:
-      "Upload storage access denied. Check S3 IAM permissions and bucket configuration.",
-    avatar_updated: "Profile photo updated successfully.",
-    cover_updated: "Cover image updated successfully.",
-    profile_saved: "Profile saved successfully.",
-    generic: "Something went wrong. Please try again.",
+      "アップロードストレージへのアクセスが拒否されました。S3 IAM権限とバケット設定を確認してください。",
+    avatar_updated: "プロフィール写真を更新しました。",
+    cover_updated: "カバー画像を更新しました。",
+    profile_saved: "プロフィールを保存しました。",
+    generic: "問題が発生しました。もう一度お試しください。",
   },
   ja: {
     not_image: "JPEG、PNG、GIF、WebP 形式の画像を選択してください。",

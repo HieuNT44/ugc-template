@@ -86,7 +86,7 @@ export function ProfilePostListItem({
 
               {showDraftBadge ? (
                 <span className='bg-muted text-muted-foreground mt-2 inline-flex rounded-full px-2 py-0.5 text-xs font-medium'>
-                  Draft
+                  下書き
                 </span>
               ) : null}
             </div>
@@ -130,7 +130,7 @@ export function ProfilePostListItem({
                         : "text-muted-foreground"
                     )}
                     onClick={onSaveToggle}
-                    aria-label={isSaved ? "Remove from saved" : "Save post"}
+                    aria-label={isSaved ? "保存から削除" : "投稿を保存"}
                     aria-pressed={isSaved}
                   >
                     <Bookmark
@@ -146,7 +146,7 @@ export function ProfilePostListItem({
                   variant='ghost'
                   size='icon'
                   className='text-muted-foreground size-8'
-                  aria-label='More options'
+                  aria-label='その他の操作'
                 >
                   <MoreHorizontal className='size-4' />
                 </Button>

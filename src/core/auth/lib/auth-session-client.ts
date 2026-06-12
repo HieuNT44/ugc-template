@@ -18,7 +18,7 @@ export async function establishLaravelSession(
       ok: false,
       error:
         authResult.error === "CredentialsSignin"
-          ? "Unable to start session. Please try again."
+          ? "セッションを開始できませんでした。もう一度お試しください。"
           : authResult.error,
     };
   }

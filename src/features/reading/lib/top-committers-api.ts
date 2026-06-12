@@ -48,7 +48,7 @@ export function mapApiTopCommitter(
     username,
     name,
     avatarUrl: item.avatar_url ?? "",
-    bio: item.bio?.trim() || "RealRead Creator",
+    bio: item.bio?.trim() || "RealReadクリエイター",
     contentCount: item.content_count,
     href: getAuthorProfileHref(username),
   };

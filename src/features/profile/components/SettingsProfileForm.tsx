@@ -160,7 +160,7 @@ function ProfileAvatarPicker({
             type='button'
             disabled={isBusy}
             onClick={onReplaceClick}
-            aria-label='Replace profile photo'
+            aria-label='プロフィール写真を変更'
             className='bg-background/95 text-foreground hover:bg-background flex size-9 items-center justify-center rounded-full border shadow-sm disabled:cursor-not-allowed disabled:opacity-60'
           >
             <Upload className='size-4' aria-hidden />
@@ -169,7 +169,7 @@ function ProfileAvatarPicker({
             type='button'
             disabled={isBusy}
             onClick={onRemoveClick}
-            aria-label='Remove profile photo'
+            aria-label='プロフィール写真を削除'
             className='bg-background/95 hover:bg-background border-destructive/30 flex size-9 items-center justify-center rounded-full border shadow-sm disabled:cursor-not-allowed disabled:opacity-60'
           >
             <Trash2 className='text-destructive size-4' aria-hidden />
@@ -180,7 +180,7 @@ function ProfileAvatarPicker({
           type='button'
           disabled={isBusy}
           onClick={onReplaceClick}
-          aria-label='Upload profile photo'
+          aria-label='プロフィール写真をアップロード'
           className='bg-background/95 text-foreground hover:bg-background absolute inset-0 z-10 flex items-center justify-center rounded-full opacity-0 transition-opacity group-hover/avatar-picker:opacity-100 disabled:cursor-not-allowed disabled:opacity-60'
         >
           <span className='flex size-9 items-center justify-center rounded-full border shadow-sm'>
@@ -316,7 +316,7 @@ export function SettingsProfileForm({
     description:
       language === "ja"
         ? "公開プロフィールに表示される基本情報を更新します。"
-        : "Update the basic information shown on your public profile.",
+        : "公開プロフィールに表示される基本情報を更新します。",
     name: getProfileFormLabel("name", language),
     username: getProfileFormLabel("username", language),
     headline: getProfileFormLabel("headline", language),
@@ -568,7 +568,9 @@ export function SettingsProfileForm({
       <Card className='SettingsProfileForm gap-0 overflow-hidden rounded-2xl py-0'>
         <div className='border-border flex min-h-14 shrink-0 items-center justify-between gap-4 border-b px-6 py-3'>
           <div className='min-w-0'>
-            <h1 className='text-base leading-none font-semibold'>Profile</h1>
+            <h1 className='text-base leading-none font-semibold'>
+              プロフィール
+            </h1>
             <p className='text-muted-foreground mt-1.5 text-sm leading-normal'>
               {labels.description}
             </p>
@@ -579,7 +581,7 @@ export function SettingsProfileForm({
             disabled={isLoading}
             className='rounded-full px-6'
           >
-            {isLoading ? "Saving..." : "Save"}
+            {isLoading ? "保存中..." : "保存"}
           </Button>
         </div>
 

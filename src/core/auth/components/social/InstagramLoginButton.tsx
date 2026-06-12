@@ -23,11 +23,9 @@ export function InstagramLoginButton({
       size='icon'
       className={cn("rounded-full", className)}
       disabled={disabled}
-      aria-label='Continue with Instagram'
+      aria-label='Instagramで続行'
       onClick={() =>
-        onError?.(
-          "Instagram login requires additional Firebase OAuth configuration"
-        )
+        onError?.("Instagramログインには追加のFirebase OAuth設定が必要です")
       }
     >
       <InstagramIcon />

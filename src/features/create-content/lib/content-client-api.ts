@@ -18,7 +18,7 @@ export async function saveDraftClient(
   const accessToken = token?.trim();
 
   if (!accessToken) {
-    return { error: "Unauthorized" };
+    return { error: "認証が必要です" };
   }
 
   const result = await clientApiRequest<ApiContentDetail>({

@@ -15,7 +15,7 @@ export function BookLabelList({ labels = [], className }: BookLabelListProps) {
   if (sorted.length === 0) {
     return (
       <span className='BookLabelBadge bg-muted text-muted-foreground inline-flex w-fit shrink-0 items-center rounded-full border px-2 py-0.5 text-xs leading-none font-medium'>
-        Book
+        ブック
       </span>
     );
   }
@@ -28,7 +28,7 @@ export function BookLabelList({ labels = [], className }: BookLabelListProps) {
       )}
     >
       <span className='BookLabelBadge bg-muted text-muted-foreground inline-flex w-fit shrink-0 items-center rounded-full border px-2 py-0.5 text-xs leading-none font-medium'>
-        Book
+        ブック
       </span>
       {sorted.map((label) => (
         <PostLabelBadge

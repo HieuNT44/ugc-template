@@ -5,8 +5,8 @@ export default function ForgotPasswordPage() {
   return (
     <>
       <AuthPageHeader
-        title='Forgot password'
-        description='We will email you a link to reset your password.'
+        title='パスワードをお忘れですか'
+        description='パスワードをリセットするリンクをメールで送信します。'
       />
       <ForgotPasswordForm />
     </>

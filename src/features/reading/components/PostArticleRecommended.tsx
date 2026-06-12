@@ -102,7 +102,7 @@ function RecommendedCard({ post }: { post: FeedPost }) {
             variant='ghost'
             size='icon'
             className={recommendedActionIconClass}
-            aria-label='Save story'
+            aria-label='記事を保存'
           >
             <BookmarkPlus className='size-[18px]' />
           </Button>
@@ -111,7 +111,7 @@ function RecommendedCard({ post }: { post: FeedPost }) {
             variant='ghost'
             size='icon'
             className={recommendedActionIconClass}
-            aria-label='Show less like this'
+            aria-label='このような記事を減らす'
           >
             <MinusCircle className='size-[18px]' />
           </Button>
@@ -137,7 +137,7 @@ export async function PostArticleRecommended({
     <section className='PostArticleRecommended border-border w-full border-t'>
       <div className='mx-auto w-full max-w-[720px] px-4 pt-12 pb-16 lg:px-6'>
         <h2 className='text-foreground mb-8 font-serif text-xl font-bold tracking-tight'>
-          Recommended for you
+          あなたへのおすすめ
         </h2>
         <div className='grid gap-10 sm:grid-cols-2'>
           {recommended.map((post) => (

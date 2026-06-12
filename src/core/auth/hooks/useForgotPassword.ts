@@ -18,7 +18,8 @@ export function useForgotPassword() {
     const parsed = forgotPasswordSchema.safeParse(data);
     if (!parsed.success) {
       const message =
-        parsed.error.flatten().fieldErrors.email?.[0] ?? "Invalid email";
+        parsed.error.flatten().fieldErrors.email?.[0] ??
+        "メールアドレスが正しくありません";
       setError(message);
       setIsLoading(false);
       return { success: false as const, error: message };

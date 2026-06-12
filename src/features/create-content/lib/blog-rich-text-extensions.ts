@@ -67,7 +67,7 @@ function uploadAsObjectUrl(file: File): Promise<string> {
 }
 
 export function createBlogRichTextExtensions(
-  placeholder = "Write your article…",
+  placeholder = "記事を書く…",
   uploadImage: RichTextUploadHandler = uploadAsObjectUrl
 ) {
   return [

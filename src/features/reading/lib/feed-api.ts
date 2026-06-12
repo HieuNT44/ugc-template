@@ -78,7 +78,7 @@ function buildFeedLabels(item: ApiFeedItem): PostLabel[] {
 }
 
 export function mapApiFeedItemToFeedPost(item: ApiFeedItem): FeedPost {
-  const title = item.title?.trim() || "Untitled";
+  const title = item.title?.trim() || "無題";
   const snippet = item.short_description?.trim() || item.excerpt?.trim() || "";
   const username = item.creator?.username?.trim() || "creator";
   const authorDisplayName = item.creator?.full_name?.trim() || username;

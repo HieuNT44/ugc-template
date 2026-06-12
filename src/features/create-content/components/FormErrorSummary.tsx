@@ -6,19 +6,19 @@ import { useFormState, type FieldValues } from "react-hook-form";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 const DEFAULT_FIELD_LABELS: Record<string, string> = {
-  title: "Title",
-  shortDescription: "Short description",
-  field: "Field",
-  tags: "Tags",
-  content: "Content",
-  editorMode: "Editor",
-  coverImageUrl: "Cover image",
-  templateId: "Template",
-  pricingType: "Pricing",
-  priceYen: "Price",
-  description: "Description",
+  title: "タイトル",
+  shortDescription: "短い説明",
+  field: "分野",
+  tags: "タグ",
+  content: "本文",
+  editorMode: "エディター",
+  coverImageUrl: "カバー画像",
+  templateId: "テンプレート",
+  pricingType: "価格設定",
+  priceYen: "価格",
+  description: "説明",
   pdfUrl: "PDF",
-  previewPages: "Preview pages",
+  previewPages: "プレビューページ",
 };
 
 interface FormErrorSummaryProps {
@@ -29,7 +29,7 @@ interface FormErrorSummaryProps {
 
 export function FormErrorSummary<T extends FieldValues>({
   fieldLabels = DEFAULT_FIELD_LABELS,
-  title = "Please fix the following",
+  title = "以下を修正してください",
   className,
 }: FormErrorSummaryProps) {
   const { errors } = useFormState<T>();

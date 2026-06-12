@@ -39,11 +39,11 @@ export function NotificationSettings({ settings }: NotificationSettingsProps) {
 
     setIsLoading(false);
     if (!result.success) {
-      setError(result.error ?? "Failed to update notifications");
+      setError(result.error ?? "通知設定の更新に失敗しました");
       return;
     }
 
-    setMessage(result.message ?? "Notification preferences saved");
+    setMessage(result.message ?? "通知設定を保存しました");
   }
 
   return (
@@ -67,27 +67,27 @@ export function NotificationSettings({ settings }: NotificationSettingsProps) {
         ) : null}
 
         <label className='flex items-center justify-between gap-4'>
-          <Label className='font-normal'>Email notifications</Label>
+          <Label className='font-normal'>メール通知</Label>
           <input
             type='checkbox'
             checked={emailNotify}
             onChange={(event) => setEmailNotify(event.target.checked)}
-            aria-label='Email notifications'
+            aria-label='メール通知'
           />
         </label>
 
         <label className='flex items-center justify-between gap-4'>
-          <Label className='font-normal'>In-app notifications</Label>
+          <Label className='font-normal'>アプリ内通知</Label>
           <input
             type='checkbox'
             checked={inappNotify}
             onChange={(event) => setInappNotify(event.target.checked)}
-            aria-label='In-app notifications'
+            aria-label='アプリ内通知'
           />
         </label>
 
         <Button type='button' onClick={handleSave} disabled={isLoading}>
-          {isLoading ? "Saving..." : "Save preferences"}
+          {isLoading ? "保存中..." : "設定を保存"}
         </Button>
       </CardContent>
     </Card>

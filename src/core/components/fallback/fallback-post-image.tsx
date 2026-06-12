@@ -11,7 +11,7 @@ interface FallbackPostImageProps {
  */
 export function FallbackPostImage({
   className,
-  title = "Post cover placeholder",
+  title = "投稿カバーのプレースホルダー",
 }: FallbackPostImageProps) {
   return (
     <div

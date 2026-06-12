@@ -14,7 +14,7 @@ export async function loginAction(input: unknown): Promise<LoginResponse> {
     const message =
       fieldErrors.email?.[0] ??
       fieldErrors.password?.[0] ??
-      "Invalid login credentials";
+      "ログイン情報が正しくありません";
     return { success: false, error: message, fieldErrors };
   }
 

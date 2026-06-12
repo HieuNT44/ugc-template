@@ -75,7 +75,7 @@ export function EditProfileForm({ defaultValues }: EditProfileFormProps) {
         });
       }
     } catch {
-      setServerError("Something went wrong. Please try again.");
+      setServerError("問題が発生しました。もう一度お試しください。");
     } finally {
       setIsLoading(false);
     }
@@ -84,7 +84,7 @@ export function EditProfileForm({ defaultValues }: EditProfileFormProps) {
   return (
     <Card className='EditProfileForm'>
       <CardHeader>
-        <CardTitle>Edit profile</CardTitle>
+        <CardTitle>プロフィールを編集</CardTitle>
         <CardDescription>Update your personal information.</CardDescription>
       </CardHeader>
       <CardContent>
@@ -107,9 +107,9 @@ export function EditProfileForm({ defaultValues }: EditProfileFormProps) {
               name='name'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Full name</FormLabel>
+                  <FormLabel>氏名</FormLabel>
                   <FormControl>
-                    <Input placeholder='Your name' {...field} />
+                    <Input placeholder='氏名' {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -121,7 +121,7 @@ export function EditProfileForm({ defaultValues }: EditProfileFormProps) {
               name='username'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Username</FormLabel>
+                  <FormLabel>ユーザー名</FormLabel>
                   <FormControl>
                     <Input placeholder='your-handle' {...field} />
                   </FormControl>
@@ -135,9 +135,9 @@ export function EditProfileForm({ defaultValues }: EditProfileFormProps) {
               name='headline'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Headline</FormLabel>
+                  <FormLabel>ヘッドライン</FormLabel>
                   <FormControl>
-                    <Input placeholder='Short headline' {...field} />
+                    <Input placeholder='短いヘッドライン' {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -149,10 +149,10 @@ export function EditProfileForm({ defaultValues }: EditProfileFormProps) {
               name='bio'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Bio</FormLabel>
+                  <FormLabel>自己紹介</FormLabel>
                   <FormControl>
                     <Textarea
-                      placeholder='Tell others about yourself'
+                      placeholder='あなたについて紹介してください'
                       rows={4}
                       {...field}
                     />
@@ -167,9 +167,9 @@ export function EditProfileForm({ defaultValues }: EditProfileFormProps) {
               name='location'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Location</FormLabel>
+                  <FormLabel>所在地</FormLabel>
                   <FormControl>
-                    <Input placeholder='City, country' {...field} />
+                    <Input placeholder='市区町村、国' {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -181,7 +181,7 @@ export function EditProfileForm({ defaultValues }: EditProfileFormProps) {
               name='website'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Website</FormLabel>
+                  <FormLabel>ウェブサイト</FormLabel>
                   <FormControl>
                     <Input
                       type='url'
@@ -249,7 +249,7 @@ export function EditProfileForm({ defaultValues }: EditProfileFormProps) {
             />
 
             <Button type='submit' disabled={isLoading}>
-              {isLoading ? "Saving..." : "Save changes"}
+              {isLoading ? "保存中..." : "変更を保存"}
             </Button>
           </form>
         </Form>

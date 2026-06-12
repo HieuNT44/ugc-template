@@ -8,7 +8,7 @@ export default async function ReportEditPage() {
     <CreateContentShell
       step={2}
       totalSteps={3}
-      title='Upload your report'
+      title='レポートをアップロード'
       backHref='/studio/create'
     >
       <ReportEditor />

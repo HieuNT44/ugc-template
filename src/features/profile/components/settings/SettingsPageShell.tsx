@@ -61,7 +61,9 @@ function SettingsPageContent({
   if (!profile) {
     return (
       <Alert>
-        <AlertDescription>Profile data is unavailable.</AlertDescription>
+        <AlertDescription>
+          プロフィールデータを利用できません。
+        </AlertDescription>
       </Alert>
     );
   }

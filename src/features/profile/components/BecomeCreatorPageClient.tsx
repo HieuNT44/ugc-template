@@ -35,7 +35,7 @@ function BecomeCreatorContent() {
     return (
       <Alert variant='destructive' className='mx-auto max-w-2xl'>
         <AlertDescription>
-          {error ?? "Profile data is unavailable."}
+          {error ?? "プロフィールデータを利用できません。"}
         </AlertDescription>
       </Alert>
     );

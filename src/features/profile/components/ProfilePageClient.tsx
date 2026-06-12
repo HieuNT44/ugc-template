@@ -42,7 +42,9 @@ function ProfileOverviewLoader() {
   if (!profile) {
     return (
       <Alert className='m-6'>
-        <AlertDescription>Profile data is unavailable.</AlertDescription>
+        <AlertDescription>
+          プロフィールデータを利用できません。
+        </AlertDescription>
       </Alert>
     );
   }

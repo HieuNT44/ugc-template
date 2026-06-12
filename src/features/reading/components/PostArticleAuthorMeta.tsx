@@ -72,7 +72,7 @@ export function PostArticleAuthorMeta({ article }: PostArticleAuthorMetaProps) {
             aria-pressed={isFollowing}
             onClick={handleFollowClick}
           >
-            {isFollowing ? "Following" : "Follow"}
+            {isFollowing ? "フォロー中" : "フォロー"}
           </Button>
         ) : null}
 
@@ -100,7 +100,7 @@ export function PostArticleAuthorMeta({ article }: PostArticleAuthorMetaProps) {
               Later
             </Button>
             <Button asChild>
-              <Link href='/login'>Login</Link>
+              <Link href='/login'>ログイン</Link>
             </Button>
           </DialogFooter>
         </DialogContent>

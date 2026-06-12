@@ -13,7 +13,9 @@ export async function forgotPasswordAction(
   if (!parsed.success) {
     return {
       success: false,
-      error: parsed.error.flatten().fieldErrors.email?.[0] ?? "Invalid email",
+      error:
+        parsed.error.flatten().fieldErrors.email?.[0] ??
+        "メールアドレスが正しくありません",
     };
   }
 

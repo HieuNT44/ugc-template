@@ -22,15 +22,15 @@ import { FeedPostList } from "./FeedPostList";
 import { FeedSidebar, type FeedSidebarRankingItem } from "./FeedSidebar";
 
 const TAB_LABELS: Record<FeedTabId, string> = {
-  blog: "Blog",
-  book: "Book",
-  report: "Report",
+  blog: "ブログ",
+  book: "ブック",
+  report: "レポート",
 };
 
 const EMPTY_MESSAGES: Record<FeedTabId, string> = {
-  blog: "No blog posts yet.",
-  book: "No books yet.",
-  report: "No reports yet.",
+  blog: "ブログ投稿はまだありません。",
+  book: "ブックはまだありません。",
+  report: "レポートはまだありません。",
 };
 
 export type FeedPostsByTab = Record<FeedTabId, FeedPost[]>;
@@ -133,7 +133,7 @@ export function HomeFeed({
           },
         }));
       } catch (error) {
-        console.error("Failed to load more feed posts:", error);
+        console.error("フィード投稿の追加読み込みに失敗しました:", error);
       } finally {
         setLoadingTab(null);
       }
@@ -190,7 +190,9 @@ export function HomeFeed({
                         void handleLoadMore(tabId);
                       }}
                     >
-                      {loadingTab === tabId ? "Loading..." : "Load more"}
+                      {loadingTab === tabId
+                        ? "読み込み中..."
+                        : "さらに読み込む"}
                     </Button>
                   </div>
                 ) : null}
@@ -224,7 +226,7 @@ export function HomeFeed({
               Later
             </Button>
             <Button asChild>
-              <Link href='/login'>Login</Link>
+              <Link href='/login'>ログイン</Link>
             </Button>
           </DialogFooter>
         </DialogContent>

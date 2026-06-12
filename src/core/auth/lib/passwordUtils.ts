@@ -12,13 +12,13 @@ export function validatePasswordStrength(password: string): {
     );
   }
   if (!/[A-Z]/.test(password)) {
-    errors.push("Password must contain at least one uppercase letter");
+    errors.push("パスワードには大文字を1文字以上含めてください");
   }
   if (!/[a-z]/.test(password)) {
-    errors.push("Password must contain at least one lowercase letter");
+    errors.push("パスワードには小文字を1文字以上含めてください");
   }
   if (!/[0-9]/.test(password)) {
-    errors.push("Password must contain at least one number");
+    errors.push("パスワードには数字を1文字以上含めてください");
   }
 
   return { valid: errors.length === 0, errors };

@@ -98,7 +98,7 @@ export function ReportEditor() {
 
     const result = await saveDraftClient(buildPayload(), session?.accessToken);
     if (!isSaveDraftSuccess(result)) {
-      setServerError("error" in result ? result.error : "Failed to save");
+      setServerError("error" in result ? result.error : "保存に失敗しました");
       return;
     }
 
@@ -132,9 +132,9 @@ export function ReportEditor() {
             name='title'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Title</FormLabel>
+                <FormLabel>タイトル</FormLabel>
                 <FormControl>
-                  <Input placeholder='Report title' {...field} />
+                  <Input placeholder='レポートタイトル' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -146,10 +146,10 @@ export function ReportEditor() {
             name='description'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Description</FormLabel>
+                <FormLabel>説明</FormLabel>
                 <FormControl>
                   <Textarea
-                    placeholder='Describe what readers will learn from this report'
+                    placeholder='このレポートで読者が学べることを説明してください'
                     rows={4}
                     {...field}
                   />
@@ -164,13 +164,13 @@ export function ReportEditor() {
             name='field'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Field</FormLabel>
+                <FormLabel>分野</FormLabel>
                 <FormControl>
                   <select
                     className='border-input bg-background h-9 w-full rounded-lg border px-3 text-sm'
                     value={field.value}
                     onChange={field.onChange}
-                    aria-label='Select field'
+                    aria-label='分野を選択'
                   >
                     <option value=''>Select a field</option>
                     {CONTENT_FIELD_OPTIONS.map((option) => (
@@ -190,7 +190,7 @@ export function ReportEditor() {
             name='pdfUrl'
             render={() => (
               <FormItem>
-                <FormLabel>PDF file</FormLabel>
+                <FormLabel>PDFファイル</FormLabel>
                 <FormControl>
                   <div className='flex flex-col gap-2'>
                     {pdfFileName ? (
@@ -205,7 +205,7 @@ export function ReportEditor() {
                             form.setValue("pdfFileName", undefined);
                             store.patch({ pdfUrl: null, pdfFileName: null });
                           }}
-                          aria-label='Remove PDF'
+                          aria-label='PDFを削除'
                         >
                           <Trash2 className='size-4' />
                         </Button>

@@ -37,7 +37,7 @@ export async function updateProfileSettingsAction(
 ): Promise<ActionState> {
   const apiSession = await requireApiSession();
   if (!apiSession) {
-    return { error: "Unauthorized" };
+    return { error: "認証が必要です" };
   }
 
   const result = await updateProfileSettings(
@@ -50,7 +50,7 @@ export async function updateProfileSettingsAction(
   }
 
   revalidatePath("/profile/settings");
-  return { success: true, message: "Settings updated successfully" };
+  return { success: true, message: "設定を更新しました" };
 }
 
 export async function updateProfileVisibilityAction(
@@ -58,7 +58,7 @@ export async function updateProfileVisibilityAction(
 ): Promise<ActionState> {
   const apiSession = await requireApiSession();
   if (!apiSession) {
-    return { error: "Unauthorized" };
+    return { error: "認証が必要です" };
   }
 
   const result = await updateProfile(
@@ -72,5 +72,5 @@ export async function updateProfileVisibilityAction(
 
   revalidatePath("/profile");
   revalidatePath("/profile/settings");
-  return { success: true, message: "Privacy settings updated" };
+  return { success: true, message: "プライバシー設定を更新しました" };
 }

@@ -55,7 +55,7 @@ export async function getContentForCheckout(
 
   return {
     id: show.id,
-    title: show.title?.trim() || "Untitled",
+    title: show.title?.trim() || "無題",
     price: show.price,
     currency: "JPY",
     alreadyPurchased,

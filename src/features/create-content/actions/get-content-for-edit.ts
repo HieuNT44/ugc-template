@@ -20,11 +20,11 @@ export async function getContentForEditAction(
 ): Promise<GetContentForEditResult> {
   const session = await getServerSession(authOptions);
   if (!session?.user?.id || !session.accessToken) {
-    return { error: "Unauthorized" };
+    return { error: "認証が必要です" };
   }
 
   if (session.user.role !== "creator") {
-    return { error: "Creator role required" };
+    return { error: "クリエイター権限が必要です" };
   }
 
   try {
@@ -41,11 +41,11 @@ export async function getContentForEditAction(
     const content = mapApiContentToDocument(result.data);
 
     if (content.status !== "draft" && content.status !== "published") {
-      return { error: "This content cannot be edited yet." };
+      return { error: "このコンテンツはまだ編集できません。" };
     }
 
     return { success: true, content };
   } catch {
-    return { error: "Something went wrong, please try again later" };
+    return { error: "問題が発生しました。時間をおいて再度お試しください" };
   }
 }

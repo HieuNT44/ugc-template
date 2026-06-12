@@ -74,7 +74,7 @@ export function PostArticleActions({
   return (
     <aside
       className={cn("PostArticleActions", className)}
-      aria-label='Article actions'
+      aria-label='記事の操作'
     >
       <div className='border-border bg-background flex flex-row items-center justify-center gap-1 rounded-full border px-2 py-1 shadow-sm lg:flex-col lg:px-1 lg:py-2'>
         <Button
@@ -82,7 +82,7 @@ export function PostArticleActions({
           variant='ghost'
           size='icon'
           className={cn(actionButtonClass, liked && "text-red-500")}
-          aria-label={liked ? "Unlike story" : "Like story"}
+          aria-label={liked ? "いいねを取り消す" : "いいねする"}
           aria-pressed={liked}
           onClick={() => setLiked((value) => !value)}
         >
@@ -94,7 +94,7 @@ export function PostArticleActions({
           variant='ghost'
           size='icon'
           className={cn(actionButtonClass, saved && "text-amber-500")}
-          aria-label={saved ? "Remove bookmark" : "Bookmark story"}
+          aria-label={saved ? "ブックマークを削除" : "記事をブックマーク"}
           aria-pressed={saved}
           onClick={() => setSaved((value) => !value)}
         >
@@ -106,7 +106,7 @@ export function PostArticleActions({
           variant='ghost'
           size='icon'
           className={actionButtonClass}
-          aria-label='Share on Facebook'
+          aria-label='Facebookでシェア'
           asChild
         >
           <a
@@ -123,7 +123,7 @@ export function PostArticleActions({
           variant='ghost'
           size='icon'
           className={actionButtonClass}
-          aria-label='Share on X'
+          aria-label='Xでシェア'
           asChild
         >
           <a
@@ -140,7 +140,7 @@ export function PostArticleActions({
           variant='ghost'
           size='icon'
           className={actionButtonClass}
-          aria-label='Share on LinkedIn'
+          aria-label='LinkedInでシェア'
           asChild
         >
           <a
@@ -157,7 +157,7 @@ export function PostArticleActions({
           variant='ghost'
           size='icon'
           className={actionButtonClass}
-          aria-label={copied ? "Link copied" : "Copy link"}
+          aria-label={copied ? "リンクをコピーしました" : "リンクをコピー"}
           onClick={handleCopyLink}
         >
           <Link2 className='size-4' />

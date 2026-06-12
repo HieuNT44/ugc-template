@@ -18,7 +18,7 @@ function initAdminApp(): App {
 
   if (!projectId || !clientEmail || !privateKey) {
     throw new Error(
-      "Missing Firebase Admin credentials. Set FIREBASE_ADMIN_PROJECT_ID, FIREBASE_ADMIN_CLIENT_EMAIL, and FIREBASE_ADMIN_PRIVATE_KEY."
+      "Firebase Admin認証情報がありません。FIREBASE_ADMIN_PROJECT_ID、FIREBASE_ADMIN_CLIENT_EMAIL、FIREBASE_ADMIN_PRIVATE_KEYを設定してください。"
     );
   }
 

@@ -48,7 +48,7 @@ export function SiteMobileMenu({ isAuthenticated, role }: SiteMobileMenuProps) {
           variant='ghost'
           size='icon'
           className='size-9 shrink-0 md:hidden'
-          aria-label='Open menu'
+          aria-label='メニューを開く'
         >
           <Menu className='size-5' />
         </Button>
@@ -61,7 +61,7 @@ export function SiteMobileMenu({ isAuthenticated, role }: SiteMobileMenuProps) {
         </SheetHeader>
         <nav
           className='mt-6 flex flex-col gap-1'
-          aria-label='Mobile navigation'
+          aria-label='モバイルナビゲーション'
         >
           {links.map((link) => {
             const isActive =
@@ -89,7 +89,7 @@ export function SiteMobileMenu({ isAuthenticated, role }: SiteMobileMenuProps) {
         {!isAuthenticated && (
           <div className='mt-6 border-t pt-6'>
             <Button className='w-full rounded-full' asChild>
-              <Link href='/login'>Login</Link>
+              <Link href='/login'>ログイン</Link>
             </Button>
           </div>
         )}

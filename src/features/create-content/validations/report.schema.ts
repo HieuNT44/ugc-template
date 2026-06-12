@@ -7,13 +7,13 @@ export const reportEditSchema = z.object({
   description: descriptionSchema,
   field: fieldSchema,
   coverImageUrl: z.string().nullable().optional(),
-  pdfUrl: z.string().min(1, "Please upload a PDF file"),
+  pdfUrl: z.string().min(1, "PDFファイルをアップロードしてください"),
   pdfFileName: z.string().min(1).optional(),
   previewPages: z
     .number()
     .int()
-    .min(5, "Preview pages must be between 5 and 10")
-    .max(10, "Preview pages must be between 5 and 10"),
+    .min(5, "プレビューページは5〜10ページで指定してください")
+    .max(10, "プレビューページは5〜10ページで指定してください"),
 });
 
 export const reportPublishSchema = z
@@ -25,14 +25,14 @@ export const reportPublishSchema = z
     (data) =>
       data.pricingType === "free" ||
       (data.priceYen != null && data.priceYen >= 1000),
-    { message: "Please select a price", path: ["priceYen"] }
+    { message: "価格を選択してください", path: ["priceYen"] }
   )
   .refine(
     (data) =>
       data.pricingType === "free" ||
       (data.priceYen != null && data.priceYen <= 5000),
     {
-      message: "Report price must be between ¥1,000 and ¥5,000",
+      message: "レポート価格は¥1,000〜¥5,000で設定してください",
       path: ["priceYen"],
     }
   );

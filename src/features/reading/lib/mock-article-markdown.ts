@@ -177,7 +177,7 @@ Visual blur is a cue, not a barrier. Pair blur with a calm gradient and a single
 
 ### Social proof
 
-Social proof helps when it is specific. "Join 240 readers who unlocked this" beats generic subscriber counts if the number is truthful and updated.
+Social proof helps when it is specific. "この記事を購入した240人の読者に加わりましょう" beats generic subscriber counts if the number is truthful and updated.
 
 ### Accessibility
 

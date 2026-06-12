@@ -153,7 +153,7 @@ export function PublishSettings({
         setServerError(result.error);
       } else if ("errors" in result) {
         const first = Object.values(result.errors)[0]?.[0];
-        setServerError(first ?? "Validation failed");
+        setServerError(first ?? "入力内容を確認してください");
       }
       return;
     }
@@ -181,7 +181,7 @@ export function PublishSettings({
               name='pricingType'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Pricing</FormLabel>
+                  <FormLabel>価格設定</FormLabel>
                   <FormControl>
                     <div className='flex gap-4'>
                       <label className='flex items-center gap-2 text-sm'>
@@ -190,7 +190,7 @@ export function PublishSettings({
                           checked={field.value === "free"}
                           onChange={() => field.onChange("free")}
                         />
-                        Free
+                        無料
                       </label>
                       <label className='flex items-center gap-2 text-sm'>
                         <input
@@ -198,7 +198,7 @@ export function PublishSettings({
                           checked={field.value === "paid"}
                           onChange={() => field.onChange("paid")}
                         />
-                        Paid
+                        有料
                       </label>
                     </div>
                   </FormControl>
@@ -214,7 +214,7 @@ export function PublishSettings({
               name='priceYen'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Price</FormLabel>
+                  <FormLabel>価格</FormLabel>
                   <FormControl>
                     <PriceDropdown
                       contentType={contentType}
@@ -235,7 +235,7 @@ export function PublishSettings({
               className='rounded-full'
               onClick={() => router.push(backHref)}
             >
-              Back
+              戻る
             </Button>
             <Button
               type='button'
@@ -243,14 +243,14 @@ export function PublishSettings({
               className='rounded-full'
               onClick={() => void onSaveDraft()}
             >
-              Save draft
+              下書きを保存
             </Button>
             <Button
               type='submit'
               className='rounded-full'
               disabled={form.formState.isSubmitting}
             >
-              Publish
+              公開
             </Button>
           </div>
         </form>

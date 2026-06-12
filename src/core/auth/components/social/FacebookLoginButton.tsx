@@ -22,7 +22,7 @@ export function FacebookLoginButton({
       size='icon'
       className={cn("rounded-full", className)}
       disabled={disabled}
-      aria-label='Continue with Facebook'
+      aria-label='Facebookで続行'
     >
       <FacebookIcon />
     </Button>

@@ -18,7 +18,7 @@ export function WYSIWYGEditor({
   value,
   onChange,
   className,
-  placeholder = "Write your content…",
+  placeholder = "本文を書く…",
   fillHeight = false,
 }: WYSIWYGEditorProps) {
   const editor = useEditor({
@@ -31,7 +31,7 @@ export function WYSIWYGEditor({
           "prose prose-sm dark:prose-invert max-w-none px-4 py-3 focus:outline-none",
           fillHeight ? "min-h-full" : "min-h-[320px]"
         ),
-        "aria-label": "Rich text editor",
+        "aria-label": "リッチテキストエディター",
       },
     },
     onUpdate: ({ editor: ed }) => {

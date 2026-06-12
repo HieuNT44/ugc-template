@@ -47,7 +47,9 @@ export function ProfileOverview({ profile }: ProfileOverviewProps) {
   const displayName = profile.name?.trim() || "—";
   const avatarSrc = profile.image?.trim() || undefined;
   const initials = getUsernameInitials(handle);
-  const bioText = profile.bio?.trim() ? profile.bio : "No bio yet";
+  const bioText = profile.bio?.trim()
+    ? profile.bio
+    : "自己紹介はまだありません";
   const isCreator = profile.role === "creator";
 
   const profileCv =
@@ -120,27 +122,23 @@ export function ProfileOverview({ profile }: ProfileOverviewProps) {
           <Separator />
 
           <CardContent className='space-y-4 p-0'>
-            <InfoRow icon={Mail} label='Email' value={profile.email} />
+            <InfoRow icon={Mail} label='メールアドレス' value={profile.email} />
             <InfoRow
               icon={MapPin}
-              label='Location'
+              label='所在地'
               value={profile.location ?? profile.country}
             />
             <InfoRow
               icon={Globe}
-              label='Website'
+              label='ウェブサイト'
               value={profile.website}
               isLink
             />
             {isCommunity ? (
-              <InfoRow
-                icon={Building2}
-                label='Industry'
-                value={profile.industry}
-              />
+              <InfoRow icon={Building2} label='業界' value={profile.industry} />
             ) : null}
             {isInternal ? (
-              <InfoRow icon={Briefcase} label='Role' value={profile.role} />
+              <InfoRow icon={Briefcase} label='ロール' value={profile.role} />
             ) : null}
           </CardContent>
 
@@ -160,7 +158,7 @@ export function ProfileOverview({ profile }: ProfileOverviewProps) {
             className='mt-2 w-full rounded-full'
             asChild
           >
-            <Link href='/settings/profile'>Edit profile</Link>
+            <Link href='/settings/profile'>プロフィールを編集</Link>
           </Button>
         </Card>
 

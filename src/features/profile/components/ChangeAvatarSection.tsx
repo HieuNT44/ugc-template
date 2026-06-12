@@ -41,7 +41,7 @@ export function ChangeAvatarSection({
     if (!file) return;
 
     if (!ALLOWED_TYPES.includes(file.type)) {
-      setValidationError("Please upload a JPEG, PNG, or WebP image");
+      setValidationError("JPEG、PNG、WebP形式の画像をアップロードしてください");
       return;
     }
     if (file.size > MAX_SIZE_MB * 1024 * 1024) {
@@ -55,7 +55,9 @@ export function ChangeAvatarSection({
 
   const handleSave = () => {
     if (!previewUrl) return;
-    setSavedMessage("Avatar preview saved locally. Upload API coming soon.");
+    setSavedMessage(
+      "アバタープレビューをローカルに保存しました。アップロードAPIは近日対応予定です。"
+    );
   };
 
   const handleRemove = () => {
@@ -77,7 +79,7 @@ export function ChangeAvatarSection({
         <div className='flex flex-col gap-4 sm:flex-row sm:items-center'>
           <Avatar className='border-border h-24 w-24 shrink-0 overflow-hidden rounded-full border-2'>
             {displayUrl ? (
-              <AvatarImage src={displayUrl} alt='Profile avatar' />
+              <AvatarImage src={displayUrl} alt='プロフィール画像' />
             ) : null}
             <AvatarFallback className='bg-muted text-2xl font-semibold uppercase'>
               {getAvatarInitials(displayName)}
@@ -125,7 +127,7 @@ export function ChangeAvatarSection({
                 Save avatar
               </Button>
               <Button type='button' variant='ghost' onClick={handleRemove}>
-                Remove
+                削除
               </Button>
             </>
           )}

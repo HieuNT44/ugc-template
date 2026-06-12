@@ -119,7 +119,7 @@ export function BlogRichTextEditor({
   value,
   onChange,
   className,
-  placeholder = "Write your article…",
+  placeholder = "記事を書く…",
 }: BlogRichTextEditorProps) {
   const { upload } = useUploadImage("general");
   const uploadInlineImage = useCallback(
@@ -127,7 +127,7 @@ export function BlogRichTextEditor({
       const completed = await upload(file);
 
       if (!completed.url) {
-        throw new Error("Uploaded image URL is missing");
+        throw new Error("アップロード画像のURLがありません");
       }
 
       return completed.url;

@@ -26,7 +26,7 @@ function PasswordInput({
         size="icon"
         className="absolute top-0 right-0 h-full px-3 hover:bg-transparent"
         onClick={() => setShowPassword((prev) => !prev)}
-        aria-label={showPassword ? "Hide password" : "Show password"}
+        aria-label={showPassword ? "パスワードを隠す" : "パスワードを表示"}
         tabIndex={-1}
       >
         {showPassword ? (

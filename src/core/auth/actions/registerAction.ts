@@ -24,7 +24,7 @@ export async function registerAction(
       fieldErrors.confirmPassword?.[0] ??
       fieldErrors.full_name?.[0] ??
       fieldErrors.username?.[0] ??
-      "Invalid registration data";
+      "登録内容が正しくありません";
     return { success: false, error: message, fieldErrors };
   }
 

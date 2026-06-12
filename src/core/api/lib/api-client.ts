@@ -118,11 +118,17 @@ export async function apiRequest<T>(
     }
 
     return apiFailure(
-      parseApiError(response.status, body, "Invalid API response shape")
+      parseApiError(
+        response.status,
+        body,
+        "APIレスポンスの形式が正しくありません"
+      )
     );
   } catch (err) {
     const message =
-      err instanceof Error ? err.message : "Network request failed";
+      err instanceof Error
+        ? err.message
+        : "ネットワークリクエストに失敗しました";
     return apiFailure(createNetworkError(message));
   }
 }
@@ -159,11 +165,17 @@ export async function apiMessageRequest(
     }
 
     return apiMessageFailure(
-      parseApiError(response.status, body, "Invalid API response shape")
+      parseApiError(
+        response.status,
+        body,
+        "APIレスポンスの形式が正しくありません"
+      )
     );
   } catch (err) {
     const message =
-      err instanceof Error ? err.message : "Network request failed";
+      err instanceof Error
+        ? err.message
+        : "ネットワークリクエストに失敗しました";
     return apiMessageFailure(createNetworkError(message));
   }
 }

@@ -33,7 +33,7 @@ export function SiteUserMenu() {
       <div className='SiteUserMenu flex items-center'>
         <div
           className='bg-muted ring-border size-9 animate-pulse rounded-full ring-1'
-          aria-label='Loading user menu'
+          aria-label='ユーザーメニューを読み込み中'
           role='status'
         />
       </div>
@@ -44,14 +44,14 @@ export function SiteUserMenu() {
     return (
       <div className='SiteUserMenu flex items-center'>
         <Button size='sm' className='rounded-full' asChild>
-          <Link href='/login'>Login</Link>
+          <Link href='/login'>ログイン</Link>
         </Button>
       </div>
     );
   }
 
   const profile = profileQuery.data;
-  const name = profile?.name ?? session.user.name ?? "User";
+  const name = profile?.name ?? session.user.name ?? "ユーザー";
   const email = profile?.email ?? session.user.email ?? "";
   const imageUrl = profile?.image ?? session.user.image;
 
@@ -72,7 +72,7 @@ export function SiteUserMenu() {
           variant='ghost'
           size='icon'
           className='SiteUserMenu size-9 rounded-full p-0'
-          aria-label='User menu'
+          aria-label='ユーザーメニュー'
         >
           <SiteUserAvatar
             key={imageUrl ?? "default"}
@@ -93,7 +93,7 @@ export function SiteUserMenu() {
             className='flex cursor-pointer items-center gap-2'
           >
             <User className='size-4' />
-            Profile
+            プロフィール
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
@@ -102,7 +102,7 @@ export function SiteUserMenu() {
             className='flex cursor-pointer items-center gap-2'
           >
             <Settings className='size-4' />
-            Settings
+            設定
           </Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
@@ -111,7 +111,7 @@ export function SiteUserMenu() {
           className='text-destructive focus:text-destructive cursor-pointer'
         >
           <LogOut className='size-4' />
-          Sign out
+          ログアウト
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

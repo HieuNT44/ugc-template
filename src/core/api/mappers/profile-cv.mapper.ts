@@ -33,7 +33,7 @@ function formatDuration(
   isCurrent?: boolean
 ): string {
   const startLabel = formatYearMonth(start);
-  const endLabel = isCurrent ? "Present" : formatYearMonth(end);
+  const endLabel = isCurrent ? "現在" : formatYearMonth(end);
   if (!startLabel && !endLabel) {
     return "";
   }
@@ -78,7 +78,7 @@ function mapEducations(
     institution: item.school_name,
     degree: [item.degree, item.field_of_study].filter(Boolean).join(" · "),
     startLabel: formatYearMonth(item.start_date),
-    endLabel: formatYearMonth(item.end_date) || "Present",
+    endLabel: formatYearMonth(item.end_date) || "現在",
   }));
 }
 

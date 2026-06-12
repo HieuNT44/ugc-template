@@ -9,7 +9,7 @@ const websiteSchema = z
       .max(500)
       .refine(
         (v) => !v || /^https?:\/\/[^\s]+$/.test(v),
-        "Enter a valid URL (e.g. https://example.com)"
+        "有効なURLを入力してください（例: https://example.com）"
       )
       .optional()
       .or(z.literal(""))
@@ -27,15 +27,15 @@ export const becomeCreatorApplicationSchema = z
     name: z
       .string()
       .transform((s) => s.trim())
-      .pipe(z.string().min(2, "Name is required").max(100, "Name is too long")),
+      .pipe(z.string().min(2, "氏名は必須です").max(100, "氏名が長すぎます")),
     bio: z
       .string()
       .transform((s) => s.trim())
       .pipe(
         z
           .string()
-          .min(20, "Bio must be at least 20 characters")
-          .max(500, "Bio is too long")
+          .min(20, "自己紹介は20文字以上で入力してください")
+          .max(500, "自己紹介が長すぎます")
       ),
     country: z
       .string()
@@ -48,12 +48,15 @@ export const becomeCreatorApplicationSchema = z
       .pipe(
         z
           .string()
-          .min(2, "Add at least one topic (comma-separated)")
+          .min(2, "トピックを1つ以上追加してください（カンマ区切り）")
           .refine(
             (v) => parseTopics(v).length >= 1,
-            "Add at least one topic (comma-separated)"
+            "トピックを1つ以上追加してください（カンマ区切り）"
           )
-          .refine((v) => parseTopics(v).length <= 8, "Maximum 8 topics allowed")
+          .refine(
+            (v) => parseTopics(v).length <= 8,
+            "トピックは最大8個までです"
+          )
       ),
     publishPosts: z.boolean(),
     publishBooks: z.boolean(),
@@ -64,17 +67,17 @@ export const becomeCreatorApplicationSchema = z
       .pipe(
         z
           .string()
-          .max(1000, "Motivation is too long")
+          .max(1000, "応募理由が長すぎます")
           .optional()
           .or(z.literal(""))
       ),
     portfolioUrl: websiteSchema,
     acceptTerms: z.boolean().refine((v) => v === true, {
-      message: "You must accept the Creator Terms to continue",
+      message: "続行するにはクリエイター規約への同意が必要です",
     }),
   })
   .refine((data) => data.publishPosts || data.publishBooks, {
-    message: "Select at least one content type (Posts or Books)",
+    message: "コンテンツ種別を1つ以上選択してください（投稿またはブック）",
     path: ["publishPosts"],
   });
 

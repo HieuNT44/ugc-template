@@ -1,16 +1,16 @@
 import type { PublicProfileTabId } from "../types/public-profile";
 
 export const PUBLIC_PROFILE_TAB_LABELS: Record<PublicProfileTabId, string> = {
-  posts: "Posts",
-  books: "Books",
-  reposts: "Reposts",
+  posts: "投稿",
+  books: "ブック",
+  reposts: "リポスト",
 };
 
 export const PUBLIC_PROFILE_EMPTY_MESSAGES: Record<PublicProfileTabId, string> =
   {
-    posts: "No published posts yet.",
-    books: "No books published yet.",
-    reposts: "No reposts yet.",
+    posts: "公開済み投稿はまだありません。",
+    books: "公開済みブックはまだありません。",
+    reposts: "リポストはまだありません。",
   };
 
 export const PUBLIC_PROFILE_TABS: PublicProfileTabId[] = [

@@ -37,7 +37,7 @@ export function MyContentsList({ contents }: MyContentsListProps) {
             No content yet. Start creating in Studio.
           </p>
           <Button className='mt-4 rounded-full' asChild>
-            <Link href='/studio/create'>Create content</Link>
+            <Link href='/studio/create'>コンテンツを作成</Link>
           </Button>
         </CardContent>
       </Card>
@@ -51,7 +51,7 @@ export function MyContentsList({ contents }: MyContentsListProps) {
           <CardHeader className='flex flex-row items-start justify-between gap-4'>
             <div className='min-w-0'>
               <CardTitle className='truncate text-base'>
-                {item.title || "Untitled"}
+                {item.title || "無題"}
               </CardTitle>
               <p className='text-muted-foreground mt-1 text-xs capitalize'>
                 {item.type} · Updated{" "}

@@ -5,7 +5,7 @@ import { Eye } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
 import type { Resolver } from "react-hook-form";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
@@ -59,8 +59,26 @@ export function ContentEditor() {
     },
   });
 
-  const editorMode = form.watch("editorMode");
-  const content = form.watch("content");
+  const editorMode = useWatch({
+    control: form.control,
+    name: "editorMode",
+  });
+  const content = useWatch({
+    control: form.control,
+    name: "content",
+  });
+  const previewTitle = useWatch({
+    control: form.control,
+    name: "title",
+  });
+  const previewField = useWatch({
+    control: form.control,
+    name: "field",
+  });
+  const previewTags = useWatch({
+    control: form.control,
+    name: "tags",
+  });
   const wordCount = countWords(content);
 
   const buildPayload = useCallback(() => {
@@ -130,9 +148,9 @@ export function ContentEditor() {
             name='title'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Title</FormLabel>
+                <FormLabel>タイトル</FormLabel>
                 <FormControl>
-                  <Input placeholder='Enter a compelling title' {...field} />
+                  <Input placeholder='魅力的なタイトルを入力' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -144,13 +162,13 @@ export function ContentEditor() {
             name='field'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Field</FormLabel>
+                <FormLabel>分野</FormLabel>
                 <FormControl>
                   <select
                     className='border-input bg-background h-9 w-full rounded-lg border px-3 text-sm'
                     value={field.value}
                     onChange={field.onChange}
-                    aria-label='Select field'
+                    aria-label='分野を選択'
                   >
                     <option value=''>Select a field</option>
                     {CONTENT_FIELD_OPTIONS.map((option) => (
@@ -211,7 +229,7 @@ export function ContentEditor() {
             name='content'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Content</FormLabel>
+                <FormLabel>本文</FormLabel>
                 <FormControl>
                   {editorMode === "wysiwyg" ? (
                     <WYSIWYGEditor
@@ -246,10 +264,10 @@ export function ContentEditor() {
               onClick={() => setPreviewOpen(true)}
             >
               <Eye className='size-4' />
-              Preview
+              プレビュー
             </Button>
             <Button type='submit' className='rounded-full'>
-              Continue to publish
+              公開へ進む
             </Button>
           </div>
         </form>
@@ -258,9 +276,9 @@ export function ContentEditor() {
       <PreviewModal
         open={previewOpen}
         onOpenChange={setPreviewOpen}
-        title={form.watch("title")}
-        field={form.watch("field")}
-        tags={form.watch("tags")}
+        title={previewTitle}
+        field={previewField}
+        tags={previewTags}
         content={content}
         editorMode={editorMode}
         coverPreviewUrl={store.coverPreviewUrl}

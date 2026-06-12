@@ -10,19 +10,19 @@ export function getApiAuthErrorMessage(error: ApiClientError): string {
 
   switch (error.code) {
     case API_ERROR_CODES.INVALID_CREDENTIALS:
-      return "Email or password is incorrect.";
+      return "メールアドレスまたはパスワードが正しくありません。";
     case API_ERROR_CODES.ACCOUNT_BANNED:
-      return "Your account has been suspended.";
+      return "アカウントは停止されています。";
     case API_ERROR_CODES.EMAIL_ALREADY_EXISTS:
-      return "An account with this email already exists.";
+      return "このメールアドレスのアカウントはすでに存在します。";
     case API_ERROR_CODES.RATE_LIMIT_EXCEEDED:
-      return "Too many attempts. Please try again later.";
+      return "試行回数が多すぎます。時間をおいて再度お試しください。";
     case API_ERROR_CODES.UNAUTHORIZED:
-      return "Session expired. Please sign in again.";
+      return "セッションの有効期限が切れました。再度ログインしてください。";
     case API_ERROR_CODES.NETWORK_ERROR:
-      return "Unable to reach the server. Check your connection and try again.";
+      return "サーバーに接続できません。接続状況を確認して再度お試しください。";
     default:
-      return "Something went wrong. Please try again.";
+      return "問題が発生しました。もう一度お試しください。";
   }
 }
 

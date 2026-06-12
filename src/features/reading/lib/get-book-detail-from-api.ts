@@ -191,7 +191,7 @@ export async function getBookDetailFromApi(
 
   return {
     id: detail.id,
-    title: detail.title?.trim() || "Untitled book",
+    title: detail.title?.trim() || "無題のブック",
     shortDescription: detail.short_description?.trim() || "",
     description: detail.description?.trim() || detail.excerpt?.trim() || "",
     excerpt: detail.excerpt?.trim() || "",

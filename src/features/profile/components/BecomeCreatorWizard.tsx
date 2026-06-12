@@ -42,10 +42,10 @@ import {
 } from "../validations";
 
 const STEPS = [
-  { id: "welcome", title: "Welcome" },
-  { id: "profile", title: "Creator profile" },
-  { id: "intent", title: "Publishing" },
-  { id: "review", title: "Review" },
+  { id: "welcome", title: "ようこそ" },
+  { id: "profile", title: "クリエイタープロフィール" },
+  { id: "intent", title: "公開設定" },
+  { id: "review", title: "審査" },
 ] as const;
 
 interface BecomeCreatorWizardProps {
@@ -157,7 +157,7 @@ export function BecomeCreatorWizard({
           if (!sessionResult.ok) {
             setServerError(
               sessionResult.error ??
-                "Your account was upgraded, but the session could not be refreshed. Please sign in again."
+                "アカウントはアップグレードされましたが、セッションを更新できませんでした。再度ログインしてください。"
             );
             return;
           }
@@ -179,7 +179,7 @@ export function BecomeCreatorWizard({
         });
       }
     } catch {
-      setServerError("Something went wrong. Please try again.");
+      setServerError("問題が発生しました。もう一度お試しください。");
     } finally {
       setIsSubmitting(false);
     }
@@ -205,7 +205,7 @@ export function BecomeCreatorWizard({
               </Link>
             </Button>
             <Button variant='outline' className='rounded-full' asChild>
-              <Link href='/profile'>Back to profile</Link>
+              <Link href='/profile'>プロフィールに戻る</Link>
             </Button>
           </div>
         </CardContent>
@@ -257,7 +257,7 @@ export function BecomeCreatorWizard({
                     <FormItem>
                       <FormLabel>Display name</FormLabel>
                       <FormControl>
-                        <Input placeholder='Your name' {...field} />
+                        <Input placeholder='氏名' {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -272,7 +272,7 @@ export function BecomeCreatorWizard({
                       <FormLabel>Creator bio</FormLabel>
                       <FormControl>
                         <Textarea
-                          placeholder='Tell readers what you write about and why they should follow you'
+                          placeholder='何を書いているのか、なぜフォローすべきかを読者に伝えましょう'
                           rows={4}
                           {...field}
                         />
@@ -290,10 +290,10 @@ export function BecomeCreatorWizard({
                   name='topics'
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Topics</FormLabel>
+                      <FormLabel>トピック</FormLabel>
                       <FormControl>
                         <Input
-                          placeholder='e.g. Next.js, Product, Writing'
+                          placeholder='例：Next.js、プロダクト、執筆'
                           {...field}
                         />
                       </FormControl>
@@ -313,7 +313,7 @@ export function BecomeCreatorWizard({
                       <FormItem>
                         <FormLabel>Country</FormLabel>
                         <FormControl>
-                          <Input placeholder='Optional' {...field} />
+                          <Input placeholder='任意' {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -325,7 +325,7 @@ export function BecomeCreatorWizard({
                     name='website'
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Website</FormLabel>
+                        <FormLabel>ウェブサイト</FormLabel>
                         <FormControl>
                           <Input
                             placeholder='https://yoursite.com'
@@ -357,10 +357,10 @@ export function BecomeCreatorWizard({
                             className='border-input size-4 rounded border'
                             checked={field.value}
                             onChange={field.onChange}
-                            aria-label='Posts'
+                            aria-label='投稿'
                           />
                         </FormControl>
-                        <FormLabel className='font-normal'>Posts</FormLabel>
+                        <FormLabel className='font-normal'>投稿</FormLabel>
                       </FormItem>
                     )}
                   />
@@ -375,10 +375,10 @@ export function BecomeCreatorWizard({
                             className='border-input size-4 rounded border'
                             checked={field.value}
                             onChange={field.onChange}
-                            aria-label='Books'
+                            aria-label='ブック'
                           />
                         </FormControl>
-                        <FormLabel className='font-normal'>Books</FormLabel>
+                        <FormLabel className='font-normal'>ブック</FormLabel>
                       </FormItem>
                     )}
                   />
@@ -393,11 +393,11 @@ export function BecomeCreatorWizard({
                             className='border-input size-4 rounded border'
                             checked={field.value}
                             onChange={field.onChange}
-                            aria-label='Paid content'
+                            aria-label='有料コンテンツ'
                           />
                         </FormControl>
                         <FormLabel className='font-normal'>
-                          Paid content
+                          有料コンテンツ
                         </FormLabel>
                       </FormItem>
                     )}
@@ -415,7 +415,7 @@ export function BecomeCreatorWizard({
                       <FormLabel>Why RealRead? (optional)</FormLabel>
                       <FormControl>
                         <Textarea
-                          placeholder='What do you want to create, and who is it for?'
+                          placeholder='何を、誰のために作りたいですか？'
                           rows={4}
                           {...field}
                         />
@@ -449,24 +449,24 @@ export function BecomeCreatorWizard({
             {step === 3 ? (
               <div className='space-y-4'>
                 <div className='border-border bg-muted/30 space-y-3 rounded-lg border p-4 text-sm'>
-                  <SummaryRow label='Name' value={values.name} />
-                  <SummaryRow label='Bio' value={values.bio} />
+                  <SummaryRow label='氏名' value={values.name} />
+                  <SummaryRow label='自己紹介' value={values.bio} />
                   <SummaryRow
-                    label='Topics'
+                    label='トピック'
                     value={parseTopicsFromInput(values.topics).join(", ")}
                   />
                   <SummaryRow
-                    label='Content'
+                    label='本文'
                     value={[
-                      values.publishPosts ? "Posts" : null,
-                      values.publishBooks ? "Books" : null,
-                      values.publishPaid ? "Paid" : null,
+                      values.publishPosts ? "投稿" : null,
+                      values.publishBooks ? "ブック" : null,
+                      values.publishPaid ? "有料" : null,
                     ]
                       .filter(Boolean)
                       .join(", ")}
                   />
                   <SummaryRow
-                    label='Motivation'
+                    label='応募理由'
                     value={values.motivation ?? ""}
                   />
                 </div>
@@ -484,7 +484,7 @@ export function BecomeCreatorWizard({
                           className='border-input mt-0.5 size-4 rounded border'
                           checked={field.value}
                           onChange={field.onChange}
-                          aria-label='Accept Creator Terms'
+                          aria-label='クリエイター規約に同意'
                         />
                       </FormControl>
                       <div className='space-y-1'>
@@ -509,17 +509,17 @@ export function BecomeCreatorWizard({
                   onClick={goBack}
                   disabled={isSubmitting}
                 >
-                  Back
+                  戻る
                 </Button>
               ) : (
                 <Button type='button' variant='ghost' asChild>
-                  <Link href='/profile'>Cancel</Link>
+                  <Link href='/profile'>キャンセル</Link>
                 </Button>
               )}
 
               {step < 3 ? (
                 <Button type='button' className='rounded-full' onClick={goNext}>
-                  Continue
+                  続行
                 </Button>
               ) : (
                 <Button
@@ -527,7 +527,7 @@ export function BecomeCreatorWizard({
                   className='rounded-full'
                   disabled={isSubmitting}
                 >
-                  {isSubmitting ? "Submitting..." : "Submit application"}
+                  {isSubmitting ? "送信中..." : "申請を送信"}
                 </Button>
               )}
             </div>

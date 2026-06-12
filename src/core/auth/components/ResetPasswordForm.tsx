@@ -62,7 +62,7 @@ export function ResetPasswordForm({
       const message =
         fieldErrors.password?.[0] ??
         fieldErrors.confirmPassword?.[0] ??
-        "Invalid password data";
+        "パスワード情報が正しくありません";
       formState.setError(message);
       return;
     }
@@ -80,7 +80,8 @@ export function ResetPasswordForm({
     }
 
     formState.setSuccess(
-      apiResult.message ?? "Password updated. Redirecting to sign in..."
+      apiResult.message ??
+        "パスワードを更新しました。ログイン画面へ移動します..."
     );
     onSuccess?.();
     setTimeout(() => {
@@ -134,7 +135,7 @@ export function ResetPasswordForm({
               name='password'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>New password</FormLabel>
+                  <FormLabel>新しいパスワード</FormLabel>
                   <FormControl>
                     <PasswordInput {...field} />
                   </FormControl>
@@ -148,7 +149,7 @@ export function ResetPasswordForm({
               name='confirmPassword'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Confirm new password</FormLabel>
+                  <FormLabel>新しいパスワード確認</FormLabel>
                   <FormControl>
                     <PasswordInput {...field} />
                   </FormControl>
@@ -162,7 +163,7 @@ export function ResetPasswordForm({
               className='w-full'
               disabled={formState.isLoading || !!formState.success}
             >
-              {formState.isLoading ? "Updating..." : "Reset password"}
+              {formState.isLoading ? "更新中..." : "パスワードをリセット"}
             </Button>
 
             <Button variant='link' className='px-0' asChild>

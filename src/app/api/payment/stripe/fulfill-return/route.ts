@@ -11,7 +11,7 @@ export async function POST(request: Request) {
     const userId = session?.user?.id;
 
     if (!userId) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      return NextResponse.json({ error: "認証が必要です" }, { status: 401 });
     }
 
     const body = await request.json();
@@ -19,7 +19,10 @@ export async function POST(request: Request) {
 
     if (!parsed.success) {
       return NextResponse.json(
-        { error: parsed.error.issues[0]?.message ?? "Invalid request" },
+        {
+          error:
+            parsed.error.issues[0]?.message ?? "リクエストが正しくありません",
+        },
         { status: 400 }
       );
     }
@@ -36,7 +39,7 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error("Stripe fulfill-return POST error:", error);
     return NextResponse.json(
-      { error: "Failed to fulfill purchase" },
+      { error: "購入を完了できませんでした" },
       { status: 500 }
     );
   }

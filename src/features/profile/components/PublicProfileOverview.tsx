@@ -34,7 +34,9 @@ export function PublicProfileOverview({
   featuredPosts = [],
 }: PublicProfileOverviewProps) {
   const initials = getAvatarInitials(profile.name ?? profile.username);
-  const bioText = profile.bio?.trim() ? profile.bio : "No bio yet";
+  const bioText = profile.bio?.trim()
+    ? profile.bio
+    : "自己紹介はまだありません";
 
   return (
     <div className='PublicProfileOverview'>

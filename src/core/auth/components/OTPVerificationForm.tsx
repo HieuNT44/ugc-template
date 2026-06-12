@@ -72,7 +72,7 @@ export function OTPVerificationForm({
   const onSubmit = async (_values: OtpFormData) => {
     formState.startSubmit();
     formState.setError(
-      "OTP verification is not enabled yet. Use email verification from Firebase instead."
+      "OTP認証はまだ有効ではありません。代わりにFirebaseのメール認証を使用してください。"
     );
     void onSuccess;
   };
@@ -159,7 +159,7 @@ export function OTPVerificationForm({
                 otpValue.length !== OTP_LENGTH
               }
             >
-              {formState.isLoading ? "Verifying..." : "Verify"}
+              {formState.isLoading ? "確認中..." : "確認"}
             </Button>
           </div>
 

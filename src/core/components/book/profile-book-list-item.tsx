@@ -87,7 +87,7 @@ export function ProfileBookListItem({ book }: ProfileBookListItemProps) {
                 variant='ghost'
                 size='icon'
                 className='text-muted-foreground size-8'
-                aria-label='More options'
+                aria-label='その他の操作'
               >
                 <MoreHorizontal className='size-4' />
               </Button>

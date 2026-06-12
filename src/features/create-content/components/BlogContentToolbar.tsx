@@ -18,13 +18,13 @@ import { Button } from "@/components/ui/button";
 type EditorViewMode = "edit" | "split" | "preview";
 
 const CONTENT_ACTIONS = [
-  { id: "image", label: "Insert image", icon: ImageIcon },
-  { id: "emoji", label: "Insert emoji", icon: Smile },
-  { id: "search", label: "Search in content", icon: Search },
-  { id: "spellcheck", label: "Spellcheck", icon: SpellCheck },
-  { id: "help", label: "Help", icon: CircleHelp },
-  { id: "tips", label: "Writing tips", icon: Lightbulb },
-  { id: "template", label: "Content template", icon: FileText },
+  { id: "image", label: "画像を挿入", icon: ImageIcon },
+  { id: "emoji", label: "絵文字を挿入", icon: Smile },
+  { id: "search", label: "本文内を検索", icon: Search },
+  { id: "spellcheck", label: "スペルチェック", icon: SpellCheck },
+  { id: "help", label: "ヘルプ", icon: CircleHelp },
+  { id: "tips", label: "執筆のヒント", icon: Lightbulb },
+  { id: "template", label: "コンテンツテンプレート", icon: FileText },
 ] as const;
 
 const VIEW_MODES: {
@@ -32,9 +32,9 @@ const VIEW_MODES: {
   label: string;
   icon: typeof Pencil;
 }[] = [
-  { id: "edit", label: "Edit", icon: Pencil },
-  { id: "split", label: "Split view", icon: Columns2 },
-  { id: "preview", label: "Preview", icon: Eye },
+  { id: "edit", label: "編集", icon: Pencil },
+  { id: "split", label: "分割表示", icon: Columns2 },
+  { id: "preview", label: "プレビュー", icon: Eye },
 ];
 
 const TOOLBAR_ICON_CLASS = "size-5";
@@ -54,7 +54,7 @@ export function BlogContentToolbar({
   return (
     <div className='BlogContentToolbar border-border bg-muted/20 flex items-center justify-between border-b px-3 py-2'>
       <div className='flex min-w-0 items-center gap-1'>
-        <span className='text-sm font-medium'>Content</span>
+        <span className='text-sm font-medium'>本文</span>
 
         <div className='ml-2 flex items-center gap-0.5'>
           {CONTENT_ACTIONS.map(({ id, label, icon: Icon }) => (

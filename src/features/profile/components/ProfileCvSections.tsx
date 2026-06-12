@@ -164,7 +164,7 @@ function ProfileSkillsSection({
   compact?: boolean;
 }) {
   return (
-    <SectionShell title='Skills' icon={Sparkles} compact={compact}>
+    <SectionShell title='スキル' icon={Sparkles} compact={compact}>
       <ul className='text-muted-foreground space-y-1.5 text-sm leading-relaxed'>
         {skills.map((skill) => (
           <li key={skill.id} className='flex gap-2'>
@@ -195,7 +195,7 @@ function ProfileWorkExperienceSection({
   compact?: boolean;
 }) {
   return (
-    <SectionShell title='Work Experiences' icon={Briefcase} compact={compact}>
+    <SectionShell title='職歴' icon={Briefcase} compact={compact}>
       <ul className='flex flex-col gap-4'>
         {experiences.map((experience) => (
           <li
@@ -263,7 +263,7 @@ function ProfileEducationSection({
   compact?: boolean;
 }) {
   return (
-    <SectionShell title='Education' icon={GraduationCap} compact={compact}>
+    <SectionShell title='学歴' icon={GraduationCap} compact={compact}>
       <ul className='flex flex-col gap-3'>
         {education.map((item) => (
           <li key={item.id} className='space-y-1'>
@@ -287,7 +287,7 @@ function ProfileCertificationsSection({
   compact?: boolean;
 }) {
   return (
-    <SectionShell title='Certifications' icon={Medal} compact={compact}>
+    <SectionShell title='資格' icon={Medal} compact={compact}>
       <ul className='flex flex-col gap-4'>
         {groups.map((group) => (
           <li key={group.id} className='flex flex-col gap-2'>
@@ -328,7 +328,7 @@ function ProfileAccomplishmentsSection({
   compact?: boolean;
 }) {
   return (
-    <SectionShell title='Accomplishments' icon={Award} compact={compact}>
+    <SectionShell title='実績' icon={Award} compact={compact}>
       <ul className='flex flex-col gap-3'>
         {accomplishments.map((item) => (
           <li key={item.id} className='space-y-1'>

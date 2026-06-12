@@ -94,7 +94,7 @@ export function SiteFooter() {
                 role
               );
 
-              if (group.title === "Account" && isAuthenticated) {
+              if (group.title === "アカウント" && isAuthenticated) {
                 return null;
               }
 

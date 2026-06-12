@@ -71,7 +71,7 @@ export async function createUserProfile(input: {
 
   const created = await getUserById(input.uid);
   if (!created) {
-    throw new Error("Failed to create user profile");
+    throw new Error("ユーザープロフィールを作成できませんでした");
   }
   return created;
 }
@@ -123,7 +123,7 @@ export async function updateUserProfile(
 
   const updated = await getUserById(uid);
   if (!updated) {
-    throw new Error("Failed to update user profile");
+    throw new Error("ユーザープロフィールを更新できませんでした");
   }
   return updated;
 }

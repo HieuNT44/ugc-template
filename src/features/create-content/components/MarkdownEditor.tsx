@@ -20,12 +20,13 @@ export function MarkdownEditor({
   value,
   onChange,
   className,
-  placeholder = "Write in Markdown…",
+  placeholder = "Markdownで書く…",
   fillHeight = false,
 }: MarkdownEditorProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const viewRef = useRef<EditorView | null>(null);
   const onChangeRef = useRef(onChange);
+  const initialValueRef = useRef(value);
 
   useEffect(() => {
     onChangeRef.current = onChange;
@@ -37,7 +38,7 @@ export function MarkdownEditor({
     }
 
     const state = EditorState.create({
-      doc: value,
+      doc: initialValueRef.current,
       extensions: [
         markdown(),
         EditorView.lineWrapping,

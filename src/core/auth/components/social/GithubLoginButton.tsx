@@ -22,7 +22,7 @@ export function GithubLoginButton({
       size='icon'
       className={cn("rounded-full", className)}
       disabled={disabled}
-      aria-label='Continue with GitHub'
+      aria-label='GitHubで続行'
     >
       <GithubIcon />
     </Button>

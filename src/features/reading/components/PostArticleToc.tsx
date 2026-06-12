@@ -59,11 +59,9 @@ export function PostArticleToc({ items, className }: PostArticleTocProps) {
   return (
     <nav
       className={cn("PostArticleToc sticky top-20 self-start", className)}
-      aria-label='Table of contents'
+      aria-label='目次'
     >
-      <h2 className='text-foreground mb-4 text-base font-bold'>
-        Table of contents
-      </h2>
+      <h2 className='text-foreground mb-4 text-base font-bold'>目次</h2>
       <PostArticleTocList
         items={items}
         activeId={activeId}

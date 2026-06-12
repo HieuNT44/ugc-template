@@ -69,7 +69,7 @@ export async function submitAndApproveCreatorApplication(
   input: SubmitCreatorApplicationInput
 ): Promise<void> {
   if (!isFirebaseAdminConfigured()) {
-    throw new Error("Firebase Admin is not configured");
+    throw new Error("Firebase Adminが設定されていません");
   }
 
   const db = getAdminDb();
@@ -82,15 +82,15 @@ export async function submitAndApproveCreatorApplication(
   await db.runTransaction(async (transaction) => {
     const userSnap = await transaction.get(userRef);
     if (!userSnap.exists) {
-      throw new Error("User profile not found");
+      throw new Error("ユーザープロフィールが見つかりません");
     }
 
     const currentRole = userSnap.data()?.role as UserRole | undefined;
     if (currentRole === "creator") {
-      throw new Error("You are already a Creator");
+      throw new Error("すでにクリエイターです");
     }
     if (currentRole !== "reader") {
-      throw new Error("Only Reader accounts can apply to become a Creator");
+      throw new Error("読者アカウントのみクリエイター申請ができます");
     }
 
     transaction.set(applicationRef, {

@@ -20,7 +20,7 @@ export function BlogEditorHeader({
   onPublishSettings,
   isSavingDraft = false,
   showSaveDraft = true,
-  publishSettingsLabel = "Publish settings",
+  publishSettingsLabel = "公開設定",
 }: BlogEditorHeaderProps) {
   return (
     <header className='BlogEditorHeader border-border bg-background sticky top-14 z-40 border-b'>
@@ -34,7 +34,7 @@ export function BlogEditorHeader({
           >
             <Link href='/studio'>
               <ChevronLeft className='size-4' />
-              Studio
+              スタジオ
             </Link>
           </Button>
         </div>
@@ -48,7 +48,7 @@ export function BlogEditorHeader({
             onClick={onPreview}
             disabled={isSavingDraft}
           >
-            Preview
+            プレビュー
           </Button>
           {showSaveDraft ? (
             <Button
@@ -59,7 +59,7 @@ export function BlogEditorHeader({
               onClick={onSaveDraft}
               disabled={isSavingDraft}
             >
-              {isSavingDraft ? "Saving..." : "Save draft"}
+              {isSavingDraft ? "保存中..." : "下書きを保存"}
             </Button>
           ) : null}
           <Button

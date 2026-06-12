@@ -16,7 +16,7 @@ export function VerifiedExpertBadge({ fields }: VerifiedExpertBadgeProps) {
   const label =
     fields.length > 0
       ? `Verified expert in ${fields.join(", ")}`
-      : "Verified expert";
+      : "認証済みエキスパート";
 
   return (
     <Tooltip>
@@ -29,7 +29,7 @@ export function VerifiedExpertBadge({ fields }: VerifiedExpertBadgeProps) {
         </span>
       </TooltipTrigger>
       <TooltipContent side='top' className='max-w-xs'>
-        <p className='text-sm font-medium'>Verified expert</p>
+        <p className='text-sm font-medium'>認証済みエキスパート</p>
         {fields.length > 0 ? (
           <p className='text-muted-foreground mt-1 text-xs'>
             {fields.join(" · ")}

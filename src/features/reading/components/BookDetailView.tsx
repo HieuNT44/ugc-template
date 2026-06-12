@@ -275,7 +275,7 @@ function BookOverview({
         <div className='mb-6 flex flex-wrap items-end justify-between gap-4'>
           <div>
             <p className='mb-2 font-mono text-xs tracking-[0.18em] text-[#2A2A2A]/55 uppercase'>
-              Table of contents
+              目次
             </p>
             <h2 className='font-serif text-3xl font-bold text-[#2A2A2A]'>
               Chapters
@@ -419,8 +419,8 @@ export function BookDetailView({
             )}
           >
             {purchaseSuccess
-              ? "Purchase complete. You now have full access to this book."
-              : "Checkout was canceled. You can continue reading the preview."}
+              ? "購入が完了しました。このブックをすべて読めます。"
+              : "チェックアウトはキャンセルされました。プレビューを引き続き読めます。"}
           </div>
         </div>
       ) : null}

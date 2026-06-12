@@ -8,7 +8,7 @@ export default async function BookEditPage() {
     <CreateContentShell
       step={2}
       totalSteps={3}
-      title='Write your book'
+      title='ブックを書く'
       backHref='/studio/create'
       surface='book'
     >

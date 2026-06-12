@@ -91,7 +91,7 @@ export function FeedSidebar({
       <div className='sticky top-20 space-y-8'>
         <section>
           <h2 className='text-foreground mb-4 text-sm font-semibold tracking-wide uppercase'>
-            Topics for you
+            おすすめトピック
           </h2>
           <div className='flex flex-wrap gap-2'>
             {trendingTags.map((topic) => (
@@ -108,7 +108,7 @@ export function FeedSidebar({
 
         <section>
           <h2 className='text-foreground mb-4 text-sm font-semibold tracking-wide uppercase'>
-            Top Committers
+            トップ投稿者
           </h2>
           <ul className='space-y-4'>
             {topCommitters.map((committer, index) => (
@@ -136,9 +136,9 @@ export function FeedSidebar({
           </ul>
         </section>
 
-        <FeedSidebarRankingSection title='Top Books' items={latestBooks} />
+        <FeedSidebarRankingSection title='人気ブック' items={latestBooks} />
 
-        <FeedSidebarRankingSection title='Top Reports' items={latestReports} />
+        <FeedSidebarRankingSection title='人気レポート' items={latestReports} />
       </div>
     </aside>
   );

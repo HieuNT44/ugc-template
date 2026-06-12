@@ -14,8 +14,8 @@ export default async function VerifyEmailPage({
   return (
     <>
       <AuthPageHeader
-        title='Verify email'
-        description='Complete verification using the link from your inbox.'
+        title='メールアドレスを確認'
+        description='受信トレイのリンクから確認を完了してください。'
       />
       <AuthFormCard>
         <Alert>

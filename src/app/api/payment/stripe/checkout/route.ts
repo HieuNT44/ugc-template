@@ -17,7 +17,7 @@ export async function POST(request: Request) {
     const accessToken = session?.accessToken;
 
     if (!userId || !accessToken) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      return NextResponse.json({ error: "認証が必要です" }, { status: 401 });
     }
 
     const body = await request.json();
@@ -25,7 +25,10 @@ export async function POST(request: Request) {
 
     if (!parsed.success) {
       return NextResponse.json(
-        { error: parsed.error.issues[0]?.message ?? "Invalid request" },
+        {
+          error:
+            parsed.error.issues[0]?.message ?? "リクエストが正しくありません",
+        },
         { status: 400 }
       );
     }
@@ -37,29 +40,41 @@ export async function POST(request: Request) {
       : await getContentForCheckout(postId, accessToken);
 
     if (!mockArticle && !apiContent) {
-      return NextResponse.json({ error: "Post not found" }, { status: 404 });
+      return NextResponse.json(
+        { error: "投稿が見つかりません" },
+        { status: 404 }
+      );
     }
 
     if (apiContent?.alreadyPurchased) {
-      return NextResponse.json({ error: "Already purchased" }, { status: 409 });
+      return NextResponse.json({ error: "購入済みです" }, { status: 409 });
     }
 
-    const title = mockArticle?.title ?? apiContent?.title ?? "Untitled";
+    const title = mockArticle?.title ?? apiContent?.title ?? "無題";
     const currency = apiContent?.currency ?? "USD";
     const listedPrice = mockArticle
       ? (getPaidLabel(mockArticle.labels)?.amountCents ?? null)
       : (apiContent?.price ?? null);
 
     if (mockArticle && !isPaidPost(mockArticle.labels)) {
-      return NextResponse.json({ error: "Post is not paid" }, { status: 400 });
+      return NextResponse.json(
+        { error: "この投稿は有料ではありません" },
+        { status: 400 }
+      );
     }
 
     if (mockArticle && mockArticle.slug !== postSlug) {
-      return NextResponse.json({ error: "Invalid post slug" }, { status: 400 });
+      return NextResponse.json(
+        { error: "投稿スラッグが正しくありません" },
+        { status: 400 }
+      );
     }
 
     if (listedPrice == null || listedPrice <= 0) {
-      return NextResponse.json({ error: "Post is not paid" }, { status: 400 });
+      return NextResponse.json(
+        { error: "この投稿は有料ではありません" },
+        { status: 400 }
+      );
     }
 
     const stripeAmount = toStripeUnitAmount(listedPrice, currency);
@@ -91,7 +106,7 @@ export async function POST(request: Request) {
   } catch (err) {
     console.error("Stripe post checkout POST error:", err);
     return NextResponse.json(
-      { error: "Failed to create checkout session" },
+      { error: "チェックアウトセッションを作成できませんでした" },
       { status: 500 }
     );
   }

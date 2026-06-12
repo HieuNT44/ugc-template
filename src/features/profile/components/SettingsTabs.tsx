@@ -24,14 +24,14 @@ import { PrivacySettings } from "./PrivacySettings";
 import { SecuritySettings } from "./SecuritySettings";
 
 const TAB_LABELS: Record<SettingsTabId, string> = {
-  edit: "Edit profile",
-  avatar: "Avatar",
-  password: "Password",
-  security: "Security",
-  notifications: "Notifications",
-  privacy: "Privacy",
-  appearance: "Appearance",
-  delete: "Delete account",
+  edit: "プロフィールを編集",
+  avatar: "アバター",
+  password: "パスワード",
+  security: "セキュリティ",
+  notifications: "通知",
+  privacy: "プライバシー",
+  appearance: "外観",
+  delete: "アカウント削除",
 };
 
 const DEFAULT_SETTINGS: AppUserSettings = {

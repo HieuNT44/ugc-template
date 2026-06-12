@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 
 const UNSAVED_CHANGES_MESSAGE =
-  "Changes you made may not be saved. Leave this page?";
+  "変更が保存されない可能性があります。このページを離れますか？";
 
 function shouldInterceptNavigation(anchor: HTMLAnchorElement): boolean {
   if (anchor.target === "_blank") {

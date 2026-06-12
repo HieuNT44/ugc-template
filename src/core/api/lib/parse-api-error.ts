@@ -19,7 +19,7 @@ function isApiErrorResponse(value: unknown): value is ApiErrorResponse {
 export function parseApiError(
   status: number,
   body: unknown,
-  fallbackMessage = "Request failed"
+  fallbackMessage = "リクエストに失敗しました"
 ): ApiClientError {
   if (isApiErrorResponse(body)) {
     return {
@@ -46,7 +46,7 @@ export function parseApiError(
 }
 
 export function createNetworkError(
-  message = "Network request failed"
+  message = "ネットワークリクエストに失敗しました"
 ): ApiClientError {
   return {
     status: 0,

@@ -11,8 +11,8 @@ export default function ResetPasswordPage() {
   return (
     <>
       <AuthPageHeader
-        title='Reset password'
-        description='Choose a new password for your account.'
+        title='パスワードをリセット'
+        description='アカウント用の新しいパスワードを設定してください。'
       />
       <Suspense
         fallback={<div className='bg-muted h-48 animate-pulse rounded-lg' />}

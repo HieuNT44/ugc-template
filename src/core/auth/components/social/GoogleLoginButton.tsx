@@ -31,7 +31,7 @@ export function GoogleLoginButton({
   const handleSuccess = async (credentialResponse: CredentialResponse) => {
     const idToken = credentialResponse.credential;
     if (!idToken) {
-      onError?.("Google sign-in failed");
+      onError?.("Googleログインに失敗しました");
       return;
     }
 
@@ -47,14 +47,14 @@ export function GoogleLoginButton({
 
     const sessionResult = await establishLaravelSession(actionResult);
     if (!sessionResult.ok) {
-      onError?.(sessionResult.error ?? "Google sign-in failed");
+      onError?.(sessionResult.error ?? "Googleログインに失敗しました");
       return;
     }
 
     await update();
 
     if (!apiResult.ok) {
-      onError?.("Google sign-in failed");
+      onError?.("Googleログインに失敗しました");
       return;
     }
 
@@ -85,7 +85,7 @@ export function GoogleLoginButton({
         theme='outline'
         size='large'
         onSuccess={handleSuccess}
-        onError={() => onError?.("Google sign-in failed")}
+        onError={() => onError?.("Googleログインに失敗しました")}
       />
     </div>
   );

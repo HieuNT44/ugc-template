@@ -8,7 +8,7 @@ interface FallbackBookCoverProps {
 /** Portrait book cover placeholder for RealRead when no cover URL is available. */
 export function FallbackBookCover({
   className,
-  title = "Book cover placeholder",
+  title = "ブックカバーのプレースホルダー",
 }: FallbackBookCoverProps) {
   return (
     <div

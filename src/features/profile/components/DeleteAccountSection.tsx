@@ -34,7 +34,7 @@ export function DeleteAccountSection() {
   return (
     <Card className='DeleteAccountSection border-destructive/30'>
       <CardHeader>
-        <CardTitle className='text-destructive'>Delete account</CardTitle>
+        <CardTitle className='text-destructive'>アカウント削除</CardTitle>
         <CardDescription>
           Permanently delete your account and all associated data. This action
           cannot be undone.
@@ -52,7 +52,7 @@ export function DeleteAccountSection() {
           disabled={isLoading}
           onClick={handleDelete}
         >
-          {isLoading ? "Processing..." : "Delete my account"}
+          {isLoading ? "処理中..." : "アカウントを削除"}
         </Button>
       </CardContent>
     </Card>

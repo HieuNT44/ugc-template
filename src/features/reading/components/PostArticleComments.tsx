@@ -38,7 +38,7 @@ const commentStatClass =
 
 function CommentReplyInput({
   currentReader,
-  placeholder = "Write a reply…",
+  placeholder = "返信を書く…",
 }: {
   currentReader: CurrentReader;
   placeholder?: string;
@@ -63,7 +63,7 @@ function CommentReplyInput({
         placeholder={placeholder}
         rows={2}
         className='border-border bg-muted/50 min-h-[72px] resize-none text-sm'
-        aria-label='Write a reply'
+        aria-label='返信を書く'
       />
     </div>
   );
@@ -124,7 +124,7 @@ function CommentItem({
             <button
               type='button'
               className={commentStatClass}
-              aria-label='Like comment'
+              aria-label='コメントにいいね'
             >
               <Heart className='size-4' aria-hidden />
               <span>{formatCompactCount(comment.clapCount)}</span>
@@ -132,15 +132,15 @@ function CommentItem({
             <button
               type='button'
               className={commentStatClass}
-              aria-label='Reply'
+              aria-label='返信'
             >
               <MessageCircle className='size-4' aria-hidden />
-              <span>Reply</span>
+              <span>返信</span>
             </button>
             <button
               type='button'
               className='text-muted-foreground hover:text-foreground ml-auto'
-              aria-label='More options'
+              aria-label='その他の操作'
             >
               <MoreHorizontal className='size-4' />
             </button>
@@ -188,7 +188,7 @@ function CommentItem({
 
 export function PostArticleComments({
   postId,
-  currentReader = { name: "Reader" },
+  currentReader = { name: "読者" },
   useApiEngagement = false,
 }: PostArticleCommentsProps) {
   const { commentCount, setCommentCount } = usePostArticleEngagement();
@@ -274,10 +274,10 @@ export function PostArticleComments({
             <Textarea
               value={draft}
               onChange={(event) => setDraft(event.target.value)}
-              placeholder='What are your thoughts?'
+              placeholder='あなたの考えを教えてください'
               rows={3}
               className='border-border bg-muted/50 min-h-[88px] resize-none text-base'
-              aria-label='Write a response'
+              aria-label='返信を書く'
             />
             <div className='flex justify-end'>
               <Button

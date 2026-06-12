@@ -18,7 +18,7 @@ const websiteSchema = z
       .max(API_VALIDATION_LIMITS.urlMaxLength)
       .refine(
         (v) => !v || /^https?:\/\/[^\s]+$/.test(v),
-        "Enter a valid URL (e.g. https://example.com)"
+        "有効なURLを入力してください（例: https://example.com）"
       )
       .optional()
       .or(z.literal(""))
@@ -31,8 +31,8 @@ export const internalProfileSchema = z.object({
     .pipe(
       z
         .string()
-        .min(1, "Name is required")
-        .max(API_VALIDATION_LIMITS.fullNameMaxLength, "Name is too long")
+        .min(1, "氏名は必須です")
+        .max(API_VALIDATION_LIMITS.fullNameMaxLength, "氏名が長すぎます")
     ),
   location: optionalString(100),
   website: websiteSchema,
@@ -49,7 +49,7 @@ const skillsArraySchema = z
   .array(
     z
       .string()
-      .max(API_VALIDATION_LIMITS.skillItemMaxLength, "Skill is too long")
+      .max(API_VALIDATION_LIMITS.skillItemMaxLength, "スキル名が長すぎます")
   )
   .max(
     API_VALIDATION_LIMITS.skillsMaxCount,
@@ -72,7 +72,7 @@ export const settingsProfileSchema = z.object({
     .pipe(
       z
         .string()
-        .max(API_VALIDATION_LIMITS.fullNameMaxLength, "Name is too long")
+        .max(API_VALIDATION_LIMITS.fullNameMaxLength, "氏名が長すぎます")
     ),
   location: optionalString(100),
   website: websiteSchema,
@@ -82,10 +82,10 @@ export const settingsProfileSchema = z.object({
     .pipe(
       z
         .string()
-        .max(API_VALIDATION_LIMITS.usernameMaxLength, "Username is too long")
+        .max(API_VALIDATION_LIMITS.usernameMaxLength, "ユーザー名が長すぎます")
         .regex(
           /^[a-zA-Z0-9_-]*$/,
-          "Username may only contain letters, numbers, dashes and underscores"
+          "ユーザー名には英数字、ハイフン、アンダースコアのみ使用できます"
         )
         .optional()
         .or(z.literal(""))
@@ -109,10 +109,10 @@ export const communityProfileSchema = internalProfileSchema.extend({
     .pipe(
       z
         .string()
-        .max(API_VALIDATION_LIMITS.usernameMaxLength, "Username is too long")
+        .max(API_VALIDATION_LIMITS.usernameMaxLength, "ユーザー名が長すぎます")
         .regex(
           /^[a-zA-Z0-9_-]*$/,
-          "Username may only contain letters, numbers, dashes and underscores"
+          "ユーザー名には英数字、ハイフン、アンダースコアのみ使用できます"
         )
         .optional()
         .or(z.literal(""))

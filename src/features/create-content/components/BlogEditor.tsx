@@ -303,9 +303,7 @@ export function BlogEditor({ initialDocument }: BlogEditorProps = {}) {
         onPublishSettings={() => void goToPublish()}
         isSavingDraft={isSavingDraft}
         showSaveDraft={!isEditingPublished}
-        publishSettingsLabel={
-          isEditingPublished ? "Update settings" : "Publish settings"
-        }
+        publishSettingsLabel={isEditingPublished ? "設定を更新" : "公開設定"}
       />
 
       <Form {...form}>
@@ -330,9 +328,9 @@ export function BlogEditor({ initialDocument }: BlogEditorProps = {}) {
                   <FormControl>
                     <input
                       {...field}
-                      placeholder='Enter a title'
+                      placeholder='タイトルを入力'
                       className='placeholder:text-muted-foreground/70 w-full border-0 bg-transparent font-serif text-2xl font-bold outline-none lg:text-3xl'
-                      aria-label='Title'
+                      aria-label='タイトル'
                     />
                   </FormControl>
                   <FormMessage />
@@ -349,9 +347,9 @@ export function BlogEditor({ initialDocument }: BlogEditorProps = {}) {
                     <Textarea
                       {...field}
                       value={field.value ?? ""}
-                      placeholder='Write a short description (optional)'
+                      placeholder='短い説明を書く（任意）'
                       className='min-h-20 resize-none text-sm'
-                      aria-label='Short description'
+                      aria-label='短い説明'
                       maxLength={500}
                     />
                   </FormControl>
@@ -425,14 +423,14 @@ export function BlogEditor({ initialDocument }: BlogEditorProps = {}) {
                         value={field.value}
                         onChange={field.onChange}
                         viewMode={viewMode}
-                        placeholder='Write your article in Markdown…'
+                        placeholder='Markdownで記事を書く…'
                         className='min-h-[560px]'
                       />
                     ) : (
                       <BlogRichTextEditor
                         value={field.value}
                         onChange={field.onChange}
-                        placeholder='Write your article…'
+                        placeholder='記事を書く…'
                         className='min-h-[560px]'
                       />
                     )}

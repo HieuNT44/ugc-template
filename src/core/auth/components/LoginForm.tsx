@@ -78,7 +78,7 @@ export function LoginForm({
               name='email'
               render={({ field }) => (
                 <FormItem className='grid gap-2'>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel>メールアドレス</FormLabel>
                   <FormControl>
                     <Input
                       type='email'
@@ -98,17 +98,17 @@ export function LoginForm({
               render={({ field }) => (
                 <FormItem className='grid gap-2'>
                   <div className='flex items-center'>
-                    <FormLabel>Password</FormLabel>
+                    <FormLabel>パスワード</FormLabel>
                     <span
                       aria-disabled='true'
                       className='text-muted-foreground ml-auto inline-block cursor-not-allowed text-sm underline opacity-60'
                     >
-                      Forgot password?
+                      パスワードをお忘れですか？
                     </span>
                   </div>
                   <FormControl>
                     <PasswordInput
-                      placeholder='Enter your password'
+                      placeholder='パスワードを入力してください'
                       autoComplete='current-password'
                       {...field}
                     />
@@ -123,7 +123,7 @@ export function LoginForm({
               className='w-full'
               disabled={formState.isLoading}
             >
-              {formState.isLoading ? "Signing in..." : "Sign in"}
+              {formState.isLoading ? "ログイン中..." : "ログイン"}
             </Button>
 
             <SocialLoginSection
@@ -139,7 +139,7 @@ export function LoginForm({
           <div className='mt-4 text-center text-sm'>
             Don&apos;t have an account?{" "}
             <Link href='/register' className='underline'>
-              Create account
+              アカウント作成
             </Link>
           </div>
         </form>

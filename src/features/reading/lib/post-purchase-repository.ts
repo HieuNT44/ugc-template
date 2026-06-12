@@ -35,7 +35,7 @@ export async function recordPostPurchase(
 ): Promise<void> {
   if (!isFirebaseAdminConfigured()) {
     console.warn(
-      "Firebase Admin is not configured. Post purchase was not persisted."
+      "Firebase Adminが設定されていないため、投稿購入は保存されませんでした。"
     );
     return;
   }
